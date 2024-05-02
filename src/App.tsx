@@ -6,7 +6,7 @@ import Home from './paginas/home/Home'
 import Sobre from './paginas/sobre/Sobre'
 import Login from './paginas/login/Login'
 
-export const App = () => {
+function App(){
   return (
   <>
     <BrowserRouter>
@@ -14,6 +14,7 @@ export const App = () => {
         <div className='min-h-[80vh]'>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path='/sobre' element={<Sobre />} />
             <Route path='/login' element={<Login />} />
           </Routes>
@@ -23,3 +24,4 @@ export const App = () => {
   </>
   )
 }
+export default App
