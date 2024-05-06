@@ -3,6 +3,6 @@
     background-repeat: no-repeat;
     min-height: 100vh;
     width: 100%;
-    background-size: 70% 70%; /* Define a largura e altura da imagem como metade da sua original */   
+    background-size: cover;
     background-position: center;
 }
