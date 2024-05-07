@@ -6,6 +6,7 @@ import Home from './paginas/home/Home'
 import Sobre from './paginas/sobre/Sobre'
 import Login from './paginas/login/Login'
 import Cadastro from './paginas/cadastro/Cadastro'
+import Itens from './components/itens/Itens'
 function App(){
   return (
   <>
@@ -17,6 +18,7 @@ function App(){
             <Route path='/sobre' element={<Sobre />} />
             <Route path='/login' element={<Login />} />
             <Route path='/cadastro' element={<Cadastro/>}/>
+            <Route path='/itens' element={<Itens/>}/>
           </Routes>
         </div>
       <Rodape />
