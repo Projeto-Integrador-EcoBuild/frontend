@@ -1,0 +1,15 @@
+.titulo-produtos{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+}
+.titulo{
+    font-size: 2em;
+}
+hr{
+    border: none;
+    background: #8C9857;
+    height: 5px;
+    width: 100%;
+    margin: 5px 10px;
+}
