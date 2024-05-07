@@ -5,8 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './paginas/home/Home'
 import Sobre from './paginas/sobre/Sobre'
 import Login from './paginas/login/Login'
-
-export const App = () => {
+import Cadastro from './paginas/cadastro/Cadastro'
+function App(){
   return (
   <>
     <BrowserRouter>
@@ -16,6 +16,7 @@ export const App = () => {
             <Route path="/" element={<Home />} />
             <Route path='/sobre' element={<Sobre />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/cadastro' element={<Cadastro/>}/>
           </Routes>
         </div>
       <Rodape />
@@ -23,3 +24,5 @@ export const App = () => {
   </>
   )
 }
+
+export default App;

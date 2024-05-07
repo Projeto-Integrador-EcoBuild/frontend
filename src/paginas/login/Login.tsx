@@ -1,44 +1,46 @@
 import React from 'react'
 import "./Login.css"
-
+import Foto from '../../assets/img/img.png'
 function Login(){
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold ">
-        <div className="fundoLogin hidden lg:block"></div>
-        <form className="flex justify-center items-center flex-col w-1/2 gap-4">
-          <h2 className="text-slate-900 text-5xl ">Entrar</h2>
+      <div className="grid  lg:grid-cols-2 h-screen place-items-center  ">
+        <div className=" w-full h-full pt-20  bg-green-light ">
+          <img src={Foto} className='bg-no-repeat object-contain '  alt="Logo da naturalar"></img>
+        </div>
+        <form className="flex items-center flex-col w-9/12 gap-8  ">
+          <h2 className="text-6xl mb-5 ">Login</h2>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="usuario">Usuário</label>
+            <label htmlFor="usuario" className='mb-2'>E-mail</label>
             <input
-              type="text"
+
+              type="email"
+             
+              required
               id="usuario"
               name="usuario"
-              placeholder="Usuario"
-              className="border-2 border-slate-700 rounded p-2"/>
-
+              className="border-b  border-black outline-none  "/>
           </div>
+          
           <div className="flex flex-col w-full">
-            <label htmlFor="senha">Senha</label>
+            <label htmlFor="senha" className='mb-2' >Senha</label>
             <input
               type="password"
+              minLength={8}
+              required
               id="senha"
               name="senha"
-              placeholder="Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-b  border-black mb-12x1 outline-none "
             />
           </div>
-          <button type='submit' className="rounded bg-indigo-400 hover:bg-indigo-900 text-white w-1/2 py-2 flex justify-center">
+          <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 m-4 uppercase">
             
-          <span>Entrar</span>
+          <span >Entrar</span>
           </button>
-          <hr className="border-slate-800 w-full" />
-          <p>
-            Ainda não tem uma conta?{' '}
-            {/* <Link to="/cadastro" className="text-indigo-800 hover:underline">
-              Cadastre-se
-            </Link> */}
+          <p className='w-full text-center'>
+            Ainda não tem uma conta?  <span className='font-black underline cursor-pointer pl-1.5'> Cadastre-se!</span> 
+             
           </p>
         </form>
       </div>
@@ -46,4 +48,6 @@ function Login(){
   )
 }
 
-export default Login
+export default Login;
+// border-b-2 : borderBottom-width : 2px
+//outline-none : quando eu clicar no meu input ele não vai ficar com aquela borda escura
