@@ -1,12 +1,84 @@
-import React from 'react'
-import "./Cadastro.css"
+import './Cadastro.css'
+import { ChangeEvent, useEffect, useState , useContext } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import Foto from '../../assets/img/img.png'
+import { cadastrarUsuario } from '../../services/Service'
+import Usuario from '../../models/Usuario'
+import { AuthContext } from '../../contexts/AuthContext';
+import { RotatingLines } from 'react-loader-spinner';
+
 function Cadastro() {
+
+
+    let navigate = useNavigate()
+
+    const [confirmaSenha, setConfirmaSenha] = useState<string>("")
+    const { isLoading } = useContext(AuthContext);
+    const [usuario, setUsuario] = useState<Usuario>({
+        id: 0,
+        nome: '',
+        email: '',
+        senha: '',
+        foto: '',
+        tipo: ''
+    })
+
+    const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
+        id: 0,
+        nome: '',
+        email: '',
+        senha: '',
+        foto: '',
+        tipo: ''
+    })
+
+    useEffect(() => {
+        if (usuarioResposta.id !== 0) {
+            back()
+        }
+    }, [usuarioResposta])
+
+    function back() {
+        navigate('/home')
+    }
+
+    function handleConfirmarSenha(e: ChangeEvent<HTMLInputElement>) {
+        setConfirmaSenha(e.target.value)
+    }
+
+    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+        setUsuario({
+            ...usuario,
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+    async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault()
+        if (confirmaSenha === usuario.senha && usuario.senha.length >= 8) {
+
+            try {
+                await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuarioResposta)
+                alert('Usuário cadastrado com sucesso')
+
+            } catch (error) {
+                alert('Erro ao cadastrar o Usuário')
+            }
+
+        } else {
+            alert('Senhas inconsistentes! ')
+            setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
+            setConfirmaSenha("")                  // Reinicia o campo de Confirmar Senha
+        }
+    }
+
+
     return (
         <>
             <div className="grid  lg:grid-cols-2 h-screen place-items-center ">
-                <form className="flex items-center flex-col w-9/12 gap-4 -mt-3  ">
-                    <h2 className="text-6xl mb-5 mt-12 ">Cadastro</h2>
+                <form className="flex items-center flex-col w-9/12 gap-4 -mt-3  bg-zinc-600" onSubmit={cadastrarNovoUsuario}>
+                    <h2 className="text-6xl mb-5 mt-0 ">Cadastro</h2>
 
                     <div className="flex flex-col w-full">
                         <label htmlFor="nome" className='mb-2'>Nome completo </label>
@@ -15,6 +87,8 @@ function Cadastro() {
                             required
                             id="nome"
                             name="nome"
+                            value={usuario.nome}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             className="border-b  border-black outline-none  " />
                     </div>
 
@@ -26,6 +100,8 @@ function Cadastro() {
                             required
                             id="email"
                             name="email"
+                            value={usuario.email}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             className="border-b  border-black outline-none  " />
                     </div>
 
@@ -37,79 +113,91 @@ function Cadastro() {
                             required
                             id="senha"
                             name="senha"
+                            value={usuario.senha}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             className="border-b  border-black mb-12x1 outline-none "
                         />
                     </div>
 
+
+
                     <div className="flex flex-col w-full">
-                        <label htmlFor="foto" className='mb-2' >Foto</label>
+                        <label htmlFor="confirmarSenha" className='mb-2' >Confirmar senha </label>
                         <input
                             type="password"
-                            id="foto"
-                            name="foto"
-                            className="border-b border-black mb-12x1 outline-none "
+                            minLength={8}
+                            required
+                            id="confirmarSenha"
+                            name="confirmarSenha"
+                            value={confirmaSenha}
+                            className="border-b  border-black mb-12x1 outline-none "
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
                         />
                     </div>
+                   
 
-                    <label htmlFor="tipo" className='w-full m-2'  >Tipo do usuário :  </label>
-                    <div className="flex w-full -m-5">
-                        <nav className="flex  flex-row justify-around w-full">
-                            <div role="button"
-                                className="flex items-center  ">
-                                <label htmlFor="tipo" className="flex items-center w-full px-3 py-2 cursor-pointer">
-                                    <div className="grid mr-3 place-items-center">
-                                        <div className="inline-flex items-center">
-                                            <label className="relative flex items-center p-1  cursor-pointer"
-                                                htmlFor="tipo">
-                                                <input name="camposRadio" id="cliente" type="radio"
-                                                    className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border  checked:border-green-dark checked:before:bg-green-dark" />
-                                                <span
-                                                    className="absolute text-green-dark opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor">
-                                                        <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                                    </svg>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Cliente
-                                    </p>
-                                </label>
-                            </div>
-                            <div role="button"
-                                className="flex items-center  ">
-                                <label htmlFor="tipo" className="flex items-center w-full px-3 py-2 cursor-pointer">
-                                    <div className="grid mr-3 place-items-center">
-                                        <div className="inline-flex items-center">
-                                            <label className="relative flex items-center p-1  cursor-pointer"
-                                                htmlFor="tipo">
-                                                <input type="radio"
-                                                    id="funcionario"
-                                                    name="camposRadio"
-                                                    className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border  checked:border-green-dark checked:before:bg-green-dark" />
-                                                <span
-                                                    className="absolute text-green-dark opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor">
-                                                        <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                                                    </svg>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Funcionário
-                                    </p>
-                                </label>
-                            </div>
-                        </nav>
+                    <div className="flex flex-col w-full">
+                        <label htmlFor="foto" className='mb-2'>Foto</label>
+                        <input
+                            type="text"
+                            id="foto"
+                            name="foto"
+                            value={usuario.foto}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="border-b  border-black outline-none  " />
                     </div>
 
-                    <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 mt-4 uppercase">
-                        <span >Cadastrar</span>
+
+                   
+
+                    <label className='w-full '>Tipo do usuário :  </label>
+
+                    <div className="w-full flex justify-evenly text-2xl bg-red-400">
+                        
+                        <label htmlFor="funcionario">
+                            <input
+                                id='funcionario'
+                                type="radio"
+                                name="tipo"
+                                value= "funcionario"
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                                className=" mr-1 mb-1 cursor-pointer checked:bg-green-dark checked:hover:bg-green-dark checked:active:bg-green-dark checked:focus:bg-green-dark focus:bg-green-dark focus:outline-none focus:ring-0 focus:ring-white"
+                            />
+                            Funcionário
+                            
+                        </label>
+
+
+                        <label htmlFor="cliente">
+                            <input
+                                id='cliente'
+                                type="radio"
+                                name="tipo"
+                                value="cliente"
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                                className=" tex mr-1 mb-1 cursor-pointer checked:bg-green-dark checked:hover:bg-green-dark checked:active:bg-green-dark checked:focus:bg-green-dark focus:bg-green-dark focus:outline-none focus:ring-0 focus:ring-white"
+                            />
+                           Cliente
+                        </label>
+
+                    </div>
+
+                   
+
+                    <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 mt-4 uppercase" >
+                    {isLoading ? <RotatingLines
+                                        strokeColor="white"
+                                        strokeWidth="5"
+                                        animationDuration="0.75"
+                                        width="24"
+                                        visible={true}
+                                    /> :
+                        <span >Cadastrar</span>}
                     </button>
                     <p className='w-full text-center'>
-                        Já possui uma conta?  <span className='font-black underline cursor-pointer pl-1.5'> Login</span>
+                        Já possui uma conta? <Link to="/login">
+                            <span className='font-black underline cursor-pointer pl-1.5'> Login</span>
+                        </Link>
 
                     </p>
                 </form>
@@ -123,5 +211,3 @@ function Cadastro() {
 }
 
 export default Cadastro;
-// border-b-2 : borderBottom-width : 2px
-//outline-none : quando eu clicar no meu input ele não vai ficar com aquela borda escura
