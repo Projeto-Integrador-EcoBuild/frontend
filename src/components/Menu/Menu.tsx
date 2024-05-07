@@ -15,6 +15,7 @@ function Menu(){
           <div className='flex gap-4'>
             <Link to='/home' className='hover:underline'>Home</Link>
             <Link to='/sobre' className='hover:underline'>Sobre</Link>
+            <Link to='/produtos' className='hover:underline'>Produtos</Link>
             <Link to='/login' className='hover:underline'>Login</Link>
           </div>
         </div>
