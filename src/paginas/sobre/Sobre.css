@@ -1,0 +1,25 @@
+/*.icones {
+    display:flex;
+    justify-content: space-between;
+    
+}
+
+.info{
+   text-align: center;
+}*/
+
+.icones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas igualmente espaçadas */
+    gap: 30px; /* Espaçamento entre os elementos */
+}
+
+.info {
+    text-align: center;
+}
+
+.info i{
+    font-size: 5em;
+    color: #8C9857;
+    
+}
