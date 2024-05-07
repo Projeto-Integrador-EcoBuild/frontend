@@ -4,6 +4,7 @@ import Foto from '../../assets/img/img.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import UsuarioLogin from '../../models/UsuarioLogin';
+import { RotatingLines } from 'react-loader-spinner';
 
 function Login() {
   const navigate = useNavigate();
@@ -71,9 +72,15 @@ function Login() {
             />
           </div>
           <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 m-4 uppercase">
-
-            <span >Entrar</span>
-          </button>
+          {isLoading ? <RotatingLines
+                                        strokeColor="white"
+                                        strokeWidth="5"
+                                        animationDuration="0.75"
+                                        width="24"
+                                        visible={true}
+                                    /> :
+                                        <span>Entrar</span>}
+                                </button>
 
           <p className='w-full text-center'>
            

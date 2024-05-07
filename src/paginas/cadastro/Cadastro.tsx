@@ -1,9 +1,11 @@
 import './Cadastro.css'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState , useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Foto from '../../assets/img/img.png'
 import { cadastrarUsuario } from '../../services/Service'
 import Usuario from '../../models/Usuario'
+import { AuthContext } from '../../contexts/AuthContext';
+import { RotatingLines } from 'react-loader-spinner';
 
 function Cadastro() {
 
@@ -11,7 +13,7 @@ function Cadastro() {
     let navigate = useNavigate()
 
     const [confirmaSenha, setConfirmaSenha] = useState<string>("")
-
+    const { isLoading } = useContext(AuthContext);
     const [usuario, setUsuario] = useState<Usuario>({
         id: 0,
         nome: '',
@@ -49,7 +51,6 @@ function Cadastro() {
             ...usuario,
             [e.target.name]: e.target.value
         })
-        console.log(usuario)
 
     }
 
@@ -183,8 +184,15 @@ function Cadastro() {
 
                    
 
-                    <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 mt-4 uppercase">
-                        <span >Cadastrar</span>
+                    <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 mt-4 uppercase" >
+                    {isLoading ? <RotatingLines
+                                        strokeColor="white"
+                                        strokeWidth="5"
+                                        animationDuration="0.75"
+                                        width="24"
+                                        visible={true}
+                                    /> :
+                        <span >Cadastrar</span>}
                     </button>
                     <p className='w-full text-center'>
                         Já possui uma conta? <Link to="/login">

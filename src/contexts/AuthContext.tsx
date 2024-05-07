@@ -23,7 +23,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         //variaveis de estado
         id: 0,
         nome: "",
-        usuario: "",
+        email: "",
         senha: "",
         foto: "",
         token: "",
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUsuario({
             id: 0,
             nome: "",
-            usuario: "",
+            email: "",
             senha: "",
             foto: "",
             token: "",
