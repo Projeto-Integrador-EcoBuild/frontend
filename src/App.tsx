@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Menu from './components/Menu/Menu'
 import Rodape from './components/Rodape/Rodape'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -24,7 +24,8 @@ function App(){
       <Rodape />
     </BrowserRouter>
   </>
-  )
-}
+    )
+  }
+  export default App
 
-export default App;
+
