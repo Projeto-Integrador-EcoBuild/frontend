@@ -1,21 +1,17 @@
-import React from 'react'
 import logoGreen from '../../assets/img/logo-green.png';
+import { GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
 import "./Sobre.css"
 
 function Sobre() {
   return (
     <>
       <div className="grid  lg:grid-cols-2 h-screen place-items-center bg-green-light">
-        <div className="flex items-left flex-col w-9/12 gap-4 -mt-3">
+        <div className="flex items-left flex-col w-9/12 gap-4 -mt-3  ">
           <h1 className="text-5xl font-bold mb-4">Sobre Nós</h1>
-          <p>Somos uma empresa com anos de mercado, que sempre pensou em mudar o mundo a começar por nossas próprias casas. Por conta disso, desenvolvemos um local onde outras pessoas que querem fazer a sua parte para salvar o mundo possam dar o seu primeiro passo.</p>
+          <p>Somos uma empresa nova no mercado, mas que sempre pensou em mudar o mundo a começar por nossas próprias casas. Por conta disso, desenvolvemos um local onde outras pessoas que querem fazer a sua parte para salvar o mundo possam dar o seu primeiro passo.</p>
           <p>Com o apoio de diversos profissionais da engenharia ambiental e da engenharia civil, desenvolvemos a melhor seleção de produtos para ter uma casa mais sustentável e uma grande amiga do ambiente.</p>
-          <div>
-            <p className="mt-4">Alan</p>
-            <p>Pequeno resumo</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/seu_perfil" target="_blank">seu_perfil</a></p>
-            <p>GitHub: <a href="https://github.com/seu_usuario" target="_blank">seu_usuario</a></p>
-          </div>
+          <p>Somos um time destemido e inovador formado por alunos da Generation Brasil, dedicado a enfrentar os desafios apresentados pelos Objetivos de Desenvolvimento Sustentável da ONU, que são objetivos para deixar o mundo mais sustentável até 2030, e a nossa missão é contribuir para a concretização do Objetivo 11 - Cidades e Comunidades Sustentáveis, que visa tornar os assentamentos humanos mais inclusivos, seguros, resilientes e sustentáveis.</p>
+
         </div>
         <div className="w-1/2 p-4">
           {/*imagens  */}
@@ -40,8 +36,67 @@ function Sobre() {
           </div>
         </div>
       </div>
+      <div className='gap-x-14 font-bold flex flex-row mb-6 w-full bg-green-light'>
+        <div className='ml-56'>
+          <p className="mt-4">Alan Eduardo</p>
+          <div className='flex flex-row  justify-around'>
+            <a href="https://www.linkedin.com/in/aeduardocruz/" target="_blank">
+              <LinkedinLogo />
+            </a>
+            <a href="https://github.com/AlanEduardoCruz" target="_blank">
+              <GithubLogo />
+            </a>
+          </div>
+        </div>
 
+        <div>
+          <p className="mt-4">Gabriel Tomarchio</p>
+          <div className='flex flex-row justify-around'>
+            <a href="https://www.linkedin.com/in/bieltomarchio/" target="_blank">
+              <LinkedinLogo />
+            </a>
+            <a href="https://github.com/biel678" target="_blank">
+              <GithubLogo />
+            </a>
+          </div>
+        </div>
 
+        <div>
+          <p className="mt-4">Kamilla Rodrigues</p>
+          <div className='flex flex-row justify-around'>
+            <a href="https://www.linkedin.com/in/kamillarodrigues/" target="_blank">
+              <LinkedinLogo />
+            </a>
+            <a href="https://github.com/KamillaLima" target="_blank">
+              <GithubLogo />
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p className="mt-4">Maria Xavier</p>
+          <div className='flex flex-row justify-around'>
+            <a href="https://www.linkedin.com/in/maria-xavier-tech/" target="_blank">
+              <LinkedinLogo />
+            </a>
+            <a href="https://github.com/marii182" target="_blank">
+              <GithubLogo />
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p className="mt-4">Raul Oliveira</p>
+          <div className='flex flex-row justify-around'>
+            <a href="https://www.linkedin.com/in/raul-oliveira-prado/" target="_blank">
+              <LinkedinLogo />
+            </a>
+            <a href="https://github.com/Raul-Prado" target="_blank">
+              <GithubLogo />
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
