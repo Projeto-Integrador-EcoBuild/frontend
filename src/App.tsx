@@ -13,9 +13,13 @@ import { AuthProvider } from './contexts/AuthContext'
 import ListaCategoria from './components/Categoria/listaCategoria/ListaCategoria'
 import DeletarCategoria from './components/Categoria/deletarCategoria/DeletarCategoria'
 import FormCategoria from './components/Categoria/FormCategoria/FormCategoria'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <AuthProvider>
+      <ToastContainer />
       <BrowserRouter>
         <Menu />
         <div className='min-h-[80vh]'>

@@ -6,6 +6,7 @@ import { cadastrarUsuario } from '../../services/Service'
 import Usuario from '../../models/Usuario'
 import { AuthContext } from '../../contexts/AuthContext';
 import { RotatingLines } from 'react-loader-spinner';
+import { toastAlerta } from '../../util/toastAlerta'
 
 function Cadastro() {
 
@@ -62,14 +63,14 @@ function Cadastro() {
 
             try {
                 await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuarioResposta)
-                alert('Usuário cadastrado com sucesso')
+                toastAlerta('Usuário cadastrado com sucesso', 'info')
 
             } catch (error) {
-                alert('Erro ao cadastrar o Usuário')
+                toastAlerta('Erro ao cadastrar o Usuário', 'error')
             }
 
         } else {
-            alert('Senhas inconsistentes! ')
+            toastAlerta('Senhas inconsistentes!', 'error')
             setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
             setConfirmaSenha("")                  // Reinicia o campo de Confirmar Senha
         }
