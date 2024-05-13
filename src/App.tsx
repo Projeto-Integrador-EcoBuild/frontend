@@ -10,6 +10,9 @@ import Produtos from './paginas/produtos/Produtos'
 
 import Itens from './components/itens/Itens'
 import { AuthProvider } from './contexts/AuthContext'
+import ListaCategoria from './components/Categoria/listaCategoria/ListaCategoria'
+import DeletarCategoria from './components/Categoria/deletarCategoria/DeletarCategoria'
+import FormCategoria from './components/Categoria/FormCategoria/FormCategoria'
 function App() {
   return (
     <AuthProvider>
@@ -24,6 +27,10 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/cadastro' element={<Cadastro />} />
             <Route path='/itens' element={<Itens />} />
+            <Route path='/categoria' element={<ListaCategoria />} />
+            <Route path='/deletarCategoria/:id' element = {<DeletarCategoria/>}/> 
+            <Route path='/cadastrarCategoria' element = {<FormCategoria/>}/> 
+            <Route path='/editarCategoria/:id' element = {<FormCategoria/>}/> 
           </Routes>
         </div>
         <Rodape />

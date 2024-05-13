@@ -40,7 +40,7 @@ function Menu() {
             <Link to='/home' className='hover:underline'>Home</Link>
             <Link to='/sobre' className='hover:underline'>Sobre</Link>
             <Link to='/produtos' className='hover:underline'>Produtos</Link>
-            <Link to='/' className='hover:underline'>Categoria</Link>
+            <Link to='/categoria' className='hover:underline'>Categoria</Link>
             <Link to='/' className='hover:underline'>Logout</Link>
           </div>
         </div>
@@ -61,7 +61,6 @@ function Menu() {
             <Link to='/home' className='hover:underline'>Home</Link>
             <Link to='/sobre' className='hover:underline'>Sobre</Link>
             <Link to='/produtos' className='hover:underline'>Produtos</Link>
-            <Link to='/' className='hover:underline'>Categoria</Link>
             <Link to='/login' className='hover:underline'>Login</Link>
           </div>
         </div>
