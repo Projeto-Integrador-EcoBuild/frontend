@@ -100,20 +100,32 @@ function FormCategoria() {
         {id === undefined ? 'Cadastre uma nova Categoria' : 'Editar Categoria'}
       </h1>
 
-      <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoCategoria}>
+      <form className="w-1/2 flex flex-col gap-20"  onSubmit={gerarNovoCategoria}>
         <div className="flex flex-col gap-2">
-          <label htmlFor="nome">nome da Categoria</label>
+          <label htmlFor="nome">Nome</label>
           <input
             type="text"
-            placeholder="nome"
+            required
             name='nome'
-            className="border-2 border-slate-700 rounded p-2"
+            className="border-b-slate-600 border-t-0 border-l-0 border-r-0  outline-none "
             value={categoria.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
         </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="descricao">Descrição </label>
+          <input
+            type="text"
+            required
+            name='descricao'
+            className="border-b-slate-600 border-t-0 border-l-0 border-r-0  outline-none "
+            value={categoria.descricao}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+          />
+        </div>
         <button
-          className="rounded text-slate-100 bg-indigo-400 hover:bg-indigo-800 w-1/2 py-2 mx-auto block"
+          className="rounded text-white bg-green-dark hover:bg-green-hover w-1/2 py-4 mx-auto block text-xl"
           type="submit"
         >
           {id === undefined ? 'Cadastrar' : 'Editar'}

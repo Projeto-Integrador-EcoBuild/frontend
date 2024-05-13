@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dna } from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Categoria from '../../../models/Categoria';
@@ -21,7 +21,7 @@ function ListaCategoria() {
         headers: { Authorization: token },
       });
     } catch (error: any) {
-      if(error.toString().includes('403')) {
+      if (error.toString().includes('403')) {
         toastAlerta('O token expirou, favor logar novamente', 'error')
         handleLogout()
       }
@@ -41,21 +41,24 @@ function ListaCategoria() {
   return (
     <>
       {categorias.length === 0 && (
-        <Dna
+
+
+        <Oval
           visible={true}
-          height="200"
-          width="200"
-          ariaLabel="dna-loading"
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="oval-loading"
           wrapperStyle={{}}
-          wrapperClass="dna-wrapper mx-auto"
+          wrapperClass="oval-wrapper mx-auto"
         />
       )}
-      <div className="flex justify-center w-full my-4">
+      <div className="flex justify-center w-full pt-4 h-full pb-4">
         <div className="container flex flex-col">
-          <p>Cadastrar categoria : </p>
-          <Link to={`/cadastrarCategoria`} className='w-full text-slate-100 bg-indigo-400 hover:bg-indigo-800 flex items-center justify-center py-2'>
-          <button>Cadastrar</button>
-        </Link>
+          <p className='text-center text-2xl mt-6 mb-2'>Cadastrar categoria : </p>
+          <Link to={`/cadastrarCategoria`} className='w-1/3 text-white bg-green-600 hover:bg-green-700  flex items-center justify-center py-2 m-auto mb-8 text-2xl'>
+            <button>Cadastrar</button>
+          </Link>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categorias.map((categoria) => (
               <>
