@@ -81,37 +81,39 @@ function Cadastro() {
 
     return (
         <>
-            <div className="grid  lg:grid-cols-2 h-full mb-8 place-items-center ">
-                <form className="flex items-center flex-col w-9/12 gap-4 mt-3  h-full" onSubmit={cadastrarNovoUsuario}>
-                    <h2 className="text-6xl  mt-0 ">Cadastro</h2>
+            <div className="grid  lg:grid-cols-2 h-full place-items-center ">
+                <form className="flex items-center flex-col w-full pl-10 pr-10 pt-5 mb-3" onSubmit={cadastrarNovoUsuario}>
+                    <h2 className="text-6xl  mt-4 ">Cadastro</h2>
 
-                    <div className="flex flex-col w-full">
-                        <label htmlFor="nome" className='mb-2'>Nome completo </label>
+                    <div className="flex flex-col w-full mb-3 ">
+                        <label htmlFor="nome" >Nome completo </label>
                         <input
                             type="text"
                             required
                             id="nome"
                             name="nome"
                             value={usuario.nome}
+                        
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            className="border-b  border-black outline-none  " />
+                            className="border border-x-0 border-t-0 focus:ring-0  focus:border-black" />
                     </div>
 
 
                     <div className="flex flex-col w-full">
-                        <label htmlFor="email" className='mb-2 '>E-mail</label>
+                        <label htmlFor="email" >E-mail</label>
                         <input
                             type="email"
                             required
                             id="email"
                             name="email"
+                            className='border border-x-0 border-t-0 focus:ring-0  focus:border-black'
                             value={usuario.email}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            className="border-b  border-black outline-none  " />
+                            />
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label htmlFor="senha" className='mb-2' >Senha</label>
+                        <label htmlFor="senha"  >Senha</label>
                         <input
                             type="password"
                             minLength={8}
@@ -119,15 +121,16 @@ function Cadastro() {
                             id="senha"
                             name="senha"
                             value={usuario.senha}
+                            className='border border-x-0 border-t-0 focus:ring-0  focus:border-black'
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            className="border-b  border-black mb-12x1 outline-none "
+                            
                         />
                     </div>
 
 
 
                     <div className="flex flex-col w-full">
-                        <label htmlFor="confirmarSenha" className='mb-2' >Confirmar senha </label>
+                        <label htmlFor="confirmarSenha" >Confirmar senha </label>
                         <input
                             type="password"
                             minLength={8}
@@ -135,29 +138,27 @@ function Cadastro() {
                             id="confirmarSenha"
                             name="confirmarSenha"
                             value={confirmaSenha}
-                            className="border-b  border-black mb-12x1 outline-none "
+                            
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
                         />
                     </div>
 
-
                     <div className="flex flex-col w-full">
-                        <label htmlFor="foto" className='mb-2'>Foto</label>
+                   
+                        <label htmlFor="foto" >Foto</label>
                         <input
                             type="text"
                             id="foto"
                             name="foto"
                             value={usuario.foto}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            className="border-b  border-black outline-none  " />
+                            />
+                  
                     </div>
-
-
-
 
                     <label className='w-full '>Tipo do usuário :  </label>
 
-                    <div className="w-full flex justify-evenly text-2xl">
+                    <div className="w-full flex justify-evenly ">
 
                         <label htmlFor="funcionario">
                             <input
@@ -180,7 +181,7 @@ function Cadastro() {
                                 name="tipo"
                                 value="cliente"
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                                className=" tex mr-1 mb-1 cursor-pointer checked:bg-green-dark checked:hover:bg-green-dark checked:active:bg-green-dark checked:focus:bg-green-dark focus:bg-green-dark focus:outline-none focus:ring-0 focus:ring-white"
+                                className="  mr-1 mb-1 cursor-pointer checked:bg-green-dark checked:hover:bg-green-dark checked:active:bg-green-dark checked:focus:bg-green-dark focus:bg-green-dark focus:outline-none focus:ring-0 focus:ring-white"
                             />
                             Cliente
                         </label>

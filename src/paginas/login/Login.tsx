@@ -52,7 +52,7 @@ function Login() {
               required
               id="email"
               name="email"
-              className="border-b  border-black outline-none  "
+              className=" border border-x-0 border-t-0 focus:ring-0  focus:border-black"
               value={usuarioLogin.email}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
               />
@@ -66,7 +66,7 @@ function Login() {
               required
               id="senha"
               name="senha"
-              className="border-b  border-black mb-12x1 outline-none "
+              className=" border border-x-0 border-t-0 focus:ring-0  focus:border-black"
               value={usuarioLogin.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />

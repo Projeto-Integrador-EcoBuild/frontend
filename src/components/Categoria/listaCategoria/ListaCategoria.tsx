@@ -40,25 +40,50 @@ function ListaCategoria() {
   }, [categorias.length]);
   return (
     <>
-      {categorias.length === 0 && (
 
-
-        <Oval
-          visible={true}
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="oval-loading"
-          wrapperStyle={{}}
-          wrapperClass="oval-wrapper mx-auto"
-        />
-      )}
       <div className="flex justify-center w-full pt-4 h-full pb-4">
         <div className="container flex flex-col">
-          <p className='text-center text-2xl mt-6 mb-2'>Cadastrar categoria : </p>
-          <Link to={`/cadastrarCategoria`} className='w-1/3 text-white bg-green-600 hover:bg-green-700  flex items-center justify-center py-2 m-auto mb-8 text-2xl'>
-            <button>Cadastrar</button>
-          </Link>
+
+          <div className="container flex flex-row py-2 justify-between" >
+            
+            <Link to={`/cadastrarCategoria`} className='w-1/3 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
+              <button>Cadastrar categoria</button>
+            </Link>
+
+
+
+            <form className="form relative">
+              <button className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
+                <svg
+                  width="17"
+                  height="16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  role="img"
+                  aria-labelledby="search"
+                  className="w-6 h-8 text-black"
+                >
+                  <path
+                    d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                    stroke="currentColor"
+                    stroke-width="1.333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </button>
+              <input
+                className="input rounded-full px-8 py-3 border-2  "
+                placeholder="Search..."
+                type="text"
+              />
+
+            </form>
+
+
+
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categorias.map((categoria) => (
               <>
@@ -68,6 +93,23 @@ function ListaCategoria() {
           </div>
         </div>
       </div>
+
+      {categorias.length === 0 && (
+
+        <div className=' flex justify-center items-center h-screen '>
+          <Oval
+            visible={true}
+            height="300"
+            width="200"
+            color="#16a34a"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass="oval-wrapper mx-auto"
+          />
+        </div>
+
+      )}
+
     </>
   );
 }

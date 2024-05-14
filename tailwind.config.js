@@ -10,8 +10,8 @@ module.exports = {
       colors: {
         green: {
           light: '#DDE5D5',
-          dark: '#8C9857',
-          hover: '#5D6634'
+          dark: '#316906',
+          hover: '#365B1A'
         }
 
       },

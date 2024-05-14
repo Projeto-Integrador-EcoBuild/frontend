@@ -29,7 +29,7 @@ function Rodape() {
               mail
             </span>
             <span className="underline">
-              naturalarr@gmail.com
+              naturalar@gmail.com
             </span>
           </li>
 

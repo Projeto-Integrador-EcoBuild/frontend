@@ -4,7 +4,6 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import Categoria from '../../../models/Categoria';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../util/toastAlerta';
-
 function FormCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
@@ -29,7 +28,7 @@ function FormCategoria() {
     }
   }, [id])
 
-  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>,) {
     setCategoria({
       ...categoria,
       [e.target.name]: e.target.value
@@ -37,7 +36,14 @@ function FormCategoria() {
 
   }
 
-  async function gerarNovoCategoria(e: ChangeEvent<HTMLFormElement>) {
+  function atualizarEstadoTextArea(e: ChangeEvent<HTMLTextAreaElement>,) {
+    setCategoria({
+      ...categoria,
+      [e.target.name]: e.target.value
+    })
+
+  }
+  async function gerarNovoCategoria(e: ChangeEvent<HTMLFormElement>,) {
     e.preventDefault()
 
     if (id !== undefined) {
@@ -48,7 +54,7 @@ function FormCategoria() {
           }
         })
 
-          toastAlerta('Categoria atualizada com sucesso', 'info')
+        toastAlerta('Categoria atualizada com sucesso', 'info')
         retornar()
 
       } catch (error: any) {
@@ -56,7 +62,7 @@ function FormCategoria() {
           toastAlerta('O token expirou, favor logar novamente', 'info')
           handleLogout()
         } else {
-            toastAlerta('Erro ao atualizar a Categoria', 'error')
+          toastAlerta('Erro ao atualizar a Categoria', 'error')
         }
 
       }
@@ -89,41 +95,45 @@ function FormCategoria() {
 
   useEffect(() => {
     if (token === '') {
-        toastAlerta('Você precisa estar logado', 'error')
+      toastAlerta('Você precisa estar logado', 'error')
       navigate('/login');
     }
   }, [token]);
 
   return (
     <div className="container flex flex-col items-center justify-center mx-auto">
-      <h1 className="text-4xl text-center my-8">
+      <h1 className="text-5xl text-center my-8 ">
         {id === undefined ? 'Cadastre uma nova Categoria' : 'Editar Categoria'}
       </h1>
 
-      <form className="w-1/2 flex flex-col gap-20"  onSubmit={gerarNovoCategoria}>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="nome">Nome</label>
+      <form className="w-1/2 flex flex-col gap-10" onSubmit={gerarNovoCategoria}>
+        <div className=" flex flex-col static">
+          <label htmlFor="nome" className="text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit">Nome</label>
           <input
             type="text"
             required
-            name='nome'
-            className="border-b-slate-600 border-t-0 border-l-0 border-r-0  outline-none "
+            name="nome"
+            className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
             value={categoria.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
+
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="descricao">Descrição </label>
-          <input
-            type="text"
+
+        <div className="input flex flex-col static">
+          <label htmlFor="nome" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Descrição</label>
+          <textarea
             required
-            name='descricao'
-            className="border-b-slate-600 border-t-0 border-l-0 border-r-0  outline-none "
+            rows={4}
+            name="descricao"
+            className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
             value={categoria.descricao}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-          />
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstadoTextArea(e)} />
         </div>
+
+
+
         <button
           className="rounded text-white bg-green-dark hover:bg-green-hover w-1/2 py-4 mx-auto block text-xl"
           type="submit"
