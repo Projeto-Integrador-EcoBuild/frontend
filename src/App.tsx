@@ -15,6 +15,9 @@ import DeletarCategoria from './components/Categoria/deletarCategoria/DeletarCat
 import FormCategoria from './components/Categoria/FormCategoria/FormCategoria'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ListaProdutos from './components/produtos/listaProduto/ListaProduto'
+import DeletarProduto from './components/produtos/deletarProduto/DeletarProduto'
+import FormularioProduto from './components/produtos/formularioProduto/FormularioProduto'
 
 function App() {
   return (
@@ -27,7 +30,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path='/sobre' element={<Sobre />} />
-            <Route path='/produtos' element={<Produtos />} />
+            <Route path='/teste' element={<Produtos />} />
             <Route path='/login' element={<Login />} />
             <Route path='/cadastro' element={<Cadastro />} />
             <Route path='/itens' element={<Itens />} />
@@ -35,6 +38,10 @@ function App() {
             <Route path='/deletarCategoria/:id' element = {<DeletarCategoria/>}/> 
             <Route path='/cadastrarCategoria' element = {<FormCategoria/>}/> 
             <Route path='/editarCategoria/:id' element = {<FormCategoria/>}/> 
+            <Route path='/produtos' element={<ListaProdutos />} />
+            <Route path='/deletarProduto/:id' element = {<DeletarProduto/>}/> 
+            <Route path='/cadastrarProduto' element = {<FormularioProduto/>}/> 
+            <Route path='/editarProduto/:id' element = {<FormularioProduto/>}/> 
           </Routes>
         </div>
         <Rodape />
