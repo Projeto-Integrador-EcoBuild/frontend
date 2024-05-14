@@ -8,6 +8,7 @@ function Menu() {
   let navbarComponent
   const { usuario } = useContext(AuthContext)
   let tipo: string = usuario.tipo
+  const { quantidadeItems } = useContext(AuthContext)
 
   if (tipo === "cliente") {
     navbarComponent = (
@@ -21,6 +22,7 @@ function Menu() {
             <Link to='/home' className='hover:underline'>Home</Link>
             <Link to='/sobre' className='hover:underline'>Sobre</Link>
             <Link to='/produtos' className='hover:underline'>Produtos</Link>
+            <Link to='/carrinho' className='hover:underline'>Carrinho[{quantidadeItems}]</Link>
             <Link to='/' className='hover:underline'>Logout</Link>
           </div>
         </div>

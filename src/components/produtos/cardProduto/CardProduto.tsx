@@ -12,6 +12,7 @@ function CardProduto({ product }: CardProdutoProps) {
   let altEstado
   const { usuario } = useContext(AuthContext)
   let tipo: string = usuario.tipo
+  const { adicionarProduto, removerProduto } = useContext(AuthContext)
 
   if(tipo === "funcionario"){
     altEstado=(
@@ -28,13 +29,12 @@ function CardProduto({ product }: CardProdutoProps) {
     altEstado=(
         <div className="flex">
             
-                <Link to={`/editarProduto/${product.id}`} className='w-full text-white bg-green-600 hover:bg-green-700 flex items-center justify-center py-2'>
-                    <button>Adicionar ao carrinho</button>
-                </Link>
-                <Link to={`/deletarProduto/${product.id}`} className='text-white bg-red-400 hover:bg-red-700 w-full flex items-center justify-center'>
-                    <button>Remover do carrinho</button>
-                </Link>
-            </div>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                    onClick={() => adicionarProduto(product)}>Adicionar</button>
+
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                    onClick={() => removerProduto(product.id)}>Remover</button>
+        </div>
     )
   }
 
