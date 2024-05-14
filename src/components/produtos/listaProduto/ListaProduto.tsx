@@ -8,20 +8,15 @@ import CardProduto from '../cardProduto/CardProduto';
 import { toastAlerta } from '../../../util/toastAlerta'
 
 
+
 function ListaProdutos() {
+
   const [produtos, setProdutos] = useState<Produto[]>([]);
 
   let navigate = useNavigate();
 
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
-
-  useEffect(() => {
-    if (token === '') {
-      toastAlerta('Você precisa estar logado', 'info');
-      navigate('/login');
-    }
-  }, [token]);
 
   async function buscarProdutos() {
     try {
@@ -42,12 +37,15 @@ function ListaProdutos() {
     buscarProdutos();
   }, [produtos.length]);
 
-  return (
-    <>
-    <Link to={`/cadastrarProduto`} className='w-1/3 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
-              <button>Cadastrar produto</button>
-            </Link>
-      {produtos.length === 0 && (
+
+  let tipo: string = usuario.tipo
+
+  let ProdComponent
+
+  if (tipo === "cliente") {
+    ProdComponent = (
+      <>
+        {produtos.length === 0 && (
         <Dna
           visible={true}
           height="200"
@@ -56,12 +54,76 @@ function ListaProdutos() {
           wrapperStyle={{}}
           wrapperClass="dna-wrapper mx-auto"
         />
-      )}
-      <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {produtos.map((produto) => (
-          <CardProduto key={produto.id} product={produto} />
-        ))}
-      </div>
+        )}
+        <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {produtos.map((produto) => (
+            <CardProduto key={produto.id} product={produto} />
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  if (tipo === "funcionario") {
+    ProdComponent = (
+      <>
+        <div className="flex justify-center w-full pt-4 h-full pb-4">
+          <div className="container flex flex-col">
+
+            <div className="container flex flex-row py-2 justify-between" >
+              <Link to={`/cadastrarProduto`} className='w-1/3 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
+                <button>Cadastrar produto</button>
+              </Link>
+
+            </div>
+          </div>
+        </div>
+        {
+          produtos.length === 0 && (
+            <Dna
+              visible={true}
+              height="200"
+              width="200"
+              ariaLabel="dna-loading"
+              wrapperStyle={{}}
+              wrapperClass="dna-wrapper mx-auto"
+            />
+          )
+        }
+        <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {produtos.map((produto) => (
+            <CardProduto key={produto.id} product={produto} />
+          ))}
+        </div>
+      </>
+    )
+  } else if (tipo === "") {
+    ProdComponent = (
+      <>
+
+        {produtos.length === 0 && (
+        <Dna
+          visible={true}
+          height="200"
+          width="200"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper mx-auto"
+        />
+        )}
+
+        <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {produtos.map((produto) => (
+            <CardProduto key={produto.id} product={produto} />
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <>
+      {ProdComponent}
     </>
   );
 }

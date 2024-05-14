@@ -42,11 +42,11 @@ function Login() {
         <div className=" w-full h-full pt-20  bg-green-light ">
           <img src={Foto} className='bg-no-repeat object-contain ' alt="Logo da naturalar"></img>
         </div>
-        <form className="flex items-center flex-col w-9/12 gap-8  " onSubmit={login} >
+        <form className="flex items-center flex-col w-9/12 gap-6  " onSubmit={login} >
           <h2 className="text-6xl mb-5 ">Login</h2>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="email" className='mb-2'>E-mail</label>
+            <label htmlFor="email" >E-mail</label>
             <input
               type="email"
               required
@@ -59,7 +59,7 @@ function Login() {
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="senha" className='mb-2' >Senha</label>
+            <label htmlFor="senha" >Senha</label>
             <input
               type="password"
               minLength={8}
@@ -71,6 +71,7 @@ function Login() {
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
+          <p className='w-full text-right underline cursor-pointer'>Esqueceu a senha?</p>
           <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 m-4 uppercase">
           {isLoading ? <RotatingLines
                                         strokeColor="white"
@@ -96,4 +97,4 @@ function Login() {
 
 export default Login;
 // border-b-2 : borderBottom-width : 2px
-//outline-none : quando eu clicar no meu input ele não vai ficar com aquela borda escura
+//outline-none : quando eu clicar no meu input ele não vai ficar com aquela borda escura

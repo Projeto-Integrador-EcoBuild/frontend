@@ -21,7 +21,7 @@ function Cadastro() {
         email: '',
         senha: '',
         foto: '',
-        tipo: ''
+        tipo: 'cliente'
     })
 
     const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
@@ -82,114 +82,159 @@ function Cadastro() {
     return (
         <>
             <div className="grid  lg:grid-cols-2 h-full place-items-center ">
-                <form className="flex items-center flex-col w-full pl-10 pr-10 pt-5 mb-3" onSubmit={cadastrarNovoUsuario}>
-                    <h2 className="text-6xl  mt-4 ">Cadastro</h2>
+                <form className="flex items-center flex-col w-full gap-9 px-16 mb-2" onSubmit={cadastrarNovoUsuario}>
+                    <h2 className="text-6xl mt-6 ">Criação de Conta</h2>
 
-                    <div className="flex flex-col w-full mb-3 ">
-                        <label htmlFor="nome" >Nome completo </label>
+                    <div className="relative w-full ">
                         <input
+                            placeholder=''
+                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
                             type="text"
                             required
                             id="nome"
                             name="nome"
                             value={usuario.nome}
-                        
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            className="border border-x-0 border-t-0 focus:ring-0  focus:border-black" />
+                        />
+                        <label htmlFor="nome"
+                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Nome completo </label>
+
+
                     </div>
 
 
-                    <div className="flex flex-col w-full">
-                        <label htmlFor="email" >E-mail</label>
+                    <div className="relative w-full">
                         <input
-                            type="email"
+                            placeholder=''
+                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
                             required
                             id="email"
                             name="email"
-                            className='border border-x-0 border-t-0 focus:ring-0  focus:border-black'
+                            type="email"
                             value={usuario.email}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            />
+                        />
+                        <label htmlFor="email"
+                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">E-mail </label>
+
+
                     </div>
 
-                    <div className="flex flex-col w-full">
-                        <label htmlFor="senha"  >Senha</label>
+
+
+                    <div className="relative w-full  ">
                         <input
+                            placeholder=''
+                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
                             type="password"
                             minLength={8}
                             required
                             id="senha"
                             name="senha"
                             value={usuario.senha}
-                            className='border border-x-0 border-t-0 focus:ring-0  focus:border-black'
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            
                         />
+                        <label htmlFor="senha"
+                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Senha</label>
+
+
                     </div>
 
 
 
-                    <div className="flex flex-col w-full">
-                        <label htmlFor="confirmarSenha" >Confirmar senha </label>
+
+                    <div className="relative w-full ">
                         <input
+                            placeholder=''
+                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
                             type="password"
                             minLength={8}
                             required
                             id="confirmarSenha"
                             name="confirmarSenha"
                             value={confirmaSenha}
-                            
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
                         />
+                        <label htmlFor="confirmarSenha"
+                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Confirmar senha</label>
+
+
                     </div>
 
-                    <div className="flex flex-col w-full">
-                   
-                        <label htmlFor="foto" >Foto</label>
+
+                    <div className="relative w-full  ">
                         <input
+                            placeholder=''
+                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
                             type="text"
                             id="foto"
                             name="foto"
                             value={usuario.foto}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            />
-                  
-                    </div>
+                        />
+                        <label htmlFor="foto"
+                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Foto</label>
 
-                    <label className='w-full '>Tipo do usuário :  </label>
-
-                    <div className="w-full flex justify-evenly ">
-
-                        <label htmlFor="funcionario">
-                            <input
-                                id='funcionario'
-                                type="radio"
-                                name="tipo"
-                                value="funcionario"
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                                className=" mr-1 mb-1 cursor-pointer checked:bg-green-dark checked:hover:bg-green-dark checked:active:bg-green-dark checked:focus:bg-green-dark focus:bg-green-dark focus:outline-none focus:ring-0 focus:ring-white"
-                            />
-                            Funcionário
-
-                        </label>
-
-
-                        <label htmlFor="cliente">
-                            <input
-                                id='cliente'
-                                type="radio"
-                                name="tipo"
-                                value="cliente"
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                                className="  mr-1 mb-1 cursor-pointer checked:bg-green-dark checked:hover:bg-green-dark checked:active:bg-green-dark checked:focus:bg-green-dark focus:bg-green-dark focus:outline-none focus:ring-0 focus:ring-white"
-                            />
-                            Cliente
-                        </label>
 
                     </div>
 
+                    <div className='flex items-center justify-around w-full  '>
 
-                    <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 mt-4 uppercase" >
+
+
+                        <h3 className='text-lg'>Informe o tipo do usuário :</h3>
+                        <div
+                            className="flex space-x-2 border-[3px] border-green-dark rounded-xl select-none "
+                        >
+
+                            <label htmlFor="cliente"
+                                className="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer"
+                            >
+                                <input id='cliente'
+                                    type="radio"
+                                    name="tipo"
+                                    value="cliente"
+                                    checked={usuario.tipo === "cliente"}
+
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} className="peer hidden" />
+                                <span
+                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-dark peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Consumidor</span>
+                            </label>
+
+
+
+                            <label
+                                className="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer" htmlFor="funcionario"
+                            >
+                                <input
+                                    id='funcionario'
+                                    type="radio"
+                                    name="tipo"
+                                    value="funcionario"
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                                    className="peer hidden"
+                                />
+                                <span
+                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-dark peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Funcionário</span>
+                            </label>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+                    <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3  uppercase" >
                         {isLoading ? <RotatingLines
                             strokeColor="white"
                             strokeWidth="5"
@@ -200,7 +245,7 @@ function Cadastro() {
                             <span >Cadastrar</span>}
                     </button>
 
-                    <p className='w-full text-center'>
+                    <p className='w-full text-center -mt-5'>
                         Já possui uma conta? <Link to="/login">
                             <span className='font-black underline cursor-pointer pl-1.5'> Login</span>
                         </Link>
