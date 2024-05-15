@@ -46,22 +46,22 @@ function ListaCategoria() {
 
           <div className="container flex flex-row py-2 justify-between" >
             
-            <Link to={`/cadastrarCategoria`} className='w-1/3 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
+            <Link to={`/cadastrarCategoria`} className='w-1/5 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
               <button>Cadastrar categoria</button>
             </Link>
 
 
 
-            <form className="form relative">
+            <form className="form relative w-1/4">
               <button className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
                 <svg
-                  width="17"
+                  width="20"
                   height="16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                   role="img"
                   aria-labelledby="search"
-                  className="w-6 h-8 text-black"
+                  className="w-20 h-8 text-black"
                 >
                   <path
                     d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
@@ -73,7 +73,7 @@ function ListaCategoria() {
                 </svg>
               </button>
               <input
-                className="input rounded-full px-8 py-3 border-2  "
+                className="input rounded-full px-8 py-3 border w-full border-black  "
                 placeholder="Search..."
                 type="text"
               />

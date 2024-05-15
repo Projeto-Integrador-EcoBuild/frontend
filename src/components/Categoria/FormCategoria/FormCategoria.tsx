@@ -134,12 +134,21 @@ function FormCategoria() {
 
 
 
-        <button
-          className="rounded text-white bg-green-dark hover:bg-green-hover w-1/2 py-4 mx-auto block text-xl"
-          type="submit"
-        >
-          {id === undefined ? 'Cadastrar' : 'Editar'}
-        </button>
+        <div className='flex '>
+          <button
+            className="rounded text-white bg-red-400 hover:bg-red-700 w-1/3 py-4 mx-auto block text-xl"
+            type="submit" onClick={retornar}
+          >
+            Cancelar
+          </button><button
+            className="rounded text-white bg-green-600 hover:bg-green-700 w-1/3 py-4 mx-auto block text-xl"
+            type="submit"
+          >
+            {id === undefined ? 'Cadastrar' : 'Editar'}
+          </button>
+        </div>
+
+
       </form>
     </div>
   );
