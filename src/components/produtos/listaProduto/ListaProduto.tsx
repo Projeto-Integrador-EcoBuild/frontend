@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dna } from 'react-loader-spinner';
+import { Dna, Oval } from 'react-loader-spinner';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Produto from '../../../models/Produto'
@@ -80,14 +80,16 @@ function ListaProdutos() {
         </div>
         {
           produtos.length === 0 && (
-            <Dna
-              visible={true}
-              height="200"
-              width="200"
-              ariaLabel="dna-loading"
-              wrapperStyle={{}}
-              wrapperClass="dna-wrapper mx-auto"
-            />
+            <div className=' flex justify-center items-center h-screen '>
+              <Oval
+                visible={true}
+                height="300"
+                width="200"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper mx-auto"
+              />
+            </div>
           )
         }
         <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -102,7 +104,7 @@ function ListaProdutos() {
       <>
 
         {produtos.length === 0 && (
-        <Dna
+        <Oval
           visible={true}
           height="200"
           width="200"
