@@ -7,6 +7,7 @@ import { toastAlerta } from '../../../util/toastAlerta';
 function FormCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
+
   let navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
@@ -141,11 +142,15 @@ function FormCategoria() {
           >
             Cancelar
           </button><button
-            className="rounded text-white bg-green-600 hover:bg-green-700 w-1/3 py-4 mx-auto block text-xl"
+            className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-600 hover:bg-green-700'} 
+             w-1/3 py-4 mx-auto block text-xl`}
             type="submit"
+            disabled={!categoria.nome}
           >
-            {id === undefined ? 'Cadastrar' : 'Editar'}
+          {id === undefined ? (categoria.nome ? 'Cadastrar' : 'Carregando') : (categoria.nome ? 'Editar' : 'Carregando')}
           </button>
+
+
         </div>
 
 
