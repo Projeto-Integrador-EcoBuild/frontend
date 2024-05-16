@@ -101,7 +101,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     
     function finalizarCompra() {
-        <ModalProduto />
         setItems([])
     }
 

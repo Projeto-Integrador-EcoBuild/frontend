@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import ModalProduto from '../../components/produtos/modalProduto/ModalProduto'
 
 function Carrinho() {
     const { items } = useContext(AuthContext)
@@ -10,17 +11,18 @@ function Carrinho() {
     items.forEach(element => {
         soma += element.preco
     });
-
-    function continuarCompra(){
+    let valor = 0;
+    function continuarCompra() {
         navigate('/produtos')
+        console.log(valor)
     }
-
+   
     return (
         <>
-        <div className='flex ml-32 mt-10 w-1/2  items-center'>
-                    <span className="material-symbols-rounded mr-6 cursor-pointer" onClick={continuarCompra}>arrow_back </span> <h1 className=' justify-center   text-3xl ' >Carrinho de compras</h1>
-        </div>
-   
+            <div className='flex ml-32 mt-10 w-1/2  items-center'>
+                <span className="material-symbols-rounded mr-6 cursor-pointer" onClick={continuarCompra}>arrow_back </span> <h1 className=' justify-center   text-3xl ' >Carrinho de compras</h1>
+            </div>
+
             <div className=' flex flex-row justify-center  mt-5 border mx-44 mb-10 '>
 
                 <div className='w-2/3   '>
@@ -30,11 +32,12 @@ function Carrinho() {
                     </ol>
                     {
                         items.map(produto => (
+
                             <div className='border-b flex flex-col mt-4'>
                                 <ol className=' flex  mx-6'>
                                     <li><img src={produto.foto} className='w-24 flex items-center justify-center' /></li>
                                     <li className=' ml-12 w-2/3 text-bold ' >{produto.nome}</li>
-                                    <li className='text-end w-1/3  mr-2  '><strong>R${produto.preco}</strong></li>
+                                    <li className='text-end w-1/3  mr-2  '><strong>R${valor = produto.preco}</strong></li>
 
                                 </ol>
                                 <button className=' ml-auto -mt-6 mb-5 mr-6 b' onClick={() => removerProduto(produto.id)}>
@@ -49,7 +52,7 @@ function Carrinho() {
 
                             </div>
 
-                        ))
+))
                     }
                     <div className='flex flex-row justify-between mx-2 my-2'>
 
@@ -66,11 +69,8 @@ function Carrinho() {
                         <h1 className={"border-b text-2xl uppercase "}>Resumo da compra</h1>
                         <h2 className='my-3 '>Quantidade de itens : {quantidadeItems}</h2>
                         <h3 className={"border-b"}>Total do pedido : <strong>R${soma}  </strong></h3>
+                        <ModalProduto />
 
-                        <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 uppercase mt-4" onClick={finalizarCompra}>
-
-                            <span>Finalizar pedido</span>
-                        </button>
                     </div>
 
 
