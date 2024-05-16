@@ -91,7 +91,7 @@ function ItemProduto() {
             <h1 className='font-bold text-4xl capitalize'>{produto.nome}</h1>
             <h2 className='underline'>Categoria:{produto.categoria?.nome}</h2>
             <p className='text-justify'>
-              {produto.categoria?.nome}       </p>
+              {produto.descricao}       </p>
             <p className='font-bold'>R$ {produto.preco}</p>
             <div className='flex items-center justify-center w-full'>
               <button className="bg-green-dark border border-green-dark text-white px-4 py-2 rounded-lg hover:bg-green-hover " onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
