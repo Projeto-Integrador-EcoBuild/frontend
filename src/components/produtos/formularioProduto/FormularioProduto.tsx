@@ -5,10 +5,10 @@ import Produto from '../../../models/Produto';
 import Categoria from '../../../models/Categoria';
 import { buscar, atualizar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../util/toastAlerta'
-
+import { RotatingLines } from 'react-loader-spinner';
 function FormularioProduto() {
   let navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams<{ id: string }>();
 
   const { usuario, handleLogout } = useContext(AuthContext);
@@ -96,7 +96,7 @@ function FormularioProduto() {
 
   async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
-
+    setIsLoading(true);
     console.log({ produto });
 
     if (id != undefined) {
@@ -134,6 +134,7 @@ function FormularioProduto() {
           toastAlerta('Erro ao cadastrar o Produto', 'erro');
         }
       }
+      setIsLoading(false);
     }
   }
 
@@ -171,14 +172,14 @@ function FormularioProduto() {
         <div className="input flex flex-col static">
           <label htmlFor="descricao" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Descrição</label>
           <textarea
-            required
+            required = {true}
             rows={4}
             maxLength={200}
-            minLength={5}
             name="descricao"
             className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
             value={produto.descricao}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarTextArea(e)} />
+            
         </div>
         
         <div className="input flex flex-col static">
@@ -224,9 +225,25 @@ function FormularioProduto() {
             ))}
           </select>
         </div>
-        <button disabled={carregandoCategoria} type='submit' className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto block py-2'>
-          {carregandoCategoria ? <span>Carregando</span> : id !== undefined ? 'Editar' : 'Cadastrar'}
-        </button>
+        <button
+            className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-600 hover:bg-green-700'} 
+              w-1/3 py-4 mx-auto block text-xl relative`}
+            type="submit"
+            disabled={!categoria.nome}
+          >
+            {isLoading && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <RotatingLines
+                  strokeColor="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="24"
+                  visible={true}
+                />
+              </div>
+            )}
+            {!isLoading && (id === undefined ? (categoria.nome ? 'Cadastrar' : 'Carregando') : (categoria.nome ? 'Editar' : 'Carregando'))}
+          </button>
       </form><br/><br/>
     </div>
   );
