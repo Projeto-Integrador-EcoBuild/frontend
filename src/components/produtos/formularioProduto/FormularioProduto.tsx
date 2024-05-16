@@ -147,69 +147,64 @@ function FormularioProduto() {
       <h1 className="text-4xl text-center my-8">{id !== undefined ? 'Editar Produto' : 'Cadastrar Produto'}</h1>
 
       <form onSubmit={gerarNovoProduto} className="flex flex-col w-1/2 gap-4">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="nome">Nome do produto</label>
+        <div className="input flex flex-col static">
+          <label htmlFor="nome" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Nome do produto</label>
           <input
             value={produto.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="text"
-            placeholder="Nome"
             name="nome"
             required
-            className="border-2 border-slate-700 rounded p-2"
+            className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="descricao">Descrição do produto</label>
-          <input
-            value={produto.descricao}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            type="text"
-            placeholder="Descrição"
-            name="descricao"
+
+        <div className="input flex flex-col static">
+          <label htmlFor="nome" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Descrição</label>
+          <textarea
             required
-            className="border-2 border-slate-700 rounded p-2"
-          />
+            rows={4}
+            name="descricao"
+            className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
+            value={produto.descricao}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstado(e)} />
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="foto">Foto do produto</label>
+        
+        <div className="input flex flex-col static">
+          <label htmlFor="foto" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Foto do produto</label>
           <input
             value={produto.foto}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="text"
-            placeholder="Foto"
             name="foto"
             required
-            className="border-2 border-slate-700 rounded p-2"
+            className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="preco">Preço do produto</label>
+        <div className="input flex flex-col static">
+          <label htmlFor="preco" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Preço do produto</label>
           <input
             value={produto.preco}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="number"
-            placeholder="Preco"
             name="preco"
             required
-            className="border-2 border-slate-700 rounded p-2"
+            className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="quantidade">Quantidade de produtos</label>
+        <div className="input flex flex-col static">
+          <label htmlFor="quantidade" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Quantidade de produtos</label>
           <input
             value={produto.quantidade}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="number"
-            placeholder="Quantidade"
             name="quantidade"
             required
-            className="border-2 border-slate-700 rounded p-2"
+            className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <p>Categoria da produto</p>
-          <select name="categoria" id="categoria" className='border p-2 border-slate-800 rounded' onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
+        <div className="input flex flex-col static mt-5">
+          <select name="categoria" id="categoria"  className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover " onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
             <option value="" selected disabled>Selecione uma Categoria</option>
             {categorias.map((categoria) => (
               <>
@@ -221,7 +216,7 @@ function FormularioProduto() {
         <button disabled={carregandoCategoria} type='submit' className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto block py-2'>
           {carregandoCategoria ? <span>Carregando</span> : id !== undefined ? 'Editar' : 'Cadastrar'}
         </button>
-      </form>
+      </form><br/><br/>
     </div>
   );
 }

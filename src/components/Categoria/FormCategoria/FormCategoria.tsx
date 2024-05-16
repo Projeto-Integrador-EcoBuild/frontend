@@ -7,6 +7,7 @@ import { toastAlerta } from '../../../util/toastAlerta';
 function FormCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
+
   let navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
@@ -113,6 +114,8 @@ function FormCategoria() {
             type="text"
             required
             name="nome"
+            minLength={5}
+            maxLength={50}
             className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
             value={categoria.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
@@ -134,12 +137,25 @@ function FormCategoria() {
 
 
 
-        <button
-          className="rounded text-white bg-green-dark hover:bg-green-hover w-1/2 py-4 mx-auto block text-xl"
-          type="submit"
-        >
-          {id === undefined ? 'Cadastrar' : 'Editar'}
-        </button>
+        <div className='flex '>
+          <button
+            className="rounded text-white bg-red-400 hover:bg-red-700 w-1/3 py-4 mx-auto block text-xl"
+            type="submit" onClick={retornar}
+          >
+            Cancelar
+          </button><button
+            className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-600 hover:bg-green-700'} 
+             w-1/3 py-4 mx-auto block text-xl`}
+            type="submit"
+            disabled={!categoria.nome}
+          >
+          {id === undefined ? (categoria.nome ? 'Cadastrar' : 'Carregando') : (categoria.nome ? 'Editar' : 'Carregando')}
+          </button>
+
+
+        </div>
+
+
       </form>
     </div>
   );

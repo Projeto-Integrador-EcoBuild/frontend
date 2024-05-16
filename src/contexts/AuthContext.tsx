@@ -4,7 +4,7 @@ import UsuarioLogin from "../models/UsuarioLogin"
 import { login } from "../services/Service"
 import { toastAlerta } from "../util/toastAlerta"
 import Produto from "../models/Produto"
-
+import ModalProduto from "../components/produtos/modalProduto/ModalProduto"
 
 interface AuthContextProps {
     adicionarProduto: (produto:Produto) => void 
@@ -12,10 +12,10 @@ interface AuthContextProps {
     limparCart: () => void
     items: Produto[]
     quantidadeItems: number
-    
+    finalizarCompra: () => void
     usuario: UsuarioLogin
     handleLogout(): void
-             
+   
     handleLogin(usuario: UsuarioLogin): Promise<void>
     isLoading: boolean
 }
@@ -27,6 +27,7 @@ interface AuthProviderProps {
 
 export const AuthContext = createContext({} as AuthContextProps)
 export function AuthProvider({ children }: AuthProviderProps) {
+    
     const [usuario, setUsuario] = useState<UsuarioLogin>({
         //variaveis de estado
         id: 0,
@@ -91,15 +92,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     }
 
+
+
+
     function limparCart() {
-        alert("Compra Efetuada com Sucesso")
+        setItems([])
+    }
+
+    
+    function finalizarCompra() {
+        <ModalProduto />
         setItems([])
     }
 
     // Até aqui
 
     return (                      
-        <AuthContext.Provider value={{ usuario, handleLogin, handleLogout, isLoading, adicionarProduto, removerProduto, limparCart, items, quantidadeItems }}>
+        <AuthContext.Provider value={{ usuario, handleLogin, handleLogout, isLoading, adicionarProduto, removerProduto, limparCart,finalizarCompra ,items, quantidadeItems }}>
             {children}
         </AuthContext.Provider>
         

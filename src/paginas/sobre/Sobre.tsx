@@ -5,13 +5,14 @@ import "./Sobre.css"
 function Sobre() {
   return (
     <>
-      <div className="grid  lg:grid-cols-2 h-screen place-items-center bg-green-light">
+      <div className="text-justify grid  lg:grid-cols-2 h-screen place-items-center bg-green-light">
         <div className="flex items-left flex-col w-9/12 gap-4 -mt-3  ">
           <h1 className="text-5xl font-bold mb-4">Sobre Nós</h1>
-          <p>Somos uma empresa nova no mercado, mas que sempre pensou em mudar o mundo a começar por nossas próprias casas. Por conta disso, desenvolvemos um local onde outras pessoas que querem fazer a sua parte para salvar o mundo possam dar o seu primeiro passo.</p>
-          <p>Com o apoio de diversos profissionais da engenharia ambiental e da engenharia civil, desenvolvemos a melhor seleção de produtos para ter uma casa mais sustentável e uma grande amiga do ambiente.</p>
-          <p>Somos um time destemido e inovador formado por alunos da Generation Brasil, dedicado a enfrentar os desafios apresentados pelos Objetivos de Desenvolvimento Sustentável da ONU, que são objetivos para deixar o mundo mais sustentável até 2030, e a nossa missão é contribuir para a concretização do Objetivo 11 - Cidades e Comunidades Sustentáveis, que visa tornar os assentamentos humanos mais inclusivos, seguros, resilientes e sustentáveis.</p>
-
+          <div className='text-lg'>
+            <p>Somos uma empresa nova no mercado, mas que sempre pensou em mudar o mundo a começar por nossas próprias casas. Por conta disso, desenvolvemos um local onde outras pessoas que querem fazer a sua parte para salvar o mundo possam dar o seu primeiro passo.</p>
+            <p>Com o apoio de diversos profissionais da engenharia ambiental e da engenharia civil, desenvolvemos a melhor seleção de produtos para ter uma casa mais sustentável e uma grande amiga do ambiente.</p>
+            <p>Somos um time destemido e inovador formado por alunos da Generation Brasil, dedicado a enfrentar os desafios apresentados pelos Objetivos de Desenvolvimento Sustentável da ONU, que são objetivos para deixar o mundo mais sustentável até 2030, e a nossa missão é contribuir para a concretização do Objetivo 11 - Cidades e Comunidades Sustentáveis, que visa tornar os assentamentos humanos mais inclusivos, seguros, resilientes e sustentáveis.</p>
+          </div>
         </div>
         <div className="w-1/2 p-4">
           {/*imagens  */}
@@ -36,10 +37,10 @@ function Sobre() {
           </div>
         </div>
       </div>
-      <div className='gap-x-14 font-bold flex flex-row mb-6 w-full bg-green-light'>
-        <div className='ml-56'>
+      <div className='text-xl gap-x-14 font-bold flex flex-row py-8 w-full bg-green-light divide-x divide-slate-700'>
+        <div className='ml-56 '>
           <p className="mt-4">Alan Eduardo</p>
-          <div className='flex flex-row  justify-around'>
+          <div className='flex flex-row  justify-around text-2xl'>
             <a href="https://www.linkedin.com/in/aeduardocruz/" target="_blank">
               <LinkedinLogo />
             </a>
@@ -49,9 +50,9 @@ function Sobre() {
           </div>
         </div>
 
-        <div>
-          <p className="mt-4">Gabriel Tomarchio</p>
-          <div className='flex flex-row justify-around'>
+        <div className=''>
+          <p className="ml-5 mt-4">Gabriel Tomarchio</p>
+          <div className='flex flex-row justify-around text-2xl'>
             <a href="https://www.linkedin.com/in/bieltomarchio/" target="_blank">
               <LinkedinLogo />
             </a>
@@ -62,8 +63,8 @@ function Sobre() {
         </div>
 
         <div>
-          <p className="mt-4">Kamilla Rodrigues</p>
-          <div className='flex flex-row justify-around'>
+          <p className="ml-5 mt-4">Kamilla Rodrigues</p>
+          <div className='flex flex-row justify-around text-2xl'>
             <a href="https://www.linkedin.com/in/kamillarodrigues/" target="_blank">
               <LinkedinLogo />
             </a>
@@ -74,8 +75,8 @@ function Sobre() {
         </div>
 
         <div>
-          <p className="mt-4">Maria Xavier</p>
-          <div className='flex flex-row justify-around'>
+          <p className="ml-5 mt-4">Maria Xavier</p>
+          <div className='flex flex-row justify-around text-2xl'>
             <a href="https://www.linkedin.com/in/maria-xavier-tech/" target="_blank">
               <LinkedinLogo />
             </a>
@@ -86,8 +87,8 @@ function Sobre() {
         </div>
 
         <div>
-          <p className="mt-4">Raul Oliveira</p>
-          <div className='flex flex-row justify-around'>
+          <p className="ml-5 mt-4">Raul Oliveira</p>
+          <div className='flex flex-row justify-around text-2xl'>
             <a href="https://www.linkedin.com/in/raul-oliveira-prado/" target="_blank">
               <LinkedinLogo />
             </a>
