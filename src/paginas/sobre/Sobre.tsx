@@ -14,9 +14,7 @@ function Sobre() {
             <p>Somos um time destemido e inovador formado por alunos da Generation Brasil, dedicado a enfrentar os desafios apresentados pelos Objetivos de Desenvolvimento Sustentável da ONU, que são objetivos para deixar o mundo mais sustentável até 2030, e a nossa missão é contribuir para a concretização do Objetivo 11 - Cidades e Comunidades Sustentáveis, que visa tornar os assentamentos humanos mais inclusivos, seguros, resilientes e sustentáveis.</p>
           </div>
         </div>
-        <div className="w-1/2 p-4">
-          {/*imagens  */}
-          <img src={logoGreen} alt="logo da naturalar" />
+        <div className="w-1/2 p-4 ">
           <div className='icones'>
             <div className='info'>
               <i className="fa fa-building" aria-hidden="true"></i>
@@ -37,9 +35,9 @@ function Sobre() {
           </div>
         </div>
       </div>
-      <div className='text-xl gap-x-14 font-bold flex flex-row py-8 w-full bg-green-light divide-x divide-slate-700'>
-        <div className='ml-56 '>
-          <p className="mt-4">Alan Eduardo</p>
+      <div className='  flex flex-row  justify-around w-full  bg-green-light pb-6'>
+        <div className='  pr-20 border-r border-black ml-12  '>
+          <p className="">Alan Eduardo</p>
           <div className='flex flex-row  justify-around text-2xl'>
             <a href="https://www.linkedin.com/in/aeduardocruz/" target="_blank">
               <LinkedinLogo />
@@ -50,10 +48,11 @@ function Sobre() {
           </div>
         </div>
 
-        <div className=''>
-          <p className="ml-5 mt-4">Gabriel Tomarchio</p>
-          <div className='flex flex-row justify-around text-2xl'>
-            <a href="https://www.linkedin.com/in/bieltomarchio/" target="_blank">
+
+        <div className='  pr-20 border-r border-black  '>
+          <p className="">Gabriel Tomarchio</p>
+          <div className='flex flex-row  justify-around text-2xl'>
+          <a href="https://www.linkedin.com/in/bieltomarchio/" target="_blank">
               <LinkedinLogo />
             </a>
             <a href="https://github.com/biel678" target="_blank">
@@ -62,10 +61,13 @@ function Sobre() {
           </div>
         </div>
 
-        <div>
-          <p className="ml-5 mt-4">Kamilla Rodrigues</p>
-          <div className='flex flex-row justify-around text-2xl'>
-            <a href="https://www.linkedin.com/in/kamillarodrigues/" target="_blank">
+
+
+
+        <div className='  pr-20 border-r border-black'>
+          <p className="">Kamilla Rodrigues</p>
+          <div className='flex flex-row  justify-around text-2xl'>
+          <a href="https://www.linkedin.com/in/kamillarodrigues/" target="_blank">
               <LinkedinLogo />
             </a>
             <a href="https://github.com/KamillaLima" target="_blank">
@@ -74,10 +76,15 @@ function Sobre() {
           </div>
         </div>
 
-        <div>
-          <p className="ml-5 mt-4">Maria Xavier</p>
-          <div className='flex flex-row justify-around text-2xl'>
-            <a href="https://www.linkedin.com/in/maria-xavier-tech/" target="_blank">
+
+
+
+
+
+        <div className='  pr-20 border-r border-black'>
+          <p className="">Maria Xavier</p>
+          <div className='flex flex-row  justify-around text-2xl'>
+          <a href="https://www.linkedin.com/in/maria-xavier-tech/" target="_blank">
               <LinkedinLogo />
             </a>
             <a href="https://github.com/marii182" target="_blank">
@@ -86,10 +93,14 @@ function Sobre() {
           </div>
         </div>
 
-        <div>
-          <p className="ml-5 mt-4">Raul Oliveira</p>
-          <div className='flex flex-row justify-around text-2xl'>
-            <a href="https://www.linkedin.com/in/raul-oliveira-prado/" target="_blank">
+
+
+
+
+        <div className='  pr-20 '>
+          <p className="">Raul Oliveira</p>
+          <div className='flex flex-row  justify-around text-2xl'>
+          <a href="https://www.linkedin.com/in/raul-oliveira-prado/" target="_blank">
               <LinkedinLogo />
             </a>
             <a href="https://github.com/Raul-Prado" target="_blank">
@@ -97,6 +108,14 @@ function Sobre() {
             </a>
           </div>
         </div>
+
+
+
+
+
+
+
+
       </div>
     </>
   );
