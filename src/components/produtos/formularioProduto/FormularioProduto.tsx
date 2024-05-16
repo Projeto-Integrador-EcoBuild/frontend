@@ -140,6 +140,13 @@ function FormularioProduto() {
   const carregandoCategoria = categoria.nome === '';
 
   console.log(categorias);
+  function atualizarTextArea(e: ChangeEvent<HTMLTextAreaElement>) {
+    setProduto({
+      ...produto,
+      [e.target.name]: e.target.value,
+      categoria: categoria,
+    });
+  }
 
 
   return (
@@ -151,6 +158,8 @@ function FormularioProduto() {
           <label htmlFor="nome" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Nome do produto</label>
           <input
             value={produto.nome}
+            maxLength={100}
+            minLength={3}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="text"
             name="nome"
@@ -160,14 +169,16 @@ function FormularioProduto() {
         </div>
 
         <div className="input flex flex-col static">
-          <label htmlFor="nome" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Descrição</label>
+          <label htmlFor="descricao" className='text-green-dark text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Descrição</label>
           <textarea
             required
             rows={4}
+            maxLength={200}
+            minLength={5}
             name="descricao"
             className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
             value={produto.descricao}
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstado(e)} />
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarTextArea(e)} />
         </div>
         
         <div className="input flex flex-col static">
