@@ -23,11 +23,14 @@ function Menu() {
 
   if (tipo === "cliente") {
     navbarComponent = (
-      <div className=' w-full ' >
+      <div className='w-full' >
         <div className='w-full navbar text-white flex justify-center py-4 px-4 bg-green-dark'>
           <div className="container flex justify-between text-lg">
-            <div className='text-2xl font-bold uppercase'>
-              <img src={homeLogo} alt="Logo da Naturalar" className='w-2/3 imagem' />
+            <div className=''>
+              <Link to='/home'>
+                <img src={homeLogo} alt="Logo da Naturalar" className='w-2/3 imagem cursor-pointer' />
+              </Link>
+              
             </div>
 
 
@@ -57,11 +60,13 @@ function Menu() {
     navbarComponent = (
       <div className='w-full navbar text-white flex justify-center py-4 px-4 bg-green-dark'>
         <div className="container flex justify-between text-lg">
-          <div className='text-2xl font-bold uppercase'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-2/3 imagem' />
+          <div className=''>
+          <Link to='/home'>
+                <img src={homeLogo} alt="Logo da Naturalar" className='w-2/3 imagem cursor-pointer' />
+              </Link>
           </div>
 
-          <div className='flex gap-4 mt-2 font-bold '>
+          <div className='text-lg font-bold flex space-x-6 mt-2'>
             <Link to='/home' className='hover:underline'>Home</Link>
             <Link to='/sobre' className='hover:underline'>Sobre</Link>
             <Link to='/produtos' className='hover:underline'>Produtos</Link>
@@ -80,11 +85,13 @@ function Menu() {
     navbarComponent = (
       <div className='  w-full navbar text-white flex justify-center py-4 px-4 bg-green-dark'>
         <div className="container flex justify-between text-lg">
-          <div className='text-2xl font-bold uppercase'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-2/3 imagem' />
+          <div className=' '>
+          <Link to='/home'>
+                <img src={homeLogo} alt="Logo da Naturalar" className='w-2/3 imagem cursor-pointer' />
+              </Link>
           </div>
 
-          <div className='flex gap-4 mt-2 font-bold '>
+          <div className='text-lg font-bold flex space-x-6 mt-2'>
             <Link to='/home' className='hover:underline'>Home</Link>
             <Link to='/sobre' className='hover:underline'>Sobre</Link>
             <Link to='/produtos' className='hover:underline'>Produtos</Link>

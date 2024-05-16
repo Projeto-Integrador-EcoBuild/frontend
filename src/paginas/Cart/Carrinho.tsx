@@ -11,10 +11,8 @@ function Carrinho() {
     items.forEach(element => {
         soma += element.preco
     });
-    let valor = 0;
     function continuarCompra() {
         navigate('/produtos')
-        console.log(valor)
     }
    
     return (
@@ -37,7 +35,7 @@ function Carrinho() {
                                 <ol className=' flex  mx-6'>
                                     <li><img src={produto.foto} className='w-24 flex items-center justify-center' /></li>
                                     <li className=' ml-12 w-2/3 text-bold ' >{produto.nome}</li>
-                                    <li className='text-end w-1/3  mr-2  '><strong>R${valor = produto.preco}</strong></li>
+                                    <li className='text-end w-1/3  mr-2  '><strong>R${produto.preco}</strong></li>
 
                                 </ol>
                                 <button className=' ml-auto -mt-6 mb-5 mr-6 b' onClick={() => removerProduto(produto.id)}>
