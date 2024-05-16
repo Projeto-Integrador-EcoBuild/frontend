@@ -68,7 +68,7 @@ function Carrinho() {
                     <div className=" fixed ml-3 ">
                         <h1 className={"border-b text-2xl uppercase "}>Resumo da compra</h1>
                         <h2 className='my-3 '>Quantidade de itens : {quantidadeItems}</h2>
-                        <h3 className={"border-b"}>Total do pedido : <strong>R${soma}  </strong></h3>
+                        <h3 className={"border-b"}>Total do pedido : <strong>R${soma.toFixed(2)}  </strong></h3>
                         <ModalProduto />
 
                     </div>
