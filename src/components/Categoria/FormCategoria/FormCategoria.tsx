@@ -4,10 +4,11 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import Categoria from '../../../models/Categoria';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../util/toastAlerta';
+import { RotatingLines } from 'react-loader-spinner';
 function FormCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
-
+  const [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
@@ -46,6 +47,7 @@ function FormCategoria() {
   }
   async function gerarNovoCategoria(e: ChangeEvent<HTMLFormElement>,) {
     e.preventDefault()
+    setIsLoading(true);
 
     if (id !== undefined) {
       try {
@@ -85,6 +87,7 @@ function FormCategoria() {
           toastAlerta('Erro ao cadastrado a Categoria', 'error')
         }
       }
+      setIsLoading(false);
     }
 
     retornar()
@@ -145,12 +148,25 @@ function FormCategoria() {
             Cancelar
           </button><button
             className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-600 hover:bg-green-700'} 
-             w-1/3 py-4 mx-auto block text-xl`}
+              w-1/3 py-4 mx-auto block text-xl relative`}
             type="submit"
             disabled={!categoria.nome}
           >
-          {id === undefined ? (categoria.nome ? 'Cadastrar' : 'Carregando') : (categoria.nome ? 'Editar' : 'Carregando')}
+            {isLoading && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <RotatingLines
+                  strokeColor="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="24"
+                  visible={true}
+                />
+              </div>
+            )}
+            {!isLoading && (id === undefined ? (categoria.nome ? 'Cadastrar' : 'Carregando') : (categoria.nome ? 'Editar' : 'Carregando'))}
           </button>
+
+
 
 
         </div>
