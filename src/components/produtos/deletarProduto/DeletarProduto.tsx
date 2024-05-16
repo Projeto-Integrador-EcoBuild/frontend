@@ -72,11 +72,11 @@ function DeletarProduto() {
       <div className='border flex flex-col rounded-2xl overflow-hidden'>
         <header className='py-2 px-6 bg-green-600 text-white font-bold text-2xl'>Produto</header>
         <div className="grid justify-center">
-          <p className='text-xl h-full'><strong>Nome:</strong> {produto.nome}</p>
-          <p><strong>Descrição:</strong>  {produto.descricao}</p>
-          <img className='' src={produto.foto}  alt="Imagem ilustrativa" width='150' height='150'/>
+          <p className='text-xl h-full my-2 p-2'><strong>Nome:</strong> {produto.nome}</p>
+          <p className='text-xl h-full my-2 text-justify  p-2'><strong>Descrição:</strong>  {produto.descricao}</p>
+          <img className='w-2/5 h-auto mx-auto max-w-xs' src={produto.foto}  alt="Imagem ilustrativa"/>
         </div>
-        <div className="flex">
+        <div className="flex mt-4 mb-4">
           <button className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2' onClick={retornar}>Não</button>
           <button className='w-full text-slate-100 bg-green-400 hover:bg-green-600 flex items-center justify-center' onClick={deletarProduto}>
             Sim
