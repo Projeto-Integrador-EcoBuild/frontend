@@ -114,6 +114,8 @@ function FormCategoria() {
             type="text"
             required
             name="nome"
+            minLength={5}
+            maxLength={50}
             className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
             value={categoria.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}

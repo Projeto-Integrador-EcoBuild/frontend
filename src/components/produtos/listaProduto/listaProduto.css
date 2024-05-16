@@ -1,7 +1,10 @@
 .titulo-produtos{
     display: flex;
     align-items: center;
-    margin-bottom: 2em;
+    margin-top: 2rem;
+    margin-left: 2.2rem;
+    margin-right: 1.5rem;
+
 }
 .titulo{
     font-size: 2em;

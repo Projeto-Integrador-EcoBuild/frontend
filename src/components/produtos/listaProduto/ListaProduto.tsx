@@ -1,20 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dna, Oval } from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Produto from '../../../models/Produto'
 import { buscar } from '../../../services/Service';
 import CardProduto from '../cardProduto/CardProduto';
 import { toastAlerta } from '../../../util/toastAlerta'
-
+import './listaProduto.css'
 
 
 function ListaProdutos() {
 
   const [produtos, setProdutos] = useState<Produto[]>([]);
-
-  let navigate = useNavigate();
-
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
@@ -42,20 +39,15 @@ function ListaProdutos() {
 
   let ProdComponent
 
-  if (tipo === "cliente") {
+  if (tipo === "cliente" || tipo==="") {
     ProdComponent = (
       <>
-        {produtos.length === 0 && (
-        <Dna
-          visible={true}
-          height="200"
-          width="200"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper mx-auto"
-        />
-        )}
-        <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className="titulo-produtos">
+          <h2 className="titulo">Produtos</h2>
+          <hr></hr>
+        </div>
+        <div className='container mx-auto grid grid-cols-4 gap-4 '>
+
           {produtos.map((produto) => (
             <CardProduto key={produto.id} product={produto} />
           ))}
@@ -78,42 +70,7 @@ function ListaProdutos() {
             </div>
           </div>
         </div>
-        {
-          produtos.length === 0 && (
-            <div className=' flex justify-center items-center h-screen '>
-              <Oval
-                visible={true}
-                height="300"
-                width="200"
-                ariaLabel="dna-loading"
-                wrapperStyle={{}}
-                wrapperClass="dna-wrapper mx-auto"
-              />
-            </div>
-          )
-        }
-        <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-          {produtos.map((produto) => (
-            <CardProduto key={produto.id} product={produto} />
-          ))}
-        </div>
-      </>
-    )
-  } else if (tipo === "") {
-    ProdComponent = (
-      <>
-
-        {produtos.length === 0 && (
-        <Oval
-          visible={true}
-          height="200"
-          width="200"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper mx-auto"
-        />
-        )}
-
+        
         <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
           {produtos.map((produto) => (
             <CardProduto key={produto.id} product={produto} />
@@ -125,6 +82,22 @@ function ListaProdutos() {
 
   return (
     <>
+    
+
+      {produtos.length === 0 && (
+        <div className=' flex justify-center items-center  '>
+          <Oval
+            visible={true}
+            height="300"
+            width="200"
+            color="#16a34a"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass="oval-wrapper mx-auto"
+          />
+
+        </div>
+      )}
       {ProdComponent}
     </>
   );
