@@ -20,8 +20,8 @@ function Home() {
         <h1 id="titulo">Construa o futuro, preserve o presente: </h1>
         <h1 id="titulo">Naturalar, sustentabilidade em cada projeto.</h1>
         <br></br>
-        <p>Somos uma empresa nova no mercado, mas que sempre pensou em mudar o mundo a começar por nossas próprias casas. Por conta disso, desenvolvemos um local onde outras pessoas que querem fazer a sua parte para salvar o mundo possam dar o seu primeiro passo.</p>
-       <button onClick={produtos}>Nossos produtos</button>
+        <p className='p-home'>Somos uma empresa nova no mercado, mas que sempre pensou em mudar o mundo a começar por nossas próprias casas. Por conta disso, desenvolvemos um local onde outras pessoas que querem fazer a sua parte para salvar o mundo possam dar o seu primeiro passo.</p>
+       <button className='btn-home' onClick={produtos}>Nossos produtos</button>
       </div>
     </>
   );

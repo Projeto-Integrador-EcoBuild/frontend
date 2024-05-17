@@ -21,11 +21,12 @@
     font-weight: 400;
 }
 
-p{
+.p-home{
     font-size: 1.2rem;
     width: 70%;
 }
-button{
+
+.btn-home{
     background-color:hsl(94, 89%, 22%);
     border-radius: 0.5rem;
     color:white;
