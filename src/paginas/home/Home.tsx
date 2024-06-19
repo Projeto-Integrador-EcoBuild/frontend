@@ -15,7 +15,7 @@ function Home() {
 
   return (
     <>
-      <div id="primeiraParte" className='2xl:h-[80vh] ' >
+      <div id="primeiraParte" className=' min-h-[80vh]  ' >
         <img src={fundo} className=' w-[22%] xl:w-[14%] lg:w-[14%] 2xl:w-[12%] 2xl:mt-14'/>
         <h1  className="text-green-dark font-semibold text-4xl  cp:text-2xl sm:text-3xl ">Construa o futuro, preserve o presente:</h1>
         <h1  className="text-green-dark  font-semibold text-4xl  cp:text-2xl sm:text-3xl">Naturalar, sustentabilidade em cada projeto.</h1>

@@ -4,17 +4,17 @@ import { useNavigate, Link } from 'react-router-dom'
 import Foto from '../../assets/img/img.png'
 import { cadastrarUsuario } from '../../services/Service'
 import Usuario from '../../models/Usuario'
-import { AuthContext } from '../../contexts/AuthContext';
 import { RotatingLines } from 'react-loader-spinner';
 import { toastAlerta } from '../../util/toastAlerta'
+import { Eye, EyeSlash } from '@phosphor-icons/react'
 
 function Cadastro() {
-
-
-    let navigate = useNavigate()
-
-    const [confirmaSenha, setConfirmaSenha] = useState<string>("")
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    let navigate = useNavigate();
+    let [outraLogo, setOutraLogo] = useState(false);
+    const inputs = "peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
+    const labels = "absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg"
+    const [confirmaSenha, setConfirmaSenha] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [usuario, setUsuario] = useState<Usuario>({
         id: 0,
         nome: '',
@@ -79,16 +79,24 @@ function Cadastro() {
     }
 
 
+    function mostrarSenha() {
+        setOutraLogo((prevState) => !prevState);
+    }
+
+    function verificarSenhas( senha: string , confirmaSenha: string){
+        return senha === confirmaSenha;
+    }
+
     return (
         <>
-            <div className="grid xl:grid-cols-2 h-full place-items-center  lg:grid-cols-2 2xl:grid-cols-2">
-                <form className="flex items-center flex-col w-full gap-9 px-16 mb-8" onSubmit={cadastrarNovoUsuario}>
+            <div className="grid xl:grid-cols-2 min-h-[80vh]  w-full place-items-center  lg:grid-cols-2 2xl:grid-cols-2">
+                <form className="flex items-center flex-col w-full gap-8 px-16 py-4" onSubmit={cadastrarNovoUsuario}>
                     <h2 className="text-6xl mt-6 cp:text-4xl lg:text-5xl">Criação de Conta</h2>
 
                     <div className="relative w-full ">
                         <input
                             placeholder=''
-                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
+                            className={inputs}
                             type="text"
                             required
                             id="nome"
@@ -97,7 +105,8 @@ function Cadastro() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                         <label htmlFor="nome"
-                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Nome completo </label>
+                            className={labels}
+                        >Nome completo * </label>
 
 
                     </div>
@@ -106,7 +115,7 @@ function Cadastro() {
                     <div className="relative w-full">
                         <input
                             placeholder=''
-                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
+                            className={inputs}
                             required
                             id="email"
                             name="email"
@@ -115,7 +124,7 @@ function Cadastro() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                         <label htmlFor="email"
-                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">E-mail </label>
+                            className={labels}>E-mail *</label>
 
 
                     </div>
@@ -123,21 +132,42 @@ function Cadastro() {
 
 
                     <div className="relative w-full  ">
-                        <input
+                        {outraLogo ? (<input
                             placeholder=''
-                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
-                            type="password"
+                            className={inputs}
+                            type="text"
                             minLength={8}
                             required
                             id="senha"
                             name="senha"
                             value={usuario.senha}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        />
+                        />) : (
+                            <input
+                                placeholder=''
+                                className={inputs}
+                                type="password"
+                                minLength={8}
+                                required
+                                id="senha"
+                                name="senha"
+                                value={usuario.senha}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            />
+                        )
+                        }
                         <label htmlFor="senha"
-                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Senha</label>
+                            className={labels}>Senha * </label>
+                        <div className='-mt-8  mr-2 text-end'>
+                            <button onClick={mostrarSenha} type='button'>
 
+                                {outraLogo ? (<Eye size={24} />)
+                                    :
+                                    (<EyeSlash size={24} />)
+                                }
+                            </button>
 
+                        </div>
                     </div>
 
 
@@ -146,7 +176,7 @@ function Cadastro() {
                     <div className="relative w-full ">
                         <input
                             placeholder=''
-                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
+                            className={inputs}
                             type="password"
                             minLength={8}
                             required
@@ -156,8 +186,9 @@ function Cadastro() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
                         />
                         <label htmlFor="confirmarSenha"
-                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Confirmar senha</label>
-
+                            className={labels} >Confirmar senha *</label>
+                            {verificarSenhas(usuario.senha ,confirmaSenha ) ? (<p className='hidden'></p>) :  ( <p className='text-red-500 text-sm'>As senhas não coincidem</p>) }
+                       
 
                     </div>
 
@@ -165,7 +196,7 @@ function Cadastro() {
                     <div className="relative w-full  ">
                         <input
                             placeholder=''
-                            className="peer h-10 w-full border-b border-b-black border-white  text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
+                            className={inputs}
                             type="text"
                             id="foto"
                             name="foto"
@@ -173,7 +204,7 @@ function Cadastro() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                         <label htmlFor="foto"
-                            className="absolute left-0 -top-3.5  transition-all    peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Foto</label>
+                            className={labels}>Foto</label>
 
 
                     </div>
@@ -229,11 +260,6 @@ function Cadastro() {
 
 
                     </div>
-
-
-
-
-
                     <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3  uppercase" >
                         {isLoading ? <RotatingLines
                             strokeColor="white"
@@ -252,7 +278,7 @@ function Cadastro() {
 
                     </p>
                 </form>
-                <div className=" w-full h-full pt-20  bg-green-light cp:hidden sm:hidden md:hidden  xl:bg-red-300 xl:h-[102%] 2xl:h-[103.6%] 2xl:mt-[2.7%]">
+                <div className=" h-full items-center flex  bg-green-light cp:hidden sm:hidden md:hidden   ">
                     <img src={Foto} className='bg-no-repeat object-contain ' alt="Logo da naturalar"></img>
                 </div>
             </div>
