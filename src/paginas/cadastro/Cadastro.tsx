@@ -1,4 +1,4 @@
-import './Cadastro.css'
+
 import { ChangeEvent, useEffect, useState, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Foto from '../../assets/img/img.png'
@@ -81,9 +81,9 @@ function Cadastro() {
 
     return (
         <>
-            <div className="grid  lg:grid-cols-2 h-full place-items-center ">
-                <form className="flex items-center flex-col w-full gap-9 px-16 mb-2" onSubmit={cadastrarNovoUsuario}>
-                    <h2 className="text-6xl mt-6 ">Criação de Conta</h2>
+            <div className="grid xl:grid-cols-2 h-full place-items-center  lg:grid-cols-2 2xl:grid-cols-2">
+                <form className="flex items-center flex-col w-full gap-9 px-16 mb-8" onSubmit={cadastrarNovoUsuario}>
+                    <h2 className="text-6xl mt-6 cp:text-4xl lg:text-5xl">Criação de Conta</h2>
 
                     <div className="relative w-full ">
                         <input
@@ -178,11 +178,11 @@ function Cadastro() {
 
                     </div>
 
-                    <div className='flex items-center justify-around w-full  '>
+                    <div className='flex items-center justify-around w-full cp:flex-col lg:flex-col  '>
 
 
 
-                        <h3 className='text-lg'>Informe o tipo do usuário :</h3>
+                        <h3 className='text-lg cp:mb-2 cp:mt-2 lg:mb-4 lg:-mt-2'>Informe o tipo do usuário :</h3>
                         <div
                             className="flex space-x-2 border-[3px] border-green-dark rounded-xl select-none "
                         >
@@ -245,14 +245,14 @@ function Cadastro() {
                             <span >Cadastrar</span>}
                     </button>
 
-                    <p className='w-full text-center -mt-5'>
+                    <p className='w-full text-center'>
                         Já possui uma conta? <Link to="/login">
                             <span className='font-black underline cursor-pointer pl-1.5'> Login</span>
                         </Link>
 
                     </p>
                 </form>
-                <div className=" w-full h-full pt-20  bg-green-light ">
+                <div className=" w-full h-full pt-20  bg-green-light cp:hidden sm:hidden md:hidden  xl:bg-red-300 xl:h-[102%] 2xl:h-[103.6%] 2xl:mt-[2.7%]">
                     <img src={Foto} className='bg-no-repeat object-contain ' alt="Logo da naturalar"></img>
                 </div>
             </div>

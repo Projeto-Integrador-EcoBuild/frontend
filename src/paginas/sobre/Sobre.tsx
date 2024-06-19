@@ -1,6 +1,6 @@
 import logoGreen from '../../assets/img/logo-green.png';
 import { GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
-import "./Sobre.css"
+
 
 function Sobre() {
   return (
