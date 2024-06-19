@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
-import "./Login.css"
+
 import Foto from '../../assets/img/img.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -38,8 +38,8 @@ function Login() {
   }
   return (
     <>
-      <div className="grid  lg:grid-cols-2 h-screen place-items-center  ">
-        <div className=" w-full h-full pt-20  bg-green-light ">
+      <div className="grid  grid-cols-2 h-screen place-items-center cp:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 ">
+        <div className=" w-full h-full pt-20  bg-red-400 cp:hidden sm:hidden md:hidden items-center">
           <img src={Foto} className='bg-no-repeat object-contain ' alt="Logo da naturalar"></img>
         </div>
         <form className="flex items-center flex-col w-9/12 gap-6  " onSubmit={login} >
