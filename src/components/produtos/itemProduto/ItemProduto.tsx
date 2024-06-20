@@ -132,6 +132,7 @@ function ItemProduto() {
             <button className="bg-green-light border border-green-light font-bold text-black px-5 text-xl uppercase py-3 rounded-lg hover:bg-green-hover hover:text-white " onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
           </div>
           <hr className='border-gray-400'></hr>
+          <p>Aqui calcular</p>
 
         </div>
 
