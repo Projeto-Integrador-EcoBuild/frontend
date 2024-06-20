@@ -6,6 +6,19 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import Categoria from '../../../models/Categoria';
 import { buscar } from '../../../services/Service';
 import { toastAlerta } from '../../../util/toastAlerta'
+import './itemProduto.css'
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+
+// import required modules
+import { Pagination, Navigation } from 'swiper/modules';
 
 interface CardProdutoProps {
   product: Produto
@@ -80,24 +93,48 @@ function ItemProduto() {
     }
   }
   return (
-    <>
-      <div className='flex items-center justify-center h-screen '>
+    < >
+      <p className=' text-center pt-10 '> <a href='/produtos'><span> Página inicial </span></a> <span> &gt; {produto.categoria?.nome}</span> &gt; <span className='underline'> {produto.nome}</span></p>
+      <div className='flex items-center justify-center cp:flex-col '>
+        <div className=' w-[40%] '>
+          <Swiper
+            slidesPerView={1}
+            loop={true}
+            pagination={{
+              clickable: true
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+          >
+            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            </SwiperSlide>
+            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            </SwiperSlide>
+            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            </SwiperSlide>
+            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            </SwiperSlide>
 
-        <div className='flex justify-center items-center w-1/2 h-4/5 '>
-          <img src={produto.foto} alt="imagem do produto" className='object-cover h-4/5 w-3/5' />
+          </Swiper>
+          
         </div>
-        <div className="w-1/2 ">
-          <div className="mr-12 space-y-4 ">
-            <h1 className='font-bold text-4xl capitalize'>{produto.nome}</h1>
-            <h2 className='underline'>Categoria:{produto.categoria?.nome}</h2>
-            <p className='text-justify'>
-              {produto.descricao}       </p>
-            <p className='font-bold'>R$ {produto.preco}</p>
-            <div className='flex items-center justify-center w-full'>
-              <button className="bg-green-dark border border-green-dark text-white px-4 py-2 rounded-lg hover:bg-green-hover " onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
-            </div>
+        <div className=" space-y-4 w-1/2 ">
+          <h1 className='text-4xl capitalize font-semibold'>{produto.nome}</h1>
+          <p className='text-gray-400'>Cód: {produto.id}</p>
+          <p className='text-justify text-xl '>
+            {produto.descricao}       </p>
+          <p className=''>Por {produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-dark text-lg'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
+          <p><span className='font-bold'>2X </span>de <span className='font-bold'>{(produto.preco / 2).toFixed(2).replace(".", ",")} </span>sem juros</p>
+          <p className='underline'>Detalhes de parcelamento</p>
+          <div className='flex items-center  w-full justify-around   '>
+            <input type="number" className=' border-green-light px-5 text-xl uppercase py-3 rounded-lg' max={produto.quantidade} min={1} />
+            <button className="bg-green-light border border-green-light font-bold text-black px-5 text-xl uppercase py-3 rounded-lg hover:bg-green-hover hover:text-white " onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
           </div>
+          <hr className='border-gray-400'></hr>
+
         </div>
+
       </div>
 
 
@@ -109,3 +146,5 @@ function ItemProduto() {
 }
 
 export default ItemProduto;
+
+/*Na hora que eu clicar em adicionar o carrinho , ver se o campo do number tem um valor dentro do range da quantidade de itens que possui em estoque , senao mandar um alerta*/ 
