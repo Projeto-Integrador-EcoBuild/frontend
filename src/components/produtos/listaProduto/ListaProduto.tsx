@@ -59,11 +59,11 @@ function ListaProdutos() {
   if (tipo === "funcionario") {
     ProdComponent = (
       <>
-        <div className="flex justify-center w-full pt-4 h-full pb-4">
+        <div className="flex justify-center w-full pt-4 h-full pb-4 cp:ml-5 ">
           <div className="container flex flex-col">
 
-            <div className="container flex flex-row py-2 justify-between" >
-              <Link to={`/cadastrarProduto`} className='w-1/3 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
+            <div className="container flex flex-row py-2 justify-between px-2" >
+              <Link to={`/cadastrarProduto`} className='w-1/3 cp:w-3/5 cp:text-lg text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
                 <button>Cadastrar produto</button>
               </Link>
 
@@ -71,7 +71,7 @@ function ListaProdutos() {
           </div>
         </div>
         
-        <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className='container mx-auto my-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 lg:grid-cols-3 gap-4 cp:w-4/5 cp:mt-3 cp:px-1 sm:px-12'>
           {produtos.map((produto) => (
             <CardProduto key={produto.id} product={produto} />
           ))}

@@ -41,18 +41,18 @@ function ListaCategoria() {
   return (
     <>
 
-      <div className="flex justify-center w-full pt-4 h-full pb-4">
+      <div className="flex justify-center w-full pt-4 h-full pb-4 px-5">
         <div className="container flex flex-col">
 
-          <div className="container flex flex-row py-2 justify-between" >
-            
-            <Link to={`/cadastrarCategoria`} className='w-1/5 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
+          <div className="container flex flex-row py-2 justify-between " >
+
+            <Link to={`/cadastrarCategoria`} className='w-1/5 sm:w-2/5 cp:w-4/5 text-white bg-green-600 hover:bg-green-700 text-center py-4 text-2xl'>
               <button>Cadastrar categoria</button>
             </Link>
 
 
 
-            <form className="form relative w-1/4">
+            <form className="form relative w-1/4 cp:hidden sm:hidden">
               <button className="absolute left-2 -translate-y-1/2 top-1/2 p-1">
                 <svg
                   width="20"
@@ -84,7 +84,7 @@ function ListaCategoria() {
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 xl:grid-cols-3 cp:grid-cols-1 sm:gap-3 gap-6">
             {categorias.map((categoria) => (
               <>
                 <CardCategoria key={categoria.id} categoria={categoria} />

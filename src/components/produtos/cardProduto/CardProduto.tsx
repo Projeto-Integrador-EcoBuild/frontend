@@ -20,11 +20,11 @@ function CardProduto({ product }: CardProdutoProps) {
                         <img className='w-32 h-32' src={product.foto}  alt="Imagem ilustrativa"/>
                     </div>
                     <div className="px-6 py-4">
-                        <div className="font-bold mb-2 truncate" style={{fontSize: '1.4rem'}}>{product.nome}</div>
-                            <p className="text-gray-700 text-xl truncate">{product.descricao}</p>
-                            <p className="text-gray-700 text-xl"><strong>Unidades:</strong> { product.quantidade }</p>
-                            <p className='text-gray-700 text-xl'><strong>R${ product.preco }</strong></p>
-                            <span className='text-gray-700 text-base'><strong>Categoria</strong> {product.categoria?.nome}</span>
+                        <div className="font-bold mb-2 truncate text-2xl cp:text-base" >{product.nome}</div>
+                            <p className="text-gray-700 text-xl cp:text-base truncate">{product.descricao}</p>
+                            <p className="text-gray-700 text-xl cp:text-base"><strong>Unidades:</strong> { product.quantidade }</p>
+                            <p className='text-gray-700 text-xl cp:text-base'><strong>R${ product.preco }</strong></p>
+                            <span className='text-gray-700 text-sm'><strong>Categoria</strong> {product.categoria?.nome}</span>
                     </div>
                     <div className="flex justify-center gap-1 px-6 pt-4 pb-2">
                         <Link to={`/editarProduto/${product.id}`} className='w-full text-slate-100 bg-green-600 hover:bg-green-700 flex items-center justify-center py-2'>
