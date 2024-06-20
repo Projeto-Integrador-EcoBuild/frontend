@@ -1,0 +1,44 @@
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: inner-spin-button; /* Certifique-se de que as setas apareçam no Chrome/Safari */
+    opacity: 1; /* Garanta que a opacidade esteja definida para 1 */
+  }
+  
+  input[type=number] {
+    -moz-appearance: number-input; /* Certifique-se de que as setas apareçam no Firefox */
+  }
+  
+.swiper {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
+.swiper-slide img {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Exemplo de CSS para mudar a cor das tags no Swiper */
+.swiper-button-prev {
+  color: #316906!important; /* Define a cor desejada */
+}
+
+.swiper-button-next {
+  color: #316906 !important; /* Define a cor desejada */
+}
+
+
+
+/* Opcional: Estilo para a cor de fundo das tags de paginação */
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: #316906 !important;;  /* Define a cor de fundo */
+}
