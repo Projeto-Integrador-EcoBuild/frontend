@@ -23,18 +23,17 @@ function ModalDetalhesParcelamento({ preco }) {
             <>
                 <Popup
                     trigger={<p className='underline cursor-pointer'>Detalhes de parcelamento</p>} modal  >
-                    <button className=' relative -right-[640px]   -top-6' onClick={voltarHome} >
-                        <div className="w-9 h-9 bg-green-light rounded-full flex items-center justify-center hover:bg-red-500">
-                            <svg className="w-6 h-6 text-green-dark hover:text-white" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10.707 10l4.147-4.146a.5.5 0 1 0-.708-.708L10 9.293 5.854 5.146a.5.5 0 1 0-.708.708L9.293 10l-4.147 4.146a.5.5 0 1 0 .708.708L10 10.707l4.146 4.147a.5.5 0 0 0 .708-.708L10.707 10z" clipRule="evenodd" />
-                            </svg>
+                    <div className='w-full pb-4 text-center '>
+                        <div className='w-full flex justify-end pr-3'>
+                            <button className=' text-green-dark 
+                              text-center text-2xl
+                             font-bold    '>X</button>
+
                         </div>
+                       
+                        <span className='font-semibold  w-full text-xl text-center'>Opções de parcelamento</span>
 
-                    </button><div className='text-center py-2 -mt-10'>
-
-                        <h1 className='font-semibold text-xl '>Opções de parcelamento</h1>
                         <hr className='mb-4'></hr>
-
                         <h1 className='text-2xl text-red-600'>Indisponíveis para esse valor </h1>
 
                     </div>
@@ -49,16 +48,15 @@ function ModalDetalhesParcelamento({ preco }) {
             <>
                 <Popup
                     trigger={<p className='underline cursor-pointer'>Detalhes de parcelamento</p>} modal  >
-                    <button className=' relative -right-[640px]   -top-6' onClick={voltarHome} >
-                        <div className="w-9 h-9 bg-green-light rounded-full flex items-center justify-center hover:bg-red-500">
-                            <svg className="w-6 h-6 text-green-dark hover:text-white" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10.707 10l4.147-4.146a.5.5 0 1 0-.708-.708L10 9.293 5.854 5.146a.5.5 0 1 0-.708.708L9.293 10l-4.147 4.146a.5.5 0 1 0 .708.708L10 10.707l4.146 4.147a.5.5 0 0 0 .708-.708L10.707 10z" clipRule="evenodd" />
-                            </svg>
+                    <div className='w-full pb-4 text-center '>
+                        <div className='w-full flex justify-end pr-3'>
+                            <button className=' text-green-dark 
+                              text-center text-2xl
+                             font-bold    '>X</button>
+
                         </div>
-
-                    </button><div className='text-center py-2 -mt-10'>
-
-                        <h1 className='font-semibold text-xl '>Opções de parcelamento</h1>
+                       
+                        <span className='font-semibold w-full text-xl text-center'>Opções de parcelamento</span>
                         <hr className='mb-4'></hr>
                         <table className='border-2 border-black w-[80%] m-auto '>
                             <tr className={bordasPar}>
@@ -92,18 +90,18 @@ function ModalDetalhesParcelamento({ preco }) {
             <>
                 <Popup
                     trigger={<p className='underline cursor-pointer'>Detalhes de parcelamento</p>} modal  >
-                    <button className=' relative -right-[640px] -top-6 ' onClick={voltarHome} >
-                        <div className="w-9 h-9 bg-green-light rounded-full flex items-center justify-center hover:bg-red-500">
-                            <svg className="w-6 h-6 text-green-dark hover:text-white" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10.707 10l4.147-4.146a.5.5 0 1 0-.708-.708L10 9.293 5.854 5.146a.5.5 0 1 0-.708.708L9.293 10l-4.147 4.146a.5.5 0 1 0 .708.708L10 10.707l4.146 4.147a.5.5 0 0 0 .708-.708L10.707 10z" clipRule="evenodd" />
-                            </svg>
+                    <div className='w-full pb-4 text-center '>
+                        <div className='w-full flex justify-end pr-3'>
+                            <button className=' text-green-dark 
+                              text-center text-2xl
+                             font-bold    '>X</button>
+
                         </div>
+                       
+                        <span className='font-semibold  w-full text-xl text-center'>Opções de parcelamento</span>
 
-                    </button><div className='text-center py-2 -mt-10'>
-
-                        <h1 className='font-semibold text-xl '>Opções de parcelamento</h1>
                         <hr className='mb-4'></hr>
-                        <table className='border-2 border-black w-[80%] m-auto '>
+                        <table className='border-2 border-black w-[80%] m-auto  '>
                             <tr className={bordasPar}>
                                 <th className={bordas}> Quantidade de parcelas </th>
                                 <th className={bordas}>Valor por parcela</th>

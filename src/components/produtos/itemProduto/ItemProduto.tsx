@@ -128,7 +128,7 @@ function ItemProduto() {
   }
 
   return (
-    <div className=''>
+    <>
       <p className=' text-center py-10 '> <a href='/produtos'><button onClick={continuarCompra} > Página inicial </button></a> <span> &gt; {produto.categoria?.nome}</span> &gt; <span className='underline'> {produto.nome}</span></p>
       <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20 '>
         <div className=' w-[28rem] h-96 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
@@ -155,12 +155,14 @@ function ItemProduto() {
           </Swiper>
         </div>
         <div className=" space-y-4 w-1/2 cp:w-[80%] sm:w-[80%] ">
-          <h1 className='text-4xl capitalize font-semibold cp:text-3xl cp:text-center md:text-3xl'>{produto.nome}</h1>
+          <h1 className='text-4xl capitalize font-semibold cp:text-3xl cp:text-center md:text-3xl text-amber-950'>{produto.nome}</h1>
           <p className='text-gray-400'>Cód: {produto.id}</p>
           <p className='text-justify text-xl '>
             {produto.descricao}       </p>
-          <p className=''>Por {produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-dark text-lg'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
-          <p><span className='font-bold'>2X </span>de <span className='font-bold'>{(produto.preco / 2).toFixed(2).replace(".", ",")} </span>sem juros</p>
+          {produto.preco < 10 ? <p></p> : <p className=''>Por R${produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-dark text-2xl'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
+          }
+          <p><span className='font-bold'>2X </span>de <span className='font-bold'>R${(produto.preco / 2).toFixed(2).replace(".", ",")} </span>sem juros</p>
+
           <ModalDetalhesParcelamento preco={produto.preco} />
           <div className='flex items-center  w-full justify-around   '>
             <label htmlFor="quantidadeComprada" ></label>
@@ -184,7 +186,7 @@ function ItemProduto() {
 
 
 
-    </div>
+    </>
 
   );
 }
