@@ -44,7 +44,7 @@ function ListaProdutos() {
       <>
         <div className="titulo-produtos">
           <h2 className="titulo">Produtos</h2>
-          <hr></hr>
+         
         </div>
         <div className='container mx-auto grid grid-cols-4 gap-4 '>
 

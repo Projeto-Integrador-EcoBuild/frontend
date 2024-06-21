@@ -8,4 +8,5 @@ foto: string
 preco: number
 quantidade: number
 categoria?: Categoria | null;
+quantidadeComprada: number;
 }

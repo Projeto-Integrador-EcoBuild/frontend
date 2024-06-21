@@ -1,6 +1,6 @@
 import React from 'react';
 import Produto from '../../../models/Produto';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, ChangeEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Categoria from '../../../models/Categoria';
@@ -19,12 +19,14 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
+import ModalDetalhesParcelamento from '../modalProduto/modalDetalhesParcelamento';
 
 interface CardProdutoProps {
   product: Produto
 }
 
 function ItemProduto() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { usuario } = useContext(AuthContext);
@@ -46,6 +48,7 @@ function ItemProduto() {
     preco: 0,
     quantidade: 0,
     categoria: null,
+    quantidadeComprada: 0
   });
 
   async function buscarProdutoPorId(id: string) {
@@ -88,15 +91,48 @@ function ItemProduto() {
       navigate('/login')
     }
     else {
+      if (verificarProdutosEmEstoque(produto.quantidadeComprada, produto.quantidade)) {
+        alertaQuantidadeSemEstoque();
+        return; // Add this line to prevent adding the product when there's no stock
+      }
       adicionarProduto(product)
       toastAlerta('Produto adicionado ao carrinho', 'info')
     }
   }
+
+  function continuarCompra() {
+    navigate('/produtos')
+  }
+
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setProduto({
+      ...produto,
+      [name]: parseInt(value),
+      categoria: categoria,
+    });
+  }
+
+  function verificarProdutosEmEstoque(quantidadeComprada: number, quantidadeEmEstoque: number) {
+    console.log("Comprada" + quantidadeComprada)
+    console.log("Estoque " + quantidadeEmEstoque)
+    console.log(quantidadeComprada > quantidadeEmEstoque)
+    return quantidadeComprada > quantidadeEmEstoque;
+
+  }
+
+
+  function alertaQuantidadeSemEstoque() {
+
+    alert("não possuimos essa quantidade de itens para venda")
+  }
+
   return (
-    < >
-      <p className=' text-center pt-10 '> <a href='/produtos'><span> Página inicial </span></a> <span> &gt; {produto.categoria?.nome}</span> &gt; <span className='underline'> {produto.nome}</span></p>
-      <div className='flex items-center justify-center cp:flex-col '>
-        <div className=' w-[40%] '>
+    <div className=''>
+      <p className=' text-center py-10 '> <a href='/produtos'><button onClick={continuarCompra} > Página inicial </button></a> <span> &gt; {produto.categoria?.nome}</span> &gt; <span className='underline'> {produto.nome}</span></p>
+      <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20 '>
+        <div className=' w-[28rem] h-96 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
+
           <Swiper
             slidesPerView={1}
             loop={true}
@@ -117,19 +153,26 @@ function ItemProduto() {
             </SwiperSlide>
 
           </Swiper>
-          
         </div>
-        <div className=" space-y-4 w-1/2 ">
-          <h1 className='text-4xl capitalize font-semibold'>{produto.nome}</h1>
+        <div className=" space-y-4 w-1/2 cp:w-[80%] sm:w-[80%] ">
+          <h1 className='text-4xl capitalize font-semibold cp:text-3xl cp:text-center md:text-3xl'>{produto.nome}</h1>
           <p className='text-gray-400'>Cód: {produto.id}</p>
           <p className='text-justify text-xl '>
             {produto.descricao}       </p>
           <p className=''>Por {produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-dark text-lg'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
           <p><span className='font-bold'>2X </span>de <span className='font-bold'>{(produto.preco / 2).toFixed(2).replace(".", ",")} </span>sem juros</p>
-          <p className='underline'>Detalhes de parcelamento</p>
+          <ModalDetalhesParcelamento preco={produto.preco} />
           <div className='flex items-center  w-full justify-around   '>
-            <input type="number" className=' border-green-light px-5 text-xl uppercase py-3 rounded-lg' max={produto.quantidade} min={1} />
-            <button className="bg-green-light border border-green-light font-bold text-black px-5 text-xl uppercase py-3 rounded-lg hover:bg-green-hover hover:text-white " onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
+            <label htmlFor="quantidadeComprada" ></label>
+            <input type="number"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              value={produto.quantidadeComprada}
+              className=' border-green-light px-5 text-xl uppercase py-3 rounded-lg cp:text-base cp:px-2 md:text-base'
+              max={produto.quantidade}
+              name="quantidadeComprada"
+              min={1} />
+            <button className="bg-green-light border border-green-light font-bold text-black px-5 text-xl uppercase py-3 rounded-lg
+             hover:bg-green-hover hover:text-white  cp:px-2 cp:text-base  md:text-base" onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
           </div>
           <hr className='border-gray-400'></hr>
           <p>Aqui calcular</p>
@@ -141,11 +184,11 @@ function ItemProduto() {
 
 
 
-    </>
+    </div>
 
   );
 }
 
 export default ItemProduto;
 
-/*Na hora que eu clicar em adicionar o carrinho , ver se o campo do number tem um valor dentro do range da quantidade de itens que possui em estoque , senao mandar um alerta*/ 
+/*Na hora que eu clicar em adicionar o carrinho , ver se o campo do number tem um valor dentro do range da quantidade de itens que possui em estoque , senao mandar um alerta*/

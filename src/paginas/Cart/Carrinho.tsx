@@ -5,11 +5,13 @@ import ModalProduto from '../../components/produtos/modalProduto/ModalProduto'
 
 function Carrinho() {
     const { items } = useContext(AuthContext)
-    let { quantidadeItems, limparCart, finalizarCompra, removerProduto } = useContext(AuthContext)
+    let { limparCart, finalizarCompra, removerProduto } = useContext(AuthContext)
     const navigate = useNavigate();
     let soma: number = 0;
+    let totalItens : number = 0 ;
     items.forEach(element => {
-        soma += element.preco
+        soma += element.preco * element.quantidadeComprada
+        totalItens +=element.quantidadeComprada
     });
     function continuarCompra() {
         navigate('/produtos')
@@ -26,6 +28,9 @@ function Carrinho() {
                 <div className='w-2/3   '>
                     <ol className='flex justify-between border-b uppercase px-6 py-2 '>
                         <li >item</li>
+                        <li>Nome</li>
+                        <li>Quantidade</li>
+                        <li>Preço unitário</li>
                         <li >Preço</li>
                     </ol>
                     {
@@ -35,7 +40,9 @@ function Carrinho() {
                                 <ol className=' flex  mx-6'>
                                     <li><img src={produto.foto} className='w-24 flex items-center justify-center' /></li>
                                     <li className=' ml-12 w-2/3 text-bold ' >{produto.nome}</li>
-                                    <li className='text-end w-1/3  mr-2  '><strong>R${produto.preco}</strong></li>
+                                    <li className=' ml-12 w-2/3 text-bold ' >{produto.quantidadeComprada}</li>
+                                    <li className=' ml-12 w-2/3 text-bold ' >{produto.preco.toFixed(2).replace(".",",")}</li>
+                                    <li className='text-end w-1/3  mr-2  '><strong>R${(produto.preco*produto.quantidadeComprada).toFixed(2).replace(".",",")}</strong></li>
 
                                 </ol>
                                 <button className=' ml-auto -mt-6 mb-5 mr-6 b' onClick={() => removerProduto(produto.id)}>
@@ -65,8 +72,8 @@ function Carrinho() {
                 <div className=' ml-2 bg-gray-100 w-1/3 h-screen p-5 text-center p-auto   '>
                     <div className=" fixed ml-3 ">
                         <h1 className={"border-b text-2xl uppercase "}>Resumo da compra</h1>
-                        <h2 className='my-3 '>Quantidade de itens : {quantidadeItems}</h2>
-                        <h3 className={"border-b"}>Total do pedido : <strong>R${soma.toFixed(2)}  </strong></h3>
+                        <h2 className='my-3 '>Quantidade de itens : {totalItens}</h2>
+                        <h3 className={"border-b"}>Total do pedido : <strong>R${soma.toFixed(2).replace(".",",")}  </strong></h3>
                         <ModalProduto />
 
                     </div>

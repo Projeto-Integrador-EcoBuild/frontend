@@ -30,6 +30,7 @@ function FormularioProduto() {
     preco: 0,
     quantidade: 0,
     categoria: null,
+    quantidadeComprada: 0 
   });
 
   async function buscarProdutoPorId(id: string) {
