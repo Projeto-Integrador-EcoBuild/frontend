@@ -6,12 +6,14 @@ import Produto from '../../../models/Produto'
 import { buscar } from '../../../services/Service';
 import CardProduto from '../cardProduto/CardProduto';
 import { toastAlerta } from '../../../util/toastAlerta'
-import './listaProduto.css'
+import Categoria from '../../../models/Categoria';
+import CardCategoria from '../../Categoria/cardCategoria/cardCategoria';
 
 
 function ListaProdutos() {
 
   const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
@@ -29,29 +31,56 @@ function ListaProdutos() {
       }
     }
   }
+  async function buscarCategorias() {
+    try {
+      await buscar('/categoria', setCategorias, {
+        headers: {
+          Authorization: token,
+        },
+      });
+    } catch (error: any) {
+      if (error.toString().includes('403')) {
+        toastAlerta('O token expirou, favor logar novamente', 'info')
+        handleLogout()
+      }
+    }
+  }
 
   useEffect(() => {
     buscarProdutos();
   }, [produtos.length]);
+
+  useEffect(() => {
+    buscarCategorias();
+  }, [categorias.length]);
 
 
   let tipo: string = usuario.tipo
 
   let ProdComponent
 
-  if (tipo === "cliente" || tipo==="") {
+  if (tipo === "cliente" || tipo === "") {
     ProdComponent = (
       <>
-        <div className="titulo-produtos">
-          <h2 className="titulo">Produtos</h2>
-         
-        </div>
-        <div className='container mx-auto grid grid-cols-4 gap-4 '>
+        <h2 className="">Produtos</h2>
 
-          {produtos.map((produto) => (
-            <CardProduto key={produto.id} product={produto} />
-          ))}
+        <div className='flex flex-row gap-2 justify-around'>
+          <div className='container mx-auto grid grid-cols-4 gap-4 '>
+          <p>Categorias:</p>
+          {categorias.map((categoria) => (
+              <>
+                <p>{categoria.nome}</p>
+              </>
+            ))}
+          </div>
+          <div className='container mx-auto grid grid-cols-4 gap-4 '>
+
+            {produtos.map((produto) => (
+              <CardProduto key={produto.id} product={produto} />
+            ))}
+          </div>
         </div>
+
       </>
     )
   }
@@ -70,7 +99,7 @@ function ListaProdutos() {
             </div>
           </div>
         </div>
-        
+
         <div className='container mx-auto my-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 lg:grid-cols-3 gap-4 cp:w-4/5 cp:mt-3 cp:px-1 sm:px-12'>
           {produtos.map((produto) => (
             <CardProduto key={produto.id} product={produto} />
@@ -82,7 +111,7 @@ function ListaProdutos() {
 
   return (
     <>
-    
+
 
       {produtos.length === 0 && (
         <div className=' flex justify-center items-center  '>
