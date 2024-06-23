@@ -17,7 +17,7 @@ function ModalProduto() {
     return (
         <>
             <Popup
-                trigger={<button className='rounded-lg bg-green-dark hover:bg-green-hover text-white  p-16 py-3 uppercase mt-4'>Finalizar pedido</button>} modal  >
+                trigger={<button className='rounded-lg bg-green-dark hover:bg-green-hover text-white md:p-8 md:py-1 p-16 py-3 uppercase mt-4 '>Finalizar pedido</button>} modal  >
                 <button className=' relative -right-[640px] -top-6' onClick={voltarHome} >
                     <div className="w-9 h-9 bg-green-light rounded-full flex items-center justify-center hover:bg-red-500">
                         <svg className="w-6 h-6 text-green-dark hover:text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -25,7 +25,7 @@ function ModalProduto() {
                         </svg>
                     </div>
 
-                </button><div className='text-center py-2 -mt-10'>
+                </button><div className='text-center py-2 -mt-10 cp:py-0'>
 
                     <h1 className='font-bold text-2xl'>Compra finalizada!</h1>
                     <h1 >Obrigado por escolher a Naturalar!</h1>
