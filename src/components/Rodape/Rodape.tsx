@@ -2,10 +2,7 @@ import React from 'react'
 
 function Rodape() {
   return (
-    <div className="w-full  text-white bg-green-dark pt-10  cp:flex cp:flex-col ">
-      <div className="flex w-full mb-3 cp:flex-col cp:text-center  cp:w-full justify-around md:pr-[60%] sm:pr-[60%] lg:pr-[65%] xl:pr-[63%] 2xl:pr-[65%]">
-        <h1 className="font-['mplus'] font-bold text-5xl xl:text-6xl 2xl:text-7xl ">Naturalar</h1>
-      </div>
+    <div className="w-full text-green-dark bg-green-light pt-10  cp:flex cp:flex-col ">
       <div className=" flex justify-around mb-3 cp:flex-col cp:text-center 2xl:text-2xl ">
      
         <ul className=''>
@@ -46,7 +43,7 @@ function Rodape() {
 
 
 
-      <div className=" mx-12  h-10 border-t  border-white "> </div>
+      <div className=" mx-12  h-10 border-t  border-green-dark "> </div>
 
       <div className="w-full pb-8 flex justify-around cp:flex-col cp:w-[90%] cp:ml-4 2xl:text-2xl">
         <p>©️ 2024</p>

@@ -70,6 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     // Adicione APENAS essa linhas de código daqui
     const [items, setItems] = useState<Produto[]>([])
+    
 
     const quantidadeItems = items.length
 

@@ -4,13 +4,14 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+     "./node_modules/flowbite/**/*.js" 
   ],
   theme: {
     extend: {
       colors: {
         green: {
-          light: '#DDE5D5',
-          dark: '#316906',
+          light: '#bbecab',
+          dark: '#003023',
           hover: '#365B1A'
         }
 
@@ -18,7 +19,7 @@ module.exports = {
       fontFamily: {
         'mplus': ['M PLUS Rounded 1c', 'sans-serif'],
        
-      }
+      } 
     } ,
     screens: {
       'cp': { 'min': '320px', 'max': '640px' },
@@ -33,7 +34,8 @@ module.exports = {
   
 
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('flowbite/plugin')
   ],
 }
  
