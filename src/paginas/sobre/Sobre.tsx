@@ -1,123 +1,195 @@
 import logoGreen from '../../assets/img/logo-green.png';
 import { GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import fotoGabriel from '../../assets/img/image.png'
+import userFoto from '../../assets/img/user.png'
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
 
 function Sobre() {
   return (
-    <>
-      <div className="text-justify grid  lg:grid-cols-2 h-screen place-items-center bg-green-light">
-        <div className="flex items-left flex-col w-9/12 gap-4 -mt-3  ">
-          <h1 className="text-5xl font-bold mb-4">Sobre Nós</h1>
-          <div className='text-lg'>
-            <p>Somos uma empresa nova no mercado, mas que sempre pensou em mudar o mundo a começar por nossas próprias casas. Por conta disso, desenvolvemos um local onde outras pessoas que querem fazer a sua parte para salvar o mundo possam dar o seu primeiro passo.</p>
-            <p>Com o apoio de diversos profissionais da engenharia ambiental e da engenharia civil, desenvolvemos a melhor seleção de produtos para ter uma casa mais sustentável e uma grande amiga do ambiente.</p>
-            <p>Somos um time destemido e inovador formado por alunos da Generation Brasil, dedicado a enfrentar os desafios apresentados pelos Objetivos de Desenvolvimento Sustentável da ONU, que são objetivos para deixar o mundo mais sustentável até 2030, e a nossa missão é contribuir para a concretização do Objetivo 11 - Cidades e Comunidades Sustentáveis, que visa tornar os assentamentos humanos mais inclusivos, seguros, resilientes e sustentáveis.</p>
-          </div>
-        </div>
-        <div className="w-1/2 p-4 ">
-          <div className='icones'>
-            <div className='info'>
-              <i className="fa fa-building" aria-hidden="true"></i>
-              <p>Materiais Locais</p>
-            </div>
-            <div className='info'>
-              <i className="fa fa-tint" aria-hidden="true"></i>
-              <p>Eficiência de Água</p>
-            </div>
-            <div className='info'>
-              <i className="fa fa-recycle" aria-hidden="true"></i>
-              <p>Materiais Biodegradáveis</p>
-            </div>
-            <div className='info'>
-              <i className="fa fa-globe" aria-hidden="true"></i>
-              <p>Menos Poluição Ambiental</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='  flex flex-row  justify-around w-full  bg-green-light pb-6'>
-        <div className='  pr-20 border-r border-black ml-12  '>
-          <p className="">Alan Eduardo</p>
-          <div className='flex flex-row  justify-around text-2xl'>
-            <a href="https://www.linkedin.com/in/aeduardocruz/" target="_blank">
-              <LinkedinLogo />
-            </a>
-            <a href="https://github.com/AlanEduardoCruz" target="_blank">
-              <GithubLogo />
-            </a>
-          </div>
-        </div>
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200"><path fill="#bbecab" fill-opacity="1" d="M0,96L30,122.7C60,149,120,203,180,192C240,181,300,107,360,64C420,21,480,11,540,32C600,53,660,107,720,117.3C780,128,840,96,900,101.3C960,107,1020,149,1080,144C1140,139,1200,85,1260,74.7C1320,64,1380,96,1410,112L1440,128L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path></svg>
 
 
-        <div className='  pr-20 border-r border-black  '>
-          <p className="">Gabriel Tomarchio</p>
-          <div className='flex flex-row  justify-around text-2xl'>
-          <a href="https://www.linkedin.com/in/bieltomarchio/" target="_blank">
-              <LinkedinLogo />
-            </a>
-            <a href="https://github.com/biel678" target="_blank">
-              <GithubLogo />
-            </a>
-          </div>
-        </div>
+      <div className=' m-auto text-2xl mb-12 flex flex-col gap-6 w-[70%] '>
+        <h1 className='text-6xl font-light '>Sobre nós</h1>
+        <p className=''>
+          Somos a Naturalar, uma equipe destemida e inovadora formada por alunos da Generation Brasil. Estamos dedicados a enfrentar os desafios dos Objetivos de Desenvolvimento Sustentável da ONU, que visam tornar o mundo mais sustentável até 2030. Nossa missão é contribuir para a concretização do Objetivo 11 - Cidades e Comunidades Sustentáveis, que busca tornar os assentamentos humanos mais inclusivos, seguros, resilientes e sustentáveis.</p>
+
+        <p className=''>
+
+          A construção civil é uma atividade que gera grandes impactos no meio ambiente. Desde a produção inicial até o descarte dos resíduos, muitos processos podem prejudicar o ecossistema. Por isso, a tendência no mercado é revisar técnicas e impulsionar o uso de materiais de construção ecológicos.
+        </p>
+        <p className=''>
 
 
+          A utilização de materiais ecológicos oferece diversas vantagens, incluindo:
 
+          Certificações ambientais: Elas aumentam o valor e a reputação dos edifícios. No Brasil, por exemplo, existem certificações como LEED e AQUA. Em 2014, uma pesquisa do Green Business Certification Inc (GBCI) posicionou o Brasil em terceiro lugar globalmente em número de edifícios em processo de certificação.
 
-        <div className='  pr-20 border-r border-black'>
-          <p className="">Kamilla Rodrigues</p>
-          <div className='flex flex-row  justify-around text-2xl'>
-          <a href="https://www.linkedin.com/in/kamillarodrigues/" target="_blank">
-              <LinkedinLogo />
-            </a>
-            <a href="https://github.com/KamillaLima" target="_blank">
-              <GithubLogo />
-            </a>
-          </div>
-        </div>
+          Políticas públicas: Promovidas pelo Conselho Brasileiro de Construção Sustentável, essas políticas visam contribuir para o desenvolvimento sustentável através da disseminação de conhecimento e outras práticas.
+        </p>
 
+        <p className=''>
 
-
-
-
-
-        <div className='  pr-20 border-r border-black'>
-          <p className="">Maria Xavier</p>
-          <div className='flex flex-row  justify-around text-2xl'>
-          <a href="https://www.linkedin.com/in/maria-xavier-tech/" target="_blank">
-              <LinkedinLogo />
-            </a>
-            <a href="https://github.com/marii182" target="_blank">
-              <GithubLogo />
-            </a>
-          </div>
-        </div>
-
-
-
-
-
-        <div className='  pr-20 '>
-          <p className="">Raul Oliveira</p>
-          <div className='flex flex-row  justify-around text-2xl'>
-          <a href="https://www.linkedin.com/in/raul-oliveira-prado/" target="_blank">
-              <LinkedinLogo />
-            </a>
-            <a href="https://github.com/Raul-Prado" target="_blank">
-              <GithubLogo />
-            </a>
-          </div>
-        </div>
-
-
-
-
-
-
+          Desse modo, a Naturalar surge como uma solução para este problema. Nosso e-commerce é dedicado à divulgação e venda de materiais de construção sustentáveis, evitando o desperdício de recursos naturais e promovendo práticas de construção mais amigáveis ao meio ambiente. Queremos transformar o setor da construção civil, tornando-o mais responsável e consciente em relação ao meio ambiente.</p>
 
 
       </div>
-    </>
+
+
+
+
+
+
+      <div className=''>
+        <Swiper
+          spaceBetween={30}
+          loop={true}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+        >
+
+          <SwiperSlide>
+            <div className=' flex h-64  flex-row w-[100%] px-36 justify-center mb-12 items-center '>
+              <div className='w-[130%] h-full'>
+                <img className='object-cover' src={userFoto} />
+
+              </div>
+
+              <div className='flex flex-col gap-5 text-justify'>
+
+                <h1 className='text-5xl font-light'>Alan Eduardo</h1>
+
+                <p className='text-2xl font-extralight'>Técnico de Manutenção no setor ferroviário, com expertise em sonorização, escada rolante, elevador, cabine primária, manutenção de computadores, instalação de softwares, ar-condicionado, atendimento ao cliente e reparos em equipamentos nas estações.
+                </p>
+                <div className='flex flex-row w-full justify-around '>
+                  <GithubLogo size={58} color='#316906' />
+                  <LinkedinLogo size={58} color='#316906' />
+                </div>
+
+              </div>
+
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className=' flex h-64  flex-row w-[100%] px-36 justify-center mb-12 items-center '>
+              <div className='w-[130%] h-full'>
+                <img className='object-cover' src={fotoGabriel} />
+
+              </div>
+
+              <div className='flex flex-col gap-5 text-justify'>
+
+                <h1 className='text-5xl font-light'>Gabriel Tomarchio</h1>
+
+                <p className='text-2xl font-extralight'>Sou Gabriel Tomarchio e sou programador com foco em desenvolvimento Full-Stack e desenvolvimento de Software.Sou muito focado e dedicado, tenho rápido aprendizado e sempre estou em busca de novos conhecimentos.
+                </p>
+                <div className='flex flex-row w-full justify-around '>
+                  <GithubLogo size={58} color='#316906' />
+                  <LinkedinLogo size={58} color='#316906' />
+                </div>
+
+              </div>
+
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className=' flex h-64 bg-blue flex-row w-[100%] px-36 justify-center mb-12 items-center '>
+              <div className='w-[130%] h-full'>
+                <img className='object-cover' src='https://pps.whatsapp.net/v/t61.24694-24/324675687_7768910809869698_6914235350372379592_n.jpg?ccb=11-4&oh=01_Q5AaIFqYXq0AMi8fjyW-VsAXscoskXtbw2qzGTcg1nyumlUD&oe=6685E9E4&_nc_sid=e6ed6c&_nc_cat=101' />
+
+              </div>
+
+              <div className='flex flex-col gap-5 text-justify'>
+
+                <h1 className='text-5xl font-light'>Kamilla Lima</h1>
+
+                <p className='text-2xl font-extralight'>Olá! Eu sou a Kamilla, uma entusiasta apaixonada por tecnologia e formada em Análise e
+                  Desenvolvimento de Sistemas pela FIAP. Desde a infância, meu fascínio por jogos e vontade em explorar a
+                  internet despertou meu interesse pelo vasto mundo da programação. </p>
+                <div className='flex flex-row w-full justify-around '>
+                  <GithubLogo size={58} color='#316906' />
+                  <LinkedinLogo size={58} color='#316906' />
+                </div>
+
+              </div>
+
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className=' flex h-64  flex-row w-[100%] px-36 justify-center mb-12 items-center '>
+              <div className='w-[130%] h-full'>
+                <img className='object-cover' src="https://media.licdn.com/dms/image/D4E03AQFZaj4x_FhPOQ/profile-displayphoto-shrink_800_800/0/1718240351276?e=1724889600&v=beta&t=2uxxtZfkJqKO8Ixp6UC_H-Riskla97ZvAcBKZ585VBk" />
+
+              </div>
+
+              <div className='flex flex-col gap-5 text-justify'>
+
+                <h1 className='text-5xl font-light'>Maria Xavier</h1>
+
+                <p className='text-2xl font-extralight'>Estudante dedicada de Análise e Desenvolvimento de Sistemas em busca de oportunidades na área de TI. Com experiência como Auxiliar Administrativo, destaco minha habilidade em lidar com demandas operacionais.
+                </p>
+                <div className='flex flex-row w-full justify-around '>
+                  <GithubLogo size={58} color='#316906' />
+                  <LinkedinLogo size={58} color='#316906' />
+                </div>
+
+              </div>
+
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className=' flex h-64  flex-row w-[100%] px-36 justify-center mb-12 items-center '>
+              <div className='w-[130%] h-full'>
+                <img className='object-cover' src={userFoto} />
+
+              </div>
+
+              <div className='flex flex-col gap-5 text-justify'>
+
+                <h1 className='text-5xl font-light'>Raul Oliveira</h1>
+
+                <p className='text-2xl font-extralight'>Formado em Informática pela ETEC e graduado em Gestão da Tecnologia da Informação pela FATEC Itaquaquecetuba. Experiência como Desenvolvedor Web na Prefeitura Municipal de Guarulhos, utilizando Python, Django e JavaScript para Back-End.
+                </p>
+                <div className='flex flex-row w-full justify-around '>
+                  <GithubLogo size={58} color='#316906' />
+                  <LinkedinLogo size={58} color='#316906' />
+                </div>
+
+              </div>
+
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </div>
+
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 10 1200 200"><path fill="#bbecab" fill-opacity="1" d="M0,96L30,122.7C60,149,120,203,180,192C240,181,300,107,360,64C420,21,480,11,540,32C600,53,660,107,720,117.3C780,128,840,96,900,101.3C960,107,1020,149,1080,144C1140,139,1200,85,1260,74.7C1320,64,1380,96,1410,112L1440,128L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg>
+    </div>
   );
 }
 
