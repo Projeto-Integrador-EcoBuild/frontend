@@ -16,6 +16,7 @@ function Carrinho() {
     function continuarCompra() {
         navigate('/produtos')
     }
+  
 
     return (
         <>

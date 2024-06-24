@@ -6,7 +6,6 @@ import { AuthContext } from '../../contexts/AuthContext';
 import UsuarioLogin from '../../models/UsuarioLogin';
 import { RotatingLines } from 'react-loader-spinner';
 
-// Importe a imagem de fundo aqui
 import backgroundImage from '../../assets/img/blob-scene-haikei.png';
 
 function Login() {
@@ -43,65 +42,90 @@ function Login() {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      minHeight: '100vh', // Defina uma altura mínima para cobrir a tela inteira
+      minHeight: '90vh',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      <form className="flex flex-col items-center gap-6 w-1/2 p-10 rounded-lg bg-white shadow-2xl shadow-slate-700" onSubmit={login}>
-        <h2 className="text-6xl">Login</h2>
+      <form className="flex flex-col items-center gap-5 w-1/2 p-6 rounded-lg bg-white shadow-2xl shadow-slate-700 md:px-0 md:w-[80%] sm:px-0 sm:w-[80%] cp:px-2
+      cp:w-[80%]" onSubmit={login}>
+        <h2 className="text-7xl font-light">Login</h2>
 
-        <div className="relative w-1/2">
+        <div className="flex flex-col w-[80%] sm:w-[85%] cp:w-[95%]">
+          <label
+            className="text-green-botao text-base font-semibold  ml-1 "
+            htmlFor="email"          >Email </label>
           <input
-            placeholder=''
-            className="peer h-10 w-full border-b  border-white text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
             required
+            className="border-green-botao input px-[10px] py-[11px] text-base
+             bg-slate-100 border-2 rounded-[5px] focus:outline-none focus:border-green-botao  focus:ring-0"
             id="email"
             name="email"
             type="email"
             value={usuarioLogin.email}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
-          <label htmlFor="email" className="absolute left-0 -top-3.5 transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">E-mail</label>
+
         </div>
 
-        <div className="relative w-1/2">
+
+        <div className="flex flex-col-reverse w-[80%] sm:w-[85%] cp:w-[95%] ">
           {outraLogo ? (
-            <input
-              placeholder=''
-              className="peer h-10 w-full border-b border-black border-white text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
-              type="text"
-              minLength={8}
-              required
-              id="senha"
-              name="senha"
-              value={usuarioLogin.senha}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            />
+            <div className='w-full flex flex-row justify-between border-green-botao input px-[2px] py-[4px] text-base
+              bg-slate-100 border-2 rounded-[5px] 
+               focus:outline-none '>
+              <input
+                placeholder=''
+                className="
+              bg-slate-100 border-0 w-[90%] focus:ring-0 "
+                type="text"
+                minLength={8}
+                required
+                id="senha"
+                name="senha"
+                value={usuarioLogin.senha}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              />
+              <button onClick={mostrarSenha} type='button' className='w-8 bg-slate-100'>
+                {outraLogo ? (<Eye size={24} color='#38A673' />) : (<EyeSlash size={24} color='#38A673' />)}
+              </button>
+            </div>
           ) : (
-            <input
-              placeholder=''
-              className="peer h-10 w-full border-b border-black border-white text-black bg-transparent placeholder-transparent focus:outline-none focus:border-b-green-dark focus:border-t-transparent focus:border-r-transparent focus:border-l-transparent focus:ring-0"
-              type="password"
-              minLength={8}
-              required
-              id="senha"
-              name="senha"
-              value={usuarioLogin.senha}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            />
+            <div className='w-full flex flex-row justify-between border-green-botao input px-[2px] py-[4px] text-base
+            bg-slate-100 border-2 rounded-[5px] '>
+              <input
+                placeholder=''
+                className="
+              bg-slate-100 border-0 w-[90%]  focus:ring-0 "
+                type="password"
+                minLength={8}
+                required
+                id="senha"
+                name="senha"
+                value={usuarioLogin.senha}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              />
+              <button onClick={mostrarSenha} type='button' className='w-8 '>
+                {outraLogo ? (<Eye size={24} color='#38A673' />) : (<EyeSlash size={24} color='#38A673' />)}
+              </button>
+            </div>
           )}
-          <label htmlFor="senha" className="absolute left-0 -top-3.5 transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-green-dark peer-focus:text-lg">Senha</label>
-          <div className='-mt-8 mr-2 text-end'>
-            <button onClick={mostrarSenha} type='button'>
-              {outraLogo ? (<Eye size={24} />) : (<EyeSlash size={24} />)}
-            </button>
-          </div>
+
+
+          <label
+            className="text-green-botao text-base font-semibold  ml-1 "
+            htmlFor="senha"
+          >Senha </label>
         </div>
 
-        <p className='w-1/2 text-right underline cursor-pointer'>Esqueceu a senha?</p>
 
-        <button type='submit' className="rounded-lg bg-green-dark hover:bg-green-hover text-white p-16 py-3 m-4 uppercase">
+        <p className=' text-right cursor-pointer  w-[80%] sm:w-[85%] cp:w-[95%]'>Esqueceu a senha?</p>
+
+
+
+
+
+        <button type='submit' className="rounded-lg bg-green-botao hover:bg-green-hover text-white p-16 py-3 uppercase">
           {isLoading ? (
             <RotatingLines
               strokeColor="white"
@@ -116,7 +140,7 @@ function Login() {
         </button>
 
         <p className='w-full text-center cp:grid'>
-          Ainda não tem uma conta? <Link to="/cadastro"><span className='font-black underline cursor-pointer pl-1.5 cp:w-full'>Cadastre-se!</span></Link>
+          Ainda não tem uma conta? <Link to="/cadastro"><span className='font-bold cursor-pointer pl-1.5 cp:w-full'>Cadastre-se!</span></Link>
         </p>
       </form>
     </div>

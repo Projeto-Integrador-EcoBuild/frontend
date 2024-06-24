@@ -12,7 +12,8 @@ module.exports = {
         green: {
           light: '#bbecab',
           dark: '#003023',
-          hover: '#365B1A'
+          hover: '#1C8C63',
+          botao : "#38A673"
         }
 
       },

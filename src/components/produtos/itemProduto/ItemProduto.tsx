@@ -93,8 +93,9 @@ function ItemProduto() {
     else {
       if (verificarProdutosEmEstoque(produto.quantidadeComprada, produto.quantidade)) {
         alertaQuantidadeSemEstoque();
-        return; // Add this line to prevent adding the product when there's no stock
+        return; 
       }
+      verificarSeQtdCompradaEstaIndefinido();
       adicionarProduto(product)
       toastAlerta('Produto adicionado ao carrinho', 'info')
     }
@@ -102,6 +103,12 @@ function ItemProduto() {
 
   function continuarCompra() {
     navigate('/produtos')
+  }
+
+  function verificarSeQtdCompradaEstaIndefinido (){
+    if(produto.quantidadeComprada === undefined){
+      produto.quantidadeComprada = 1
+    }
   }
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
@@ -114,16 +121,12 @@ function ItemProduto() {
   }
 
   function verificarProdutosEmEstoque(quantidadeComprada: number, quantidadeEmEstoque: number) {
-    console.log("Comprada" + quantidadeComprada)
-    console.log("Estoque " + quantidadeEmEstoque)
-    console.log(quantidadeComprada > quantidadeEmEstoque)
     return quantidadeComprada > quantidadeEmEstoque;
 
   }
 
 
   function alertaQuantidadeSemEstoque() {
-
     alert("não possuimos essa quantidade de itens para venda")
   }
 
