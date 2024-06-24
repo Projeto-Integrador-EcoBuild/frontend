@@ -17,11 +17,11 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 function Sobre() {
   return (
-    <div>
+    <div className=''>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200"><path fill="#bbecab" fill-opacity="1" d="M0,96L30,122.7C60,149,120,203,180,192C240,181,300,107,360,64C420,21,480,11,540,32C600,53,660,107,720,117.3C780,128,840,96,900,101.3C960,107,1020,149,1080,144C1140,139,1200,85,1260,74.7C1320,64,1380,96,1410,112L1440,128L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path></svg>
 
 
-      <div className=' m-auto text-2xl mb-12 flex flex-col gap-6 w-[70%] '>
+      <div className=' m-auto text-2xl mb-12 flex flex-col gap-6 w-[70%] text-justify'>
         <h1 className='text-6xl font-light '>Sobre nós</h1>
         <p className=''>
           Somos a Naturalar, uma equipe destemida e inovadora formada por alunos da Generation Brasil. Estamos dedicados a enfrentar os desafios dos Objetivos de Desenvolvimento Sustentável da ONU, que visam tornar o mundo mais sustentável até 2030. Nossa missão é contribuir para a concretização do Objetivo 11 - Cidades e Comunidades Sustentáveis, que busca tornar os assentamentos humanos mais inclusivos, seguros, resilientes e sustentáveis.</p>
@@ -47,6 +47,31 @@ function Sobre() {
 
       </div>
 
+
+      
+<ol className="relative border-s border-gray-200 dark:border-gray-700">                  
+    <li className="mb-10 ms-4">
+        <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+        <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">February 2022</time>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Application UI code in Tailwind CSS</h3>
+        <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
+        <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">Learn more <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+  </svg></a>
+    </li>
+    <li className="mb-10 ms-4">
+        <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+        <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">March 2022</time>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Marketing UI design in Figma</h3>
+        <p className="text-base font-normal text-gray-500 dark:text-gray-400">All of the pages and components are first designed in Figma and we keep a parity between the two versions even as we update the project.</p>
+    </li>
+    <li className="ms-4">
+        <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+        <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">April 2022</time>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">E-Commerce UI code in Tailwind CSS</h3>
+        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web components and interactive elements built on top of Tailwind CSS.</p>
+    </li>
+</ol>
 
 
 
