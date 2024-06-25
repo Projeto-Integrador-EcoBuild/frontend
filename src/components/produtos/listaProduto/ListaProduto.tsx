@@ -8,6 +8,7 @@ import CardProduto from '../cardProduto/CardProduto';
 import { toastAlerta } from '../../../util/toastAlerta'
 import Categoria from '../../../models/Categoria';
 import CardCategoria from '../../Categoria/cardCategoria/cardCategoria';
+import { CaretDown } from '@phosphor-icons/react';
 
 
 function ListaProdutos() {
@@ -61,19 +62,32 @@ function ListaProdutos() {
 
   if (tipo === "cliente" || tipo === "") {
     ProdComponent = (
-      <>
-        <h2 className="">Produtos</h2>
-
-        <div className='flex flex-row gap-2 justify-around'>
-          <div className='container mx-auto grid grid-cols-4 gap-4 '>
+      <div className='flex flex-row my-12 mx-10 2xl:mx-40 '>
+        <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-2/4 bg-slate-100 rounded-md px-4'>
           <p>Categorias:</p>
+          <hr></hr>
           {categorias.map((categoria) => (
-              <>
-                <p>{categoria.nome}</p>
-              </>
-            ))}
+            <>
+              <p className='my-12'>{categoria.nome}</p>
+            </>
+          ))}
+        </div>
+        <div className='flex flex-col gap-2 justify-around w-full   '>
+          <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col cp:gap-4 md:flex-col md:gap-4'>
+            <p className='text-3xl uppercase cp:text-lg '>Todos os produtos</p>
+            <div className='sm:px-4 lg:w-[50%] cp:truncate lg:truncate sm:truncate px-8 flex flex-row items-center border border-black rounded-lg'>
+              <p>Ordernar por : </p>
+              <select name="select" className='rounded-xl uppercase 
+               appearance-none bordoer-0 border-transparent focus:ring-0 focus:border-transparent'>
+                <option value="valor2" selected > Ordem padrão</option>
+                <option value="valor3">Menor preço</option>
+                <option value="valor1">Maior preço</option>
+              </select>
+            </div>
+
           </div>
-          <div className='container mx-auto grid grid-cols-4 gap-4 '>
+
+          <div className=' mx-auto grid grid-cols-4 gap-20 cp:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:gap-12'>
 
             {produtos.map((produto) => (
               <CardProduto key={produto.id} product={produto} />
@@ -81,7 +95,7 @@ function ListaProdutos() {
           </div>
         </div>
 
-      </>
+      </div>
     )
   }
 
