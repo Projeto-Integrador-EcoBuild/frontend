@@ -17,6 +17,7 @@ import DeletarProduto from './components/produtos/deletarProduto/DeletarProduto'
 import FormularioProduto from './components/produtos/formularioProduto/FormularioProduto'
 import Carrinho from './paginas/Cart/Carrinho'
 import ItemProduto from './components/produtos/itemProduto/ItemProduto'
+import ListaProdutosBusca from './components/produtos/listaProduto/ListaProdutosBusca'
 
 function App() {
   return (
@@ -40,7 +41,9 @@ function App() {
             <Route path='/deletarProduto/:id' element = {<DeletarProduto/>}/> 
             <Route path='/cadastrarProduto' element = {<FormularioProduto/>}/> 
             <Route path='/editarProduto/:id' element = {<FormularioProduto/>}/> 
+            <Route path='/busca/:nome' element={<ListaProdutosBusca />} />
             <Route path='/carrinho' element = {<Carrinho/>}/> 
+
           </Routes>
         </div>
         <Rodape />

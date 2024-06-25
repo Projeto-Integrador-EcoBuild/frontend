@@ -33,7 +33,7 @@ function Rodape() {
           </li>
 
         </ul >
-        <ul className="flex flex-row justify-between  w-3/12 h-10 pt-6 cp:text-2xl cp:w-[75%] cp:pt-0 cp:ml-16 cp:mt-5 sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl">
+        <ul className="flex flex-row justify-between  w-3/12 h-10 pt-6 cp:text-2xl cp:w-full cp:pt-0 cp:justify-around  cp:mt-5 sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl">
           <li><a href="https://github.com/Projeto-Integrador-EcoBuild" target='_blank' className="fa fa-github "></a></li>
           <li><a href="#" className="fa fa-facebook  "></a></li>
           <li><a href="#" className="fa fa-instagram "></a></li>

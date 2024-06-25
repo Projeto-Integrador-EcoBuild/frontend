@@ -1,4 +1,4 @@
-import { useContext, } from 'react'
+import { useContext, useState, ChangeEvent, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import homeLogo from '../../assets/img/Captura de tela 2024-06-21 221639.png'
 import { AuthContext } from '../../contexts/AuthContext'
@@ -6,14 +6,47 @@ import { toastAlerta } from '../../util/toastAlerta'
 import { SignOut, User, ShoppingBag, List } from '@phosphor-icons/react'
 import './Menu.css'
 import 'flowbite';
+import { buscar } from '../../services/Service'
+import Produto from '../../models/Produto'
 function Menu() {
   let navbarComponent
 
   const { usuario, handleLogout } = useContext(AuthContext)
+  const [produtos, setProdutos] = useState<Produto[]>([]);
   let tipo: string = usuario.tipo
   const { quantidadeItems } = useContext(AuthContext)
-
+  const [nome, setNome] = useState("");
   let navigate = useNavigate();
+  const token = usuario.token;
+
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+
+    setNome(e.target.value);
+    console.log("nome"+nome)
+  }
+  // Dentro do componente Menu
+useEffect(() => {
+  console.log(produtos);
+}, [produtos]); 
+
+  async function buscarProdutos(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
+    try {
+      await buscar(`/produtos/nome/${nome}`, setProdutos, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      console.log(produtos);
+      console.log(setProdutos);
+      navigate(`/busca/${nome}`)
+    } catch (error: any) {
+      if (error.toString().includes('403')) {
+        toastAlerta('O token expirou, favor logar novamente', 'info')
+        handleLogout()
+      }
+    }
+  }
 
   function logout() {
     handleLogout()
@@ -24,7 +57,7 @@ function Menu() {
   if (tipo === "cliente") {
     navbarComponent = (
       <div className=" justify-evenly  font-medium gap-12 bg-green-light text-green-dark 
-      w-full  items-center  pb-8 pt-4 px-4 lg:flex xl:flex 2xl:flex">
+      w-full  items-center  pb-3 pt-4 px-4 lg:flex xl:flex 2xl:flex">
         <div className=' flex w-full items-center justify-around cp:visible sm:visible mb-4 lg:hidden
         xl:hidden 2xl:hidden'>
 
@@ -32,9 +65,6 @@ function Menu() {
             <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
               <List size={32} />
             </button>
-
-           
-
           </div>
 
           <Link to='/home'>
@@ -55,13 +85,15 @@ function Menu() {
             <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
           </Link>
         </div>
-        <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full">
+        <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full" onSubmit={buscarProdutos}>
           <input
             className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 "
             placeholder="O que você está procurando?"
             type="text"
+            value={nome}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
-          <button className="absolute right-4 -translate-y-1/2 top-1/2 p-1 sm:right-2">
+          <button className="absolute right-4 -translate-y-1/2 top-1/2 p-1 sm:right-2 hover:cursor-pointer" >
             <svg
               width="17"
               height="16"
@@ -152,8 +184,8 @@ function Menu() {
 
           <div className='flex items-end '>
 
-          <List size={32}/>
-           
+            <List size={32} />
+
 
           </div>
 

@@ -45,7 +45,7 @@ function FormCategoria() {
     })
 
   }
-  async function gerarNovoCategoria(e: ChangeEvent<HTMLFormElement>,) {
+  async function gerarNovoCategoria(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
     setIsLoading(true);
 
