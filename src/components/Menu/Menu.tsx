@@ -6,46 +6,27 @@ import { toastAlerta } from '../../util/toastAlerta'
 import { SignOut, User, ShoppingBag, List } from '@phosphor-icons/react'
 import './Menu.css'
 import 'flowbite';
-import { buscar } from '../../services/Service'
-import Produto from '../../models/Produto'
 function Menu() {
   let navbarComponent
 
   const { usuario, handleLogout } = useContext(AuthContext)
-  const [produtos, setProdutos] = useState<Produto[]>([]);
+
   let tipo: string = usuario.tipo
   const { quantidadeItems } = useContext(AuthContext)
   const [nome, setNome] = useState("");
   let navigate = useNavigate();
-  const token = usuario.token;
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-
     setNome(e.target.value);
-    console.log("nome"+nome)
   }
-  // Dentro do componente Menu
-useEffect(() => {
-  console.log(produtos);
-}, [produtos]); 
+
 
   async function buscarProdutos(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
-    try {
-      await buscar(`/produtos/nome/${nome}`, setProdutos, {
-        headers: {
-          Authorization: token,
-        },
-      });
-      console.log(produtos);
-      console.log(setProdutos);
-      navigate(`/busca/${nome}`)
-    } catch (error: any) {
-      if (error.toString().includes('403')) {
-        toastAlerta('O token expirou, favor logar novamente', 'info')
-        handleLogout()
-      }
-    }
+  let nomeBusca = nome.toLowerCase();
+    
+    navigate(`/busca/${nomeBusca}`)
+
   }
 
   function logout() {
@@ -206,11 +187,13 @@ useEffect(() => {
             <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
           </Link>
         </div>
-        <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full lg:w-[40%]">
+        <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full lg:w-[40%]" onSubmit={buscarProdutos}>
           <input
             className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 "
             placeholder="O que você está procurando?"
             type="text"
+            value = {nome}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
           <button className="absolute right-4 -translate-y-1/2 top-1/2 p-1 sm:right-2">
             <svg

@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './paginas/home/Home'
 import Sobre from './paginas/sobre/Sobre'
 import Login from './paginas/login/Login'
-import Cadastro from './paginas/cadastro/Cadastro'
 import { AuthProvider } from './contexts/AuthContext'
 import ListaCategoria from './components/Categoria/listaCategoria/ListaCategoria'
 import DeletarCategoria from './components/Categoria/deletarCategoria/DeletarCategoria'
@@ -18,6 +17,7 @@ import FormularioProduto from './components/produtos/formularioProduto/Formulari
 import Carrinho from './paginas/Cart/Carrinho'
 import ItemProduto from './components/produtos/itemProduto/ItemProduto'
 import ListaProdutosBusca from './components/produtos/listaProduto/ListaProdutosBusca'
+import FormPerfilUsuario from './paginas/cadastro/FormPerfilUsuario'
 
 function App() {
   return (
@@ -31,18 +31,19 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path='/sobre' element={<Sobre />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/cadastro' element={<Cadastro />} />
-           <Route path='/item/:id' element={<ItemProduto />} />
+            <Route path='/cadastro' element={<FormPerfilUsuario />} />
+            <Route path='/editarPerfil/:id' element={<FormPerfilUsuario />} />
+            <Route path='/item/:id' element={<ItemProduto />} />
             <Route path='/categoria' element={<ListaCategoria />} />
-            <Route path='/deletarCategoria/:id' element = {<DeletarCategoria/>}/> 
-            <Route path='/cadastrarCategoria' element = {<FormCategoria/>}/> 
-            <Route path='/editarCategoria/:id' element = {<FormCategoria/>}/> 
+            <Route path='/deletarCategoria/:id' element={<DeletarCategoria />} />
+            <Route path='/cadastrarCategoria' element={<FormCategoria />} />
+            <Route path='/editarCategoria/:id' element={<FormCategoria />} />
             <Route path='/produtos' element={<ListaProdutos />} />
-            <Route path='/deletarProduto/:id' element = {<DeletarProduto/>}/> 
-            <Route path='/cadastrarProduto' element = {<FormularioProduto/>}/> 
-            <Route path='/editarProduto/:id' element = {<FormularioProduto/>}/> 
+            <Route path='/deletarProduto/:id' element={<DeletarProduto />} />
+            <Route path='/cadastrarProduto' element={<FormularioProduto />} />
+            <Route path='/editarProduto/:id' element={<FormularioProduto />} />
             <Route path='/busca/:nome' element={<ListaProdutosBusca />} />
-            <Route path='/carrinho' element = {<Carrinho/>}/> 
+            <Route path='/carrinho' element={<Carrinho />} />
 
           </Routes>
         </div>
