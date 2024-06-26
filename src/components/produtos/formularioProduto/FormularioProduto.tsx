@@ -98,11 +98,13 @@ function FormularioProduto() {
   async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-    console.log({ produto });
-
+    const produtoParaEnviar = {
+      ...produto,
+      nome: produto.nome.toLowerCase() 
+    };
     if (id != undefined) {
       try {
-        await atualizar(`/produtos`, produto, setProduto, {
+        await atualizar(`/produtos`, produtoParaEnviar, setProduto, {
           headers: {
             Authorization: token,
           },
@@ -141,7 +143,6 @@ function FormularioProduto() {
 
   const carregandoCategoria = categoria.nome === '';
 
-  console.log(categorias);
   function atualizarTextArea(e: ChangeEvent<HTMLTextAreaElement>) {
     setProduto({
       ...produto,
