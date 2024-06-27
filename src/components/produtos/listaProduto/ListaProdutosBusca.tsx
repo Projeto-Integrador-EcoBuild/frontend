@@ -20,6 +20,7 @@ export default function ListaProdutosBusca() {
     const token = usuario.token;
 
     async function buscarProdutos() {
+        console.log("TOKEN >" + token)
         try {
             await buscar(`/produtos/nome/${nome}`, setProdutos, {
                 headers: {
@@ -58,7 +59,7 @@ export default function ListaProdutosBusca() {
 
             <div className='flex flex-col  gap-2 justify-around w-full   '>
                 <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col cp:gap-4 md:flex-col md:gap-4'>
-                    <p className='text-3xl  cp:text-lg '>Procurando por : <span className='capitalize font-medium'>{nome}</span></p>
+                    <p className='text-3xl  lg:w-full '>Procurando por : <span className='capitalize  text-green-hover'>{nome}</span></p>
                     <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
 
 

@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         green: {
+          claro : '#E8FFD3',
           light: '#bbecab',
           dark: '#003023',
           hover: '#1C8C63',

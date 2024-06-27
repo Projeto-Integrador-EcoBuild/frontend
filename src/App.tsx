@@ -18,6 +18,7 @@ import Carrinho from './paginas/Cart/Carrinho'
 import ItemProduto from './components/produtos/itemProduto/ItemProduto'
 import ListaProdutosBusca from './components/produtos/listaProduto/ListaProdutosBusca'
 import FormPerfilUsuario from './paginas/cadastro/FormPerfilUsuario'
+import ListaProdutosCategoria from './components/produtos/listaProduto/ListaProdutosCategoria'
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path='/cadastrarProduto' element={<FormularioProduto />} />
             <Route path='/editarProduto/:id' element={<FormularioProduto />} />
             <Route path='/busca/:nome' element={<ListaProdutosBusca />} />
+            <Route path='/produtos/categoria/:id' element={<ListaProdutosCategoria/>}/>
             <Route path='/carrinho' element={<Carrinho />} />
 
           </Routes>

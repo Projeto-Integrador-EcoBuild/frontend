@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Oval } from 'react-loader-spinner';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Produto from '../../../models/Produto'
 import { buscar } from '../../../services/Service';
@@ -18,6 +18,7 @@ function ListaProdutos() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
+  let navigate = useNavigate();
 
   async function buscarProdutos() {
     try {
@@ -48,6 +49,18 @@ function ListaProdutos() {
     }
   }
 
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    const idConvertido = Number(value);
+    buscarProdutosdeCategoria(idConvertido);
+
+  };
+
+  function buscarProdutosdeCategoria(categoria: number) {
+    navigate(`/produtos/categoria/${categoria}`);
+  }
+
   useEffect(() => {
     buscarProdutos();
   }, [produtos.length]);
@@ -63,20 +76,40 @@ function ListaProdutos() {
 
   if (tipo === "cliente" || tipo === "") {
     ProdComponent = (
-      <div className='flex flex-row my-12 mx-10 2xl:mx-40 '>
-        <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-2/4 bg-slate-100 rounded-md px-4 flex flex-col'>
-          <p>Categorias:</p>
-          <hr></hr>
+      <div className='flex flex-row my-12 mx-10 lg:mx-16 2xl:mx-40  '>
+        <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-[40%] h-screen bg-green-claro rounded-md px-4  pt-8 flex flex-col '>
+          <p className='text-xl text-green-dark uppercase'>todas as categorias</p>
+          <div className='border border-green-dark w-[90%] '></div>
           {categorias.map((categoria) => (
             <>
-              <p className='my-12 '>{categoria.nome}</p>
+              <button className='text-start mt-8 text-lg font-light uppercase hover:text-green-hover' onClick={() => buscarProdutosdeCategoria(categoria.id)}>{categoria.nome}</button>
             </>
           ))}
         </div>
-        <div className='flex flex-col gap-2 justify-around w-full   '>
-          <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col cp:gap-4 md:flex-col md:gap-4'>
-            <p className='text-3xl uppercase cp:text-lg '>Todos os produtos</p>
+        <div className='flex flex-col gap-2 justify-around w-full  '>
+          <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col sm:flex-col sm:gap-4 cp:gap-4 md:flex-col md:gap-4'>
+            <p className='text-3xl uppercase  text-green-hover '>Todos os produtos</p>
             <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
+
+        
+            <div className='md:hidden lg:hidden xl:hidden 2xl:hidden   flex flex-row items-center border border-green-dark rounded-lg'>
+              <select
+                name="select"
+                className='rounded-xl uppercase appearance-none border-0 border-transparent focus:ring-0 focus:border-transparent text-green-dark'
+                onChange={handleSelectChange}
+              >
+                <option value="" className='pointer-events-none ' >Todas as categorias</option>
+                {categorias.map((categoria) => (
+                  <>
+
+                    <option value={categoria.id}>{categoria.nome}</option>
+                  </>
+                ))}
+
+              </select>
+            </div>
+
+
 
 
           </div>

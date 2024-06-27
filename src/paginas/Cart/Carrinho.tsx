@@ -5,7 +5,7 @@ import ModalProduto from '../../components/produtos/modalProduto/ModalProduto'
 
 function Carrinho() {
     const { items } = useContext(AuthContext)
-    let { limparCart, finalizarCompra, removerProduto } = useContext(AuthContext)
+    let { limparCart, removerProduto } = useContext(AuthContext)
     const navigate = useNavigate();
     let soma: number = 0;
     let totalItens: number = 0;
