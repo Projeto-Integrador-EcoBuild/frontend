@@ -76,7 +76,7 @@ function ItemProduto() {
   }
 
   function continuarCompra() {
-    navigate('/produtos')
+    navigate(-1)
   }
 
   function visitarProdutosCategoria(){
@@ -110,7 +110,7 @@ function ItemProduto() {
 
   return (
     <>
-      <p className=' text-center py-10 '> <a href='/produtos'><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
+      <p className=' text-center py-10 '> <a ><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
       <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20 '>
         <div className=' w-[28rem] h-96 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
 
@@ -140,7 +140,7 @@ function ItemProduto() {
           <p className='text-gray-400'>Cód: {produto.id}</p>
           <p className='text-justify text-xl '>
             {produto.descricao}       </p>
-          {produto.preco < 10 ? <p></p> : <p className=''>Por R${produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-dark text-2xl'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
+          {produto.preco < 10 ? <p></p> : <p className=''>Por R${produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-hover text-2xl'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
           }
           <p><span className='font-bold'>2X </span>de <span className='font-bold'>R${(produto.preco / 2).toFixed(2).replace(".", ",")} </span>sem juros</p>
 

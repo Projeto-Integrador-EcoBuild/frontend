@@ -91,7 +91,7 @@ function ListaProdutos() {
             <p className='text-3xl uppercase  text-green-hover '>Todos os produtos</p>
             <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
 
-        
+
             <div className='md:hidden lg:hidden xl:hidden 2xl:hidden   flex flex-row items-center border border-green-dark rounded-lg'>
               <select
                 name="select"
@@ -152,9 +152,7 @@ function ListaProdutos() {
 
   return (
     <>
-
-
-      {produtos.length === 0 && (
+      {produtos.length === 0 ?(
         <div className=' flex justify-center items-center  '>
           <Oval
             visible={true}
@@ -167,8 +165,7 @@ function ListaProdutos() {
           />
 
         </div>
-      )}
-      {ProdComponent}
+      )  : { ProdComponent }}
     </>
   );
 }

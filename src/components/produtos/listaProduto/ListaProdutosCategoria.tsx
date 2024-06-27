@@ -38,7 +38,7 @@ export default function ListaProdutosCategoria() {
 
     async function buscarCategoria() {
         try {
-            await buscar(`/categoria/${id}`, setCategoria , 
+            await buscar(`/categoria/${id}`, setCategoria,
                 {
                     headers: {
                         Authorization: token,
@@ -55,32 +55,17 @@ export default function ListaProdutosCategoria() {
 
     useEffect(() => {
         buscarProdutos();
-        console.log(produtos);
     }, [id]);
 
     useEffect(() => {
         buscarCategoria();
-        console.log(categoria);
     }, [id]);
 
 
 
     return (
         <div className=' my-12 mx-10 2xl:mx-40 '>
-            {produtos.length === 0 && !zerou && (
-                <div className=' flex justify-center items-center  '>
-                    <Oval
-                        visible={true}
-                        height="300"
-                        width="200"
-                        color="#16a34a"
-                        ariaLabel="oval-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="oval-wrapper mx-auto"
-                    />
 
-                </div>
-            )}
 
 
             <div className='flex flex-col  gap-2 justify-around w-full   '>
@@ -91,6 +76,21 @@ export default function ListaProdutosCategoria() {
 
 
                 </div>
+
+                {produtos.length === 0 && !zerou && (
+                    <div className=' flex justify-center items-center  '>
+                        <Oval
+                            visible={true}
+                            height="300"
+                            width="200"
+                            color="#16a34a"
+                            ariaLabel="oval-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="oval-wrapper mx-auto"
+                        />
+
+                    </div>
+                )}
                 {zerou && produtos.length === 0 && (
                     <p className='text-center text-2xl bg-green-light text-green-dark flex items-center border border-green-light justify-center h-20'>Nenhum produto encontrado no momento!</p>
                 )}
