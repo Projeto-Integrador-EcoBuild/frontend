@@ -34,11 +34,12 @@ const BotaoOrdernar: React.FC<ProdutosProps> = ({ listaProduto, setListaProduto 
     };
 
     return (
-        <div className='sm:px-4 lg:w-[50%] cp:truncate lg:truncate sm:truncate px-8 flex flex-row items-center border border-black rounded-lg'>
-            <p>Ordenar por: </p>
+        <div className=' lg:w-[50%]  cp:truncate lg:truncate sm:truncate px-12 flex flex-row  items-center border  border-green-dark rounded-lg'>
+            <p className='text-green-dark'>Ordenar por: </p>
+     
             <select
                 name="select"
-                className='rounded-xl uppercase appearance-none border-0 border-transparent focus:ring-0 focus:border-transparent'
+                className='rounded-xl uppercase appearance-none border-0 border-transparent focus:ring-0 focus:border-transparent   text-green-dark'
                 onChange={handleSelectChange}
             >
             

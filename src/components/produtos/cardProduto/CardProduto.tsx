@@ -44,7 +44,7 @@ function CardProduto({ product }: CardProdutoProps) {
             <Link to={`/item/${product.id}`} >
                 <div className='flex flex-col border-transparent hover:opacity-75 cursor-pointer w-full text-center gap-2'>
                     <img src={product.foto} alt="Foto do produto" className='h-[250px]  object-cover w-full' />
-                    <h3 className=" line-clamp-2 text-lg  h-14">{product.nome}</h3>
+                    <h3 className=" line-clamp-2 text-xl  h-14 capitalize">{product.nome}</h3>
                     <p className="text-lg"><strong>R${(product.preco - (product.preco * 0.10)).toFixed(2).replace(".", ",")}</strong> no PIX </p>
                     {product.preco < 10 ? <p className="text-lg"><strong>1X </strong>de <strong>R${product.preco.toFixed(2).replace(".", ",")}</strong> </p> :
                      <p className="text-lg" ><strong>2X</strong> de <strong>R${(product.preco / 2).toFixed(2).replace(".", ",")} </strong></p>}

@@ -3,41 +3,31 @@ import React from 'react';
 import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../../../contexts/AuthContext'
 
 
 function ModalDetalhesParcelamento({ preco }) {
-
+    const [isOpen, setIsOpen] = useState(false);
     const bordas = "border border-black font-medium"
     const bordasPar = "border border-black bg-gray-200 font-medium"
-    const navigate = useNavigate();
-    function voltarHome() {
-        navigate(-1)
-    }
-
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
     let componenteParaRangeDeValor
 
     if (preco < 10) {
         componenteParaRangeDeValor = (
             <>
-                <Popup
-                    trigger={<p className='underline cursor-pointer'>Detalhes de parcelamento</p>} modal  >
-                    <div className='w-full pb-4 text-center '>
+                <p className='text-green-hover underline cursor-pointer' onClick={openModal}>Detalhes de parcelamento</p>
+                <Popup open={isOpen} closeOnDocumentClick onClose={closeModal}>
+                    <div className='w-full pb-4 text-center'>
                         <div className='w-full flex justify-end pr-3'>
-                            <button className=' text-green-dark 
-                              text-center text-2xl
-                             font-bold    '>X</button>
-
+                            <button className='text-green-dark text-center text-2xl font-bold' onClick={closeModal}>X</button>
                         </div>
-                       
-                        <span className='font-semibold  w-full text-xl text-center'>Opções de parcelamento</span>
-
-                        <hr className='mb-4'></hr>
-                        <h1 className='text-2xl text-red-600'>Indisponíveis para esse valor </h1>
-
+                        <span className='font-semibold w-full text-xl text-center text-green-hover'>Opções de parcelamento</span>
+                        <hr className='mb-4' />
+                        <h1 className='text-2xl text-red-600'>Indisponíveis para esse valor</h1>
                     </div>
-
                 </Popup>
             </>
         )
@@ -46,17 +36,18 @@ function ModalDetalhesParcelamento({ preco }) {
     else if (preco > 10 && preco < 50) {
         componenteParaRangeDeValor = (
             <>
-                <Popup
-                    trigger={<p className='underline cursor-pointer'>Detalhes de parcelamento</p>} modal  >
+                <p className='underline cursor-pointer  text-green-hover' onClick={openModal}>Detalhes de parcelamento</p>
+                <Popup open={isOpen} closeOnDocumentClick onClose={closeModal}>
+
                     <div className='w-full pb-4 text-center '>
                         <div className='w-full flex justify-end pr-3'>
                             <button className=' text-green-dark 
                               text-center text-2xl
-                             font-bold    '>X</button>
+                             font-bold    ' onClick={closeModal}>X</button>
 
                         </div>
-                       
-                        <span className='font-semibold w-full text-xl text-center'>Opções de parcelamento</span>
+
+                        <span className='font-semibold w-full text-xl text-center  text-green-hover'>Opções de parcelamento</span>
                         <hr className='mb-4'></hr>
                         <table className='border-2 border-black w-[80%] m-auto '>
                             <tr className={bordasPar}>
@@ -76,7 +67,7 @@ function ModalDetalhesParcelamento({ preco }) {
                         </table>
                     </div>
 
-                </Popup>
+                </Popup >
             </>
         )
 
@@ -88,17 +79,17 @@ function ModalDetalhesParcelamento({ preco }) {
         componenteParaRangeDeValor = (
 
             <>
-                <Popup
-                    trigger={<p className='underline cursor-pointer'>Detalhes de parcelamento</p>} modal  >
+                <p className='underline cursor-pointer  text-green-hover' onClick={openModal}>Detalhes de parcelamento</p>
+                <Popup open={isOpen} closeOnDocumentClick onClose={closeModal}>
                     <div className='w-full pb-4 text-center '>
                         <div className='w-full flex justify-end pr-3'>
                             <button className=' text-green-dark 
                               text-center text-2xl
-                             font-bold    '>X</button>
+                             font-bold ' onClick={closeModal}>X</button>
 
                         </div>
-                       
-                        <span className='font-semibold  w-full text-xl text-center'>Opções de parcelamento</span>
+
+                        <span className='font-semibold  w-full text-xl text-center  text-green-hover'>Opções de parcelamento</span>
 
                         <hr className='mb-4'></hr>
                         <table className='border-2 border-black w-[80%] m-auto  '>

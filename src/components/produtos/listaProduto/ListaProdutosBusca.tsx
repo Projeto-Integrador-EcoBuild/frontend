@@ -26,7 +26,6 @@ export default function ListaProdutosBusca() {
                     Authorization: token,
                 },
             });
-            console.log("entrou aqui")
             setZerou(true);
           
         } catch (error: any) {
@@ -40,7 +39,17 @@ export default function ListaProdutosBusca() {
 
     return (
         <div className=' my-12 mx-10 2xl:mx-40 '>
-            {produtos.length === 0 && !zerou  && (
+          
+           
+
+            <div className='flex flex-col  gap-2 justify-around w-full   '>
+                <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col cp:gap-4 md:flex-col md:gap-4'>
+                    <p className='text-3xl  lg:w-full '>Procurando por : <span className='capitalize  text-green-hover'>{nome}</span></p>
+                    <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
+
+
+                </div>
+                {produtos.length === 0 && !zerou  && (
                 <div className=' flex justify-center items-center  '>
                     <Oval
                         visible={true}
@@ -54,15 +63,6 @@ export default function ListaProdutosBusca() {
 
                 </div>
             )}
-           
-
-            <div className='flex flex-col  gap-2 justify-around w-full   '>
-                <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col cp:gap-4 md:flex-col md:gap-4'>
-                    <p className='text-3xl  cp:text-lg '>Procurando por : <span className='capitalize font-medium'>{nome}</span></p>
-                    <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
-
-
-                </div>
                 {zerou  && produtos.length === 0 && (
                 <p className='text-center text-2xl bg-green-light text-green-dark flex items-center border border-green-light justify-center h-20'>Nenhum produto encontrado no momento!</p>
                      )}
