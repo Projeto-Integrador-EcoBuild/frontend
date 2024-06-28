@@ -16,6 +16,11 @@ export const cadastrarUsuario = async(url:string,dados:Object,setDados: Function
 }
 
 
+export const atualizarUsuario = async(url:string,dados:Object,setDados: Function , header: Object)=>{
+  const resposta= await api.put(url,dados,header)
+  setDados(resposta.data)
+}
+
 
 export const buscar = async(url: string, setDados: Function, header: Object) => {
 const resposta = await api.get(url, header)
