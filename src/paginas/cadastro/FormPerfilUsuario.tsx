@@ -1,6 +1,6 @@
 
 import { ChangeEvent, useEffect, useState, useContext } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useParams } from 'react-router-dom'
 import UsuarioFotoVazio from '../../assets/img/user.png'
 import { cadastrarUsuario } from '../../services/Service'
 import Usuario from '../../models/Usuario'
@@ -8,13 +8,17 @@ import { RotatingLines } from 'react-loader-spinner';
 import { toastAlerta } from '../../util/toastAlerta'
 import { Eye, EyeSlash } from '@phosphor-icons/react'
 import backgroundImage from '../../assets/img/blob-scene-haikei.png';
+import { AuthContext } from '../../contexts/AuthContext'
 function Cadastro() {
     let navigate = useNavigate();
     let [outraLogo, setOutraLogo] = useState(false);
+    const { id } = useParams<string>();
     const inputs = "border-green-botao input px-[10px] py-[11px] text-base bg-slate-100 border-2 rounded-[5px] focus:outline-none focus:border-green-botao  focus:ring-0 mb-4"
     const labels = "text-green-botao text-base font-semibold  ml-1"
     const [confirmaSenha, setConfirmaSenha] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
+   // const usuario  = useContext(AuthContext);
+   // const token = usuario.token;
     const [usuario, setUsuario] = useState<Usuario>({
         id: 0,
         nome: '',
@@ -33,15 +37,6 @@ function Cadastro() {
         tipo: ''
     })
 
-    useEffect(() => {
-        if (usuarioResposta.id !== 0) {
-            back()
-        }
-    }, [usuarioResposta])
-
-    function back() {
-        navigate('/home')
-    }
 
     function handleConfirmarSenha(e: ChangeEvent<HTMLInputElement>) {
         setConfirmaSenha(e.target.value)
@@ -58,15 +53,25 @@ function Cadastro() {
         e.preventDefault()
         setIsLoading(true)
 
-        if (confirmaSenha === usuario.senha && usuario.senha.length >= 8) {
+        if (verificarSenhas(usuario.senha, confirmaSenha)) {
+            if (id != "") {
+                try {
+                   
 
-            try {
-                await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuarioResposta)
-                toastAlerta('Usuário cadastrado com sucesso', 'info')
-
-            } catch (error) {
-                toastAlerta('Erro ao cadastrar o Usuário', 'error')
+                } catch (error) {
+                    toastAlerta('Erro ao cadastrar o Usuário', 'error')
+                }
             }
+            else {
+                try {
+                    await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuarioResposta)
+                    toastAlerta('Usuário cadastrado com sucesso', 'info')
+
+                } catch (error) {
+                    toastAlerta('Erro ao cadastrar o Usuário', 'error')
+                }
+            }
+
 
         } else {
             toastAlerta('Senhas inconsistentes!', 'error')
@@ -83,7 +88,7 @@ function Cadastro() {
     }
 
     function verificarSenhas(senha: string, confirmaSenha: string) {
-        return senha === confirmaSenha;
+        return senha === confirmaSenha && senha.length >= 8;
     }
 
     return (
