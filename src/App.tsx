@@ -26,7 +26,7 @@ function App() {
       <ToastContainer />
       <BrowserRouter>
         <Menu />
-        <div className='min-h-[80vh]'>
+        <div className='min-h-[80vh] dark:bg-gray-fundo'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />

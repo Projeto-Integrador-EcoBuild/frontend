@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Oval } from 'react-loader-spinner';
-import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Produto from '../../../models/Produto'
 import { buscar } from '../../../services/Service';
@@ -68,23 +68,11 @@ function ListaProdutos() {
     buscarCategorias();
   }, []);
 
-  useEffect(() => {
-    console.log('Produtos:', produtos);
-    console.log(usuario)
-  }, [produtos]);
-
-  useEffect(() => {
-    console.log('Categorias:', categorias);
-  }, [categorias]);
-
-  useEffect(() => {
-    console.log('Tipo de usuário:', tipo);
-  }, [tipo]);
 
   return (
     <>
       {produtos.length === 0 && (
-        <div className=' flex justify-center items-center  '>
+        <div className=' flex justify-center items-center dark:bg-gray-fundo '>
           <Oval
             visible={true}
             height="300"
@@ -97,19 +85,21 @@ function ListaProdutos() {
 
         </div>
       )}
-      <div className='flex flex-row my-12 mx-10 lg:mx-16 2xl:mx-40'>
-        <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-[40%] h-screen bg-green-claro rounded-md px-4  pt-8 flex flex-col '>
-          <p className='text-xl text-green-dark uppercase'>todas as categorias</p>
-          <div className='border border-green-dark w-[90%] '></div>
+      <div className='flex flex-row py-12 mx-10 lg:mx-16 2xl:mx-40  '>
+        <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-[40%] h-screen bg-green-claro dark:bg-green-dark rounded-md px-4  pt-8 flex flex-col '>
+          <p className='text-xl text-green-dark dark:text-white uppercase'>todas as categorias</p>
+          <div className='border border-green-dark w-[90%] dark:border-white'></div>
           {categorias.map((categoria) => (
             <>
-              <button className='text-start mt-8 text-lg font-light uppercase hover:text-green-hover' onClick={() => buscarProdutosdeCategoria(categoria.id)}>{categoria.nome}</button>
+              <button className='text-start mt-8 text-lg font-light uppercase hover:text-green-hover dark:hover:text-green-400 dark:text-white' onClick={() => buscarProdutosdeCategoria(categoria.id)}>{categoria.nome}</button>
             </>
           ))}
         </div>
         <div className='flex flex-col gap-2 justify-around w-full  '>
           <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col sm:flex-col sm:gap-4 cp:gap-4 md:flex-col md:gap-4'>
-            {tipo === 'funcionario' ? <Link to={`/cadastrarProduto`} ><button className=' bg-green-claro py-4 px-4 rounded-lg  lg:w-64 xl:ml-20 text-3xl   text-green-hover hover:bg-green-hover hover:text-white '>Cadastrar produtos</button> </Link> : <p className='text-3xl uppercase  text-green-hover '>Todos os produtos</p>}
+            {tipo === 'funcionario' ? <Link to={`/cadastrarProduto`} ><button className=' bg-green-claro py-4 px-4 rounded-lg  lg:w-64 xl:ml-20 text-3xl   text-green-hover hover:bg-green-hover hover:text-white dark:text-white dark:bg-green-hover
+             dark:hover:bg-green-light dark:hover:text-green-hover'>Cadastrar produtos</button> </Link> : <p className='text-3xl uppercase
+              dark:text-white text-green-hover '>Todos os produtos</p>}
 
             <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
 

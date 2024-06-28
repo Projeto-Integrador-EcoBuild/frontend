@@ -109,7 +109,7 @@ function ItemProduto() {
   }
 
   return (
-    <>
+    <div className='dark:text-white'>
       <p className=' text-center py-10 '> <a ><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
       <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20 '>
         <div className=' w-[28rem] h-96 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
@@ -136,7 +136,7 @@ function ItemProduto() {
           </Swiper>
         </div>
         <div className=" space-y-4 w-1/2 cp:w-[80%] sm:w-[80%] ">
-          <h1 className='text-4xl capitalize font-semibold cp:text-3xl cp:text-center md:text-3xl text-amber-950'>{produto.nome}</h1>
+          <h1 className='text-4xl capitalize font-semibold cp:text-3xl cp:text-center md:text-3xl text-amber-950 dark:text-white'>{produto.nome}</h1>
           <p className='text-gray-400'>Cód: {produto.id}</p>
           <p className='text-justify text-xl '>
             {produto.descricao}       </p>
@@ -154,8 +154,8 @@ function ItemProduto() {
               max={produto.quantidade}
               name="quantidadeComprada"
               min={1} />
-            <button className="bg-green-light border border-green-light font-bold text-black px-5 text-xl uppercase py-3 rounded-lg
-             hover:bg-green-hover hover:text-white  cp:px-2 cp:text-base  md:text-base" onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
+            <button className="bg-green-light  font-bold text-black px-5 text-xl uppercase py-3 rounded-lg
+             hover:bg-green-hover hover:text-white  dark:bg-green-hover dark:text-white dark:hover:text-black dark:hover:bg-green-light cp:px-2 cp:text-base  md:text-base" onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
           </div>
           <hr className='border-gray-400'></hr>
           <p>Aqui calcular</p>
@@ -167,11 +167,9 @@ function ItemProduto() {
 
 
 
-    </>
+    </div>
 
   );
 }
 
 export default ItemProduto;
-
-/*Na hora que eu clicar em adicionar o carrinho , ver se o campo do number tem um valor dentro do range da quantidade de itens que possui em estoque , senao mandar um alerta*/

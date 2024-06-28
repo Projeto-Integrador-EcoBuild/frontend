@@ -18,15 +18,15 @@ function ModalDetalhesParcelamento({ preco }) {
     if (preco < 10) {
         componenteParaRangeDeValor = (
             <>
-                <p className='text-green-hover underline cursor-pointer' onClick={openModal}>Detalhes de parcelamento</p>
+                <p className='text-green-hover underline cursor-pointer dark:text-green-light' onClick={openModal}>Detalhes de parcelamento</p>
                 <Popup open={isOpen} closeOnDocumentClick onClose={closeModal}>
-                    <div className='w-full pb-4 text-center'>
-                        <div className='w-full flex justify-end pr-3'>
+                <div className='w-full pb-4 text-center dark:bg-gray-500 '>
+                <div className='w-full flex justify-end pr-3'>
                             <button className='text-green-dark text-center text-2xl font-bold' onClick={closeModal}>X</button>
                         </div>
-                        <span className='font-semibold w-full text-xl text-center text-green-hover'>Opções de parcelamento</span>
+                        <span className='font-semibold w-full text-xl text-center text-green-hover dark:text-black '>Opções de parcelamento</span>
                         <hr className='mb-4' />
-                        <h1 className='text-2xl text-red-600'>Indisponíveis para esse valor</h1>
+                        <h1 className='text-2xl text-red-600 dark:text-white'>Indisponíveis para esse valor</h1>
                     </div>
                 </Popup>
             </>
@@ -36,10 +36,10 @@ function ModalDetalhesParcelamento({ preco }) {
     else if (preco > 10 && preco < 50) {
         componenteParaRangeDeValor = (
             <>
-                <p className='underline cursor-pointer  text-green-hover' onClick={openModal}>Detalhes de parcelamento</p>
+                <p className='underline cursor-pointer  text-green-hover  dark:text-green-light' onClick={openModal}>Detalhes de parcelamento</p>
                 <Popup open={isOpen} closeOnDocumentClick onClose={closeModal}>
 
-                    <div className='w-full pb-4 text-center '>
+                    <div className='w-full pb-4 text-center dark:bg-gray-500  '>
                         <div className='w-full flex justify-end pr-3'>
                             <button className=' text-green-dark 
                               text-center text-2xl
@@ -47,7 +47,7 @@ function ModalDetalhesParcelamento({ preco }) {
 
                         </div>
 
-                        <span className='font-semibold w-full text-xl text-center  text-green-hover'>Opções de parcelamento</span>
+                        <span className='font-semibold w-full text-xl text-center dark:text-black text-green-hover'>Opções de parcelamento</span>
                         <hr className='mb-4'></hr>
                         <table className='border-2 border-black w-[80%] m-auto '>
                             <tr className={bordasPar}>
@@ -79,9 +79,9 @@ function ModalDetalhesParcelamento({ preco }) {
         componenteParaRangeDeValor = (
 
             <>
-                <p className='underline cursor-pointer  text-green-hover' onClick={openModal}>Detalhes de parcelamento</p>
+                <p className='underline cursor-pointer  text-green-hover  dark:text-green-light' onClick={openModal}>Detalhes de parcelamento</p>
                 <Popup open={isOpen} closeOnDocumentClick onClose={closeModal}>
-                    <div className='w-full pb-4 text-center '>
+                <div className='w-full pb-4 text-center dark:bg-gray-500  '>
                         <div className='w-full flex justify-end pr-3'>
                             <button className=' text-green-dark 
                               text-center text-2xl
@@ -89,7 +89,7 @@ function ModalDetalhesParcelamento({ preco }) {
 
                         </div>
 
-                        <span className='font-semibold  w-full text-xl text-center  text-green-hover'>Opções de parcelamento</span>
+                        <span className='font-semibold  w-full text-xl text-center dark:text-white text-green-hover'>Opções de parcelamento</span>
 
                         <hr className='mb-4'></hr>
                         <table className='border-2 border-black w-[80%] m-auto  '>
