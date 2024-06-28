@@ -7,7 +7,6 @@ import { buscar } from '../../../services/Service';
 import CardProduto from '../cardProduto/CardProduto';
 import { toastAlerta } from '../../../util/toastAlerta'
 import BotaoOrdernar from './botaoOrdenar';
-import Categoria from '../../../models/Categoria';
 
 
 
@@ -64,13 +63,13 @@ export default function ListaProdutosCategoria() {
 
 
     return (
-        <div className=' my-12 mx-10 2xl:mx-40 '>
+        <div className=' py-12 px-10 2xl:px-40 '>
 
 
 
-            <div className='flex flex-col  gap-2 justify-around w-full   '>
+            <div className='flex flex-col  gap-2 justify-around w-full  dark:text-white '>
                 <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col cp:gap-4 md:flex-col md:gap-4'>
-                    {categoria.nome == undefined ? <p>Procurando por ...</p> : <span className='capitalize font-medium text-3xl text-green-hover'>{categoria.nome}</span>
+                    {categoria.nome == undefined ? <p>Procurando por ...</p> : <span className='capitalize font-medium text-3xl dark:text-white text-green-hover'>{categoria.nome}</span>
                     }
                     <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
 

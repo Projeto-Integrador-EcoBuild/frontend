@@ -38,13 +38,13 @@ export default function ListaProdutosBusca() {
 
 
     return (
-        <div className=' my-12 mx-10 2xl:mx-40 '>
+        <div className=' py-12 px-10 2xl:px-40 '>
           
            
 
             <div className='flex flex-col  gap-2 justify-around w-full   '>
                 <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col cp:gap-4 md:flex-col md:gap-4'>
-                    <p className='text-3xl  lg:w-full '>Procurando por : <span className='capitalize  text-green-hover'>{nome}</span></p>
+                    <p className='text-3xl  lg:w-full dark:text-white'>Procurando por : <span className='capitalize dark:text-white text-green-hover'>{nome}</span></p>
                     <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
 
 

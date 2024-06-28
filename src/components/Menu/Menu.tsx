@@ -1,21 +1,42 @@
 import { useContext, useState, ChangeEvent, useEffect } from 'react'
+import { DarkThemeToggle } from "flowbite-react";
+import 'flowbite';
 import { Link, useNavigate } from 'react-router-dom'
-import homeLogo from '../../assets/img/Captura de tela 2024-06-21 221639.png'
+import homeLogo from '../../assets/img/logoClara.png'
+import homeLogoDark from '../../assets/img/logoEscura.png'
 import { AuthContext } from '../../contexts/AuthContext'
 import { toastAlerta } from '../../util/toastAlerta'
 import { SignOut, User, ShoppingBag, List } from '@phosphor-icons/react'
-import './Menu.css'
-import 'flowbite';
+
+
 function Menu() {
   let navbarComponent
-
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const { usuario, handleLogout } = useContext(AuthContext)
-
   let tipo: string = usuario.tipo
   const { quantidadeItems } = useContext(AuthContext)
   const [abrirMenu, setAbrirMenu] = useState(false);
   const [nome, setNome] = useState("");
   let navigate = useNavigate();
+  useEffect(() => {
+    const themeChangeHandler = () => {
+      const currentTheme = document.documentElement.classList.contains('dark');
+      setIsDarkTheme(currentTheme);
+    };
+
+    themeChangeHandler();
+
+    const observer = new MutationObserver(themeChangeHandler);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
 
   function clicarEmBotao() {
     setAbrirMenu(true);
@@ -42,6 +63,7 @@ function Menu() {
   function logout() {
     handleLogout()
     setNome("")
+    fechar()
     toastAlerta('Usuário deslogado com sucesso', 'info')
     navigate('/login')
   }
@@ -51,7 +73,7 @@ function Menu() {
     navbarComponent = (
 
 
-      <div className=" justify-evenly  font-medium gap-12 bg-green-light text-green-dark 
+      <div className=" justify-evenly  font-medium gap-12 bg-green-light dark:bg-green-dark dark:text-white text-green-dark 
       w-full  items-center  pb-3 pt-4 px-4 lg:flex xl:flex 2xl:flex">
 
         <div className=' flex w-full items-center justify-around cp:visible sm:visible mb-4 lg:hidden
@@ -61,7 +83,7 @@ function Menu() {
               <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto flex flex-row  w-[100%] bg-opacity-75 bg-black opacity-100 ' onClick={fechar}>
 
               </div>
-              <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto  bg-white w-48  '>
+              <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto  bg-white w-48 dark:bg-gray-fundo  '>
 
 
                 <button type="button" onClick={fechar} data-drawer-hide="drawer-example" aria-controls="drawer-example" className="text-green-hover bg-transparent hover:bg-gray-200 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center" >
@@ -88,7 +110,7 @@ function Menu() {
                     </div>
                   </Link>
 
-                  <Link to='/'  >
+                  <Link to={`/editarPerfil/${usuario.id}`} onClick={fechar}  >
                     <div>
                       <li className="flex items-center p-2 text-green-hover rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"> Editar conta</li>
                     </div>
@@ -100,7 +122,7 @@ function Menu() {
                     </div>
                   </Link>
 
-                  <Link to='/' >
+                  <Link to='/login' onClick={logout}   >
                     <div>
                       <li className="flex items-center p-2 text-red-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Sair</li>
                     </div>
@@ -121,7 +143,8 @@ function Menu() {
           </div>
 
           <Link to='/home'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
+            {DarkThemeToggle ? (<img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />) : (<img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />)}
+
           </Link>
           <Link to='/carrinho'>
 
@@ -133,9 +156,14 @@ function Menu() {
           </Link>
         </div>
 
-        <div className='cp:hidden sm:hidden md:hidden '>
+        <div style={{ display: isDarkTheme ? 'block' : 'none' }}>
           <Link to='/home'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
+            <img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer cp:hidden sm:hidden md:hidden' />
+          </Link>
+        </div>
+        <div style={{ display: isDarkTheme ? 'none' : 'block' }}>
+          <Link to='/home'>
+            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer cp:hidden sm:hidden md:hidden' />
           </Link>
         </div>
         <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full" onSubmit={buscarProdutos}>
@@ -203,16 +231,16 @@ function Menu() {
 
 
       <div className=" justify-evenly  font-medium gap-12 bg-green-light text-green-dark 
-      w-full  items-center  pb-3 pt-4 px-4 lg:flex xl:flex 2xl:flex">
+      w-full  items-center  pb-3 pt-4 px-4 lg:flex xl:flex 2xl:flex dark:text-white dark:bg-green-dark ">
 
         <div className=' flex w-full items-center justify-around cp:visible sm:visible mb-4 lg:hidden
-        xl:hidden 2xl:hidden'>
+        xl:hidden 2xl:hidden '>
           {abrirMenu && (
             <div className='flex flex-row '>
               <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto flex flex-row  w-[100%] bg-opacity-75 bg-black opacity-100 ' onClick={fechar}>
 
               </div>
-              <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto  bg-white w-48  '>
+              <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto  bg-white w-48   dark:bg-gray-fundo'>
 
 
                 <button type="button" onClick={fechar} data-drawer-hide="drawer-example" aria-controls="drawer-example" className="text-green-hover bg-transparent hover:bg-gray-200 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center" >
@@ -222,10 +250,10 @@ function Menu() {
                   <span className="sr-only">Close menu</span>
                 </button>
 
-                <ul className="space-y-2 font-medium mt-12">
+                <ul className="space-y-2 font-medium mt-12 ">
                   <Link to='/home' onClick={fechar}>
                     <div>
-                      <li className="flex items-center p-2  rounded-lg dark:text-white text-green-hover hover:bg-gray-100 dark:hover:bg-gray-700 group">Home</li>
+                      <li className="flex items-center p-2  rounded-lg dark:text-white text-green-hover  hover:bg-gray-100 dark:hover:bg-gray-700 group">Home</li>
                     </div>
                   </Link>
                   <Link to='/sobre' onClick={fechar} >
@@ -246,7 +274,7 @@ function Menu() {
                     </div>
                   </Link>
 
-                  <Link to='/'  >
+                  <Link to={`/editarPerfil/${usuario.id}`} onClick={fechar}  >
                     <div>
                       <li className="flex items-center p-2 text-green-hover rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"> Editar conta</li>
                     </div>
@@ -275,16 +303,22 @@ function Menu() {
           </div>
 
           <Link to='/home'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
+            {DarkThemeToggle ? (<img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />) : (<img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />)}
+
           </Link>
           <Link to='/login' onClick={logout}>
             <SignOut size={32} />
           </Link>
         </div>
 
-        <div className='cp:hidden sm:hidden md:hidden '>
+        <div style={{ display: isDarkTheme ? 'block' : 'none' }}>
           <Link to='/home'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
+            <img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer cp:hidden sm:hidden md:hidden' />
+          </Link>
+        </div>
+        <div style={{ display: isDarkTheme ? 'none' : 'block' }}>
+          <Link to='/home'>
+            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer cp:hidden sm:hidden md:hidden' />
           </Link>
         </div>
         <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full" onSubmit={buscarProdutos}>
@@ -317,12 +351,12 @@ function Menu() {
         </form>
 
         <ul className=' flex gap-12 items-center text-lg cp:hidden sm:hidden
-         sm:text-sm sm:gap-10 md:text-base lg:gap-6 2xl:text-xl md:hidden ' >
-          <li><Link to='/sobre' >Sobre nós</Link></li>
+         sm:text-sm sm:gap-10 md:text-base lg:gap-6 2xl:text-xl md:hidden  ' >
+          <li className=''><Link to='/sobre' >Sobre nós</Link></li>
           <li><Link to='/categoria' >Categorias</Link></li>
           <li><Link to='/produtos' >Produtos</Link></li>
           <Link to='/login' className=' cp:hidden' onClick={logout} >
-       
+
             <SignOut size={32} />
           </Link>
         </ul>
@@ -337,16 +371,17 @@ function Menu() {
   if (tipo === "") {
     navbarComponent = (
       <div className=" justify-evenly  font-medium gap-12 bg-green-light text-green-dark 
-      w-full  items-center  pb-8 pt-4 px-4 lg:flex xl:flex 2xl:flex">
+      w-full  items-center  pb-8 pt-4 px-4 lg:flex xl:flex 2xl:flex dark:bg-green-dark dark:text-white">
         <div className=' flex w-full items-center justify-around cp:visible sm:visible mb-4 lg:hidden
         xl:hidden 2xl:hidden'>
+
 
           {abrirMenu && (
             <div className='flex flex-row '>
               <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto flex flex-row  w-[100%] bg-opacity-75 bg-black opacity-100 ' onClick={fechar}>
 
               </div>
-              <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto  bg-white w-48  '>
+              <div className='fixed top-0 left-0 z-40 h-screen overflow-y-auto  bg-white w-48 dark:bg-gray-fundo  '>
 
 
                 <button type="button" onClick={fechar} data-drawer-hide="drawer-example" aria-controls="drawer-example" className="text-green-hover bg-transparent hover:bg-gray-200 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center" >
@@ -391,9 +426,16 @@ function Menu() {
               <List size={32} />
             </button>
           </div>
-          <Link to='/home'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
-          </Link>
+          <div style={{ display: isDarkTheme ? 'block' : 'none' }}>
+            <Link to='/home'>
+              <img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
+            </Link>
+          </div>
+          <div style={{ display: isDarkTheme ? 'none' : 'block' }}>
+            <Link to='/home'>
+              <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
+            </Link>
+          </div>
           <Link to='/login'>
 
             <div className='flex items-end '>
@@ -403,9 +445,14 @@ function Menu() {
           </Link>
         </div>
 
-        <div className='cp:hidden sm:hidden md:hidden '>
+        <div style={{ display: isDarkTheme ? 'block' : 'none' }}>
           <Link to='/home'>
-            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer' />
+            <img src={homeLogoDark} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer cp:hidden sm:hidden md:hidden' />
+          </Link>
+        </div>
+        <div style={{ display: isDarkTheme ? 'none' : 'block' }}>
+          <Link to='/home'>
+            <img src={homeLogo} alt="Logo da Naturalar" className='w-36 2xl:w-48 cursor-pointer cp:hidden sm:hidden md:hidden' />
           </Link>
         </div>
         <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full lg:w-[40%]" onSubmit={buscarProdutos}>
@@ -440,6 +487,7 @@ function Menu() {
         <ul className=' flex gap-12 items-center text-lg cp:hidden md:hidden sm:hidden sm:text-sm sm:gap-10 md:text-base lg:text-base lg:gap-6 2xl:text-xl ' >
           <li><Link to='/sobre' >Sobre nós</Link></li>
           <li><Link to='/produtos' >Produtos</Link></li>
+          <DarkThemeToggle className="bg-azul-100 mx-4 dark:bg-preto-400" />
           <Link to='/login'><div className=' flex items-center gap-2'>
             <User size={40}></User>
             <div className=' w-18 '>

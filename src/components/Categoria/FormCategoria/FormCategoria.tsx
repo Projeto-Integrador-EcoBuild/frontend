@@ -106,20 +106,22 @@ function FormCategoria() {
 
   return (
     <div className="container flex flex-col items-center justify-center mx-auto">
-      <h1 className="text-4xl text-center my-8 cp:text-3xl cp:mb-4">
+      <h1 className="text-4xl text-center my-8 cp:text-3xl cp:mb-4 dark:text-white">
         {id === undefined ? 'Cadastre uma nova Categoria' : 'Editar Categoria'}
       </h1>
 
       <form className="w-1/2 flex flex-col gap-10 cp:gap-4 mb-4" onSubmit={gerarNovoCategoria}>
         <div className=" flex flex-col static">
-          <label htmlFor="nome" className="text-green-dark text-s cp:-ml-8 font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit">Nome</label>
+          <label htmlFor="nome" className="text-green-dark text-s cp:-ml-8 font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit dark:bg-gray-fundo dark:top-0
+           dark:text-white">Nome</label>
           <input
             type="text"
             required
             name="nome"
             minLength={5}
             maxLength={50}
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
+            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover
+             dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
             value={categoria.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
@@ -128,12 +130,14 @@ function FormCategoria() {
 
 
         <div className="input flex flex-col static">
-          <label htmlFor="nome" className='text-green-dark cp:-ml-8 text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Descrição</label>
+          <label htmlFor="nome" className='text-green-dark cp:-ml-8 text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit dark:bg-gray-fundo dark:top-0
+           dark:text-white '>Descrição</label>
           <textarea
             required
             rows={4}
             name="descricao"
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
+            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover
+             dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
             value={categoria.descricao}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstadoTextArea(e)} />
         </div>

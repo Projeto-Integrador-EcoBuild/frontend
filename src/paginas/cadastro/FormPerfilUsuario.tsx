@@ -2,7 +2,7 @@
 import { ChangeEvent, useEffect, useState, useContext } from 'react'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import UsuarioFotoVazio from '../../assets/img/user.png'
-import { cadastrarUsuario } from '../../services/Service'
+import { atualizarUsuario, buscar, cadastrarUsuario } from '../../services/Service'
 import Usuario from '../../models/Usuario'
 import { RotatingLines } from 'react-loader-spinner';
 import { toastAlerta } from '../../util/toastAlerta'
@@ -12,14 +12,17 @@ import { AuthContext } from '../../contexts/AuthContext'
 function Cadastro() {
     let navigate = useNavigate();
     let [outraLogo, setOutraLogo] = useState(false);
-    const { id } = useParams<string>();
     const inputs = "border-green-botao input px-[10px] py-[11px] text-base bg-slate-100 border-2 rounded-[5px] focus:outline-none focus:border-green-botao  focus:ring-0 mb-4"
     const labels = "text-green-botao text-base font-semibold  ml-1"
     const [confirmaSenha, setConfirmaSenha] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-   // const usuario  = useContext(AuthContext);
-   // const token = usuario.token;
-    const [usuario, setUsuario] = useState<Usuario>({
+    const { id } = useParams<{ id: string }>();
+    //Usuario pra pegar apenas o token 
+    const { usuario } = useContext(AuthContext);
+    const token = usuario.token;
+
+
+    const [usuarioT, setUsuario] = useState<Usuario>({
         id: 0,
         nome: '',
         email: '',
@@ -44,29 +47,57 @@ function Cadastro() {
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setUsuario({
-            ...usuario,
+            ...usuarioT,
             [e.target.name]: e.target.value
         })
     }
 
+
+    async function buscarPorId(id: string) {
+       
+         await buscar(`/usuarios/${id}`, setUsuario, {
+            headers: {
+                Authorization: token,
+            },
+        });
+        setUsuario(prevState => {
+            return { ...prevState, senha: "" }
+        });
+        
+    }
+
+
+    useEffect(() => {
+        if (id !== undefined) {
+            buscarPorId(id)
+        }
+    }, [id])
+
+
     async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsLoading(true)
-
-        if (verificarSenhas(usuario.senha, confirmaSenha)) {
-            if (id != "") {
+        if (verificarSenhas(usuarioT.senha, confirmaSenha)) {
+            if (id !== undefined) {
                 try {
-                   
-
+                    await atualizarUsuario(`/usuarios/atualizar`, usuarioT, setUsuarioResposta,
+                        {
+                            headers: {
+                                'Authorization': token
+                            }
+                        }
+                    )
+                    toastAlerta('Usuário atualizado com sucesso', 'info')
+                    navigate('/home')
                 } catch (error) {
                     toastAlerta('Erro ao cadastrar o Usuário', 'error')
                 }
             }
             else {
                 try {
-                    await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuarioResposta)
+                    await cadastrarUsuario(`/usuarios/cadastrar`, usuarioT, setUsuarioResposta)
                     toastAlerta('Usuário cadastrado com sucesso', 'info')
-
+                    navigate('/home')
                 } catch (error) {
                     toastAlerta('Erro ao cadastrar o Usuário', 'error')
                 }
@@ -75,7 +106,7 @@ function Cadastro() {
 
         } else {
             toastAlerta('Senhas inconsistentes!', 'error')
-            setUsuario({ ...usuario, senha: "" })
+            setUsuario({ ...usuarioT, senha: "" })
             setConfirmaSenha("")
         }
 
@@ -108,7 +139,7 @@ function Cadastro() {
       cp:w-[80%] lg:w-[70%] xl:w-[60%]" onSubmit={cadastrarNovoUsuario}>
                 <div className='flex flex-row justify-around  w-[80%] items-center cp:w-full sm:w-full md:w-full lg:w-full' >
                     <h2 className="text-8xl font-light cp:text-5xl sm:text-7xl ">Cadastro</h2>
-                    {usuario.foto === '' ? (<img className=' w-32 h-32 rounded-full' src={UsuarioFotoVazio}></img>) : (<img className=' w-32 h-32 rounded-full object-cover' src={usuario.foto}></img>)}
+                    {usuarioT.foto === '' ? (<img className=' w-32 h-32 rounded-full' src={UsuarioFotoVazio}></img>) : (<img className=' w-32 h-32 rounded-full object-cover' src={usuarioT.foto}></img>)}
 
                 </div>
 
@@ -123,22 +154,30 @@ function Cadastro() {
                         required
                         id="nome"
                         name="nome"
-                        value={usuario.nome}
+                        value={usuarioT.nome}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
 
-                    <label htmlFor="email"
+
+                    {id != undefined ? (<></>) : (<> <label htmlFor="email"
                         className={labels}>E-mail *</label>
-                    <input
-                        placeholder=''
-                        className={inputs}
-                        required
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={usuario.email}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                    />
+                        <input
+
+                            placeholder=''
+                            className={inputs}
+                            required
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={usuarioT.email}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                        />
+                    </>)}
+
+
+
+
+
                     <label htmlFor="foto"
                         className={labels}>Foto</label>
                     <input
@@ -147,7 +186,7 @@ function Cadastro() {
                         type="text"
                         id="foto"
                         name="foto"
-                        value={usuario.foto}
+                        value={usuarioT.foto}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
 
@@ -166,7 +205,7 @@ function Cadastro() {
                                     required
                                     id="senha"
                                     name="senha"
-                                    value={usuario.senha}
+                                    value={usuarioT.senha}
                                     onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                                 />
                                 <button onClick={mostrarSenha} type='button' className='w-8 bg-slate-100'>
@@ -184,7 +223,7 @@ function Cadastro() {
                                     required
                                     id="senha"
                                     name="senha"
-                                    value={usuario.senha}
+                                    value={usuarioT.senha}
                                     onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                                 />
                                 <button onClick={mostrarSenha} type='button' className='w-8 '>
@@ -214,7 +253,7 @@ function Cadastro() {
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
                     />
 
-                    {verificarSenhas(usuario.senha, confirmaSenha) ? (<p className='hidden'></p>) : (<p className='text-red-500 text-sm'>As senhas não coincidem</p>)}
+                    {verificarSenhas(usuarioT.senha, confirmaSenha) ? (<p className='hidden'></p>) : (<p className='text-red-500 text-sm'>As senhas não coincidem</p>)}
 
 
 
@@ -223,55 +262,44 @@ function Cadastro() {
                 </div>
 
 
-                <div className=' flex items-center justify-around w-full cp:flex-col xl:text-2xl lg:text-2xl 2xl:text-2xl -mt-4'>
+                {id != undefined ? (<div></div>) : (
+                    <div className='  flex items-center justify-around w-full cp:flex-col xl:text-2xl lg:text-2xl 2xl:text-2xl -mt-4'>
 
-                    <h3 className='cp:mb-2  md:text-lg '>Informe o tipo do usuário :</h3>
-                    <div
-                        className="flex space-x-2 border-[3px] border-green-botao rounded-xl select-none "
-                    >
+                        <h3 className='cp:mb-2  md:text-lg '>Informe o tipo do usuário :</h3>
+                        <div className="flex space-x-2 border-[3px] border-green-botao rounded-xl select-none ">
 
-                        <label htmlFor="cliente"
-                            className="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer"
-                        >
-                            <input id='cliente'
-                                type="radio"
-                                name="tipo"
-                                value="cliente"
-                                checked={usuario.tipo === "cliente"}
+                            <label htmlFor="cliente" className="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer">
+                                <input id='cliente'
+                                    type="radio"
+                                    name="tipo"
+                                    value="cliente"
+                                    checked={usuarioT.tipo === "cliente"}
 
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} className="peer hidden" />
-                            <span
-                                className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Consumidor</span>
-                        </label>
-
-
-
-                        <label
-                            className="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer" htmlFor="funcionario"
-                        >
-                            <input
-                                id='funcionario'
-                                type="radio"
-                                name="tipo"
-                                value="funcionario"
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                                className="peer hidden"
-                            />
-                            <span
-                                className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Funcionário</span>
-                        </label>
-
-
-
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} className="peer hidden" />
+                                <span
+                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Consumidor</span>
+                            </label>
+                            <label
+                                className="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer" htmlFor="funcionario"
+                            >
+                                <input
+                                    id='funcionario'
+                                    type="radio"
+                                    name="tipo"
+                                    value="funcionario"
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                                    className="peer hidden"
+                                />
+                                <span
+                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Funcionário</span>
+                            </label>
+                        </div>
                     </div>
+                )}
 
 
 
 
-
-
-
-                </div>
                 <button type='submit' className="rounded-lg bg-green-botao hover:bg-green-hover text-white  p-16 py-3  uppercase" >
                     {isLoading ? <RotatingLines
                         strokeColor="white"
@@ -280,11 +308,11 @@ function Cadastro() {
                         width="24"
                         visible={true}
                     /> :
-                        <span className='lg:text-lg xl:text-lg 2xl:text-lg'>Cadastrar</span>}
+                        <span className='lg:text-lg xl:text-lg 2xl:text-lg'>{id!=undefined ? ('Editar') : ('Cadastrar') } </span>}
                 </button>
-
+                
                 <p className='w-full text-center xl:text-xl lg:text-xl 2xl:text-xl'>
-                    Já possui uma conta? <Link to="/login">
+                   Já possui uma conta? <Link to="/login">
                         <span className='font-bold cursor-pointer pl-1.5'> Login</span>
                     </Link>
 

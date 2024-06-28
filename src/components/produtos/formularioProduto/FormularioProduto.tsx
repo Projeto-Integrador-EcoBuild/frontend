@@ -7,6 +7,9 @@ import { buscar, atualizar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../util/toastAlerta'
 import { RotatingLines } from 'react-loader-spinner';
 function FormularioProduto() {
+
+  const inputs = "border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
+  const label = "text-green-dark text-s cp:-ml-8 font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit dark:bg-gray-fundo dark:top-0 dark:text-white"
   let navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams<{ id: string }>();
@@ -154,11 +157,11 @@ function FormularioProduto() {
 
   return (
     <div className="container flex flex-col mx-auto items-center">
-      <h1 className="text-4xl text-center my-8 cp:text-3xl">{id !== undefined ? 'Editar Produto' : 'Cadastrar Produto'}</h1>
+      <h1 className="text-4xl text-center my-8 cp:text-3xl dark:text-white">{id !== undefined ? 'Editar Produto' : 'Cadastrar Produto'}</h1>
 
       <form onSubmit={gerarNovoProduto} className="flex flex-col w-1/2 gap-4">
         <div className="input flex flex-col static">
-          <label htmlFor="nome" className='text-green-dark text-s font-semibold relative cp:-ml-8 top-3 ml-[7px] px-[3px] bg-white w-fit '>Nome do produto</label>
+          <label htmlFor="nome" className={label}>Nome do produto</label>
           <input
             value={produto.nome}
             maxLength={100}
@@ -167,58 +170,57 @@ function FormularioProduto() {
             type="text"
             name="nome"
             required
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
-          />
+            className={inputs}        />
         </div>
 
         <div className="input flex flex-col static">
-          <label htmlFor="descricao" className='text-green-dark text-s cp:-ml-8 font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Descrição</label>
+          <label htmlFor="descricao" className={label}>Descrição</label>
           <textarea
             required = {true}
             rows={4}
             maxLength={200}
             name="descricao"
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
+            className={inputs}
             value={produto.descricao}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarTextArea(e)} />
             
         </div>
         
         <div className="input flex flex-col static">
-          <label htmlFor="foto" className='text-green-dark cp:-ml-8 text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Foto do produto</label>
+          <label htmlFor="foto" className={label}>Foto do produto</label>
           <input
             value={produto.foto}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="text"
             name="foto"
             required
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
+            className={inputs}
           />
         </div>
         <div className="input flex flex-col static">
-          <label htmlFor="preco" className='text-green-dark cp:-ml-8 text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Preço do produto</label>
+          <label htmlFor="preco" className={label}>Preço do produto</label>
           <input
             value={produto.preco}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="number"
             name="preco"
             required
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
+            className={inputs}
           />
         </div>
         <div className="input flex flex-col static">
-          <label htmlFor="quantidade" className='text-green-dark cp:-ml-8 cp:all text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Quantidade de produtos</label>
+          <label htmlFor="quantidade" className={label}>Quantidade de produtos</label>
           <input
             value={produto.quantidade}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             type="number"
             name="quantidade"
             required
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
+            className={inputs}
           />
         </div>
         <div className="input flex flex-col static mt-5 cp:w-60 cp:-ml-10">
-          <select name="categoria" id="categoria"  className="border-green-dark  px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover " onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
+          <select name="categoria" id="categoria"  className="border-green-dark dark:border-white dark:bg-gray-inputs dark:text-white px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover " onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
             <option value="" selected disabled>Selecione uma Categoria</option>
             {categorias.map((categoria) => (
               <>
