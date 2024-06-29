@@ -39,11 +39,12 @@ function Carrinho() {
 
                             <div className='border-b flex flex-col mt-4 md:grid md:grid-cols-1 md:-ml-2 '>
                                 <ol className=' flex  mx-6'>
-                                    <li><img src={produto.foto} className='w-24 cp:hidden flex items-center justify-center' /></li>
+                                    <li><img src={produto.foto} className='w-24  flex items-center justify-center' /></li>
                                     <li className=' ml-12 w-2/3 text-bold md:ml-4 cp:ml-4' >{produto.nome}</li>
-                                    <li className=' ml-12 w-2/3 text-bold md:ml-4 md:-mr-8 cp:ml-4' >{produto.quantidadeComprada}</li>
-                                    <li className=' ml-12 w-2/3 text-bold md:ml-4 cp:ml-4' >{produto.preco.toFixed(2).replace(".", ",")}</li>
-                                    <li className='text-end w-1/3  mr-2 md:ml-4 cp:ml-4 '><strong>R${(produto.preco * produto.quantidadeComprada).toFixed(2).replace(".", ",")}</strong></li>
+                                    <li className=' ml-12 w-2/3 text-bold md:ml-4 md:-mr-8 cp:hidden' >{produto.quantidadeComprada}</li>
+                                    <li className=' ml-12 w-2/3 text-bold md:hidden lg:hidden xl:hidden 2xl:hidden cp:-ml-1' ><strong>Qtd:{produto.quantidadeComprada}</strong></li>
+                                    <li className=' ml-12 w-2/3 text-bold md:ml-4 cp:ml-4 cp:hidden' >{produto.preco.toFixed(2).replace(".", ",")}</li>
+                                    <li className='text-end w-1/3  mr-2 md:ml-4 cp:-ml-2 '><strong>R${(produto.preco * produto.quantidadeComprada).toFixed(2).replace(".", ",")}</strong></li>
 
                                 </ol>
                                 <button className=' ml-auto -mt-6 mb-5 mr-6 cp:' onClick={() => removerProduto(produto.id)}>
@@ -61,8 +62,8 @@ function Carrinho() {
                     }
                     <div className='flex flex-row justify-between mx-2 my-2 cp:mx-0 cp:my-0'>
 
-                        <button className='p-4 border cp:grid cp:grid-cols-2 cp:p-2 cp:ml-5 cp:text-sm border-green-dark text-green-dark hover:bg-green-hover hover:text-white ' onClick={continuarCompra} > Continue Comprando</button>
-                        <button className=' p-4 border cp:grid cp:grid-cols-2 cp:p-2 cp:mr-5 cp:text-sm border-green-dark text-green-dark hover:bg-green-hover hover:text-white ' onClick={limparCart}>Limpar o carrinho</button>
+                        <button className='p-4 border cp:p-2 cp:ml-4 cp:text-sm cp: cp:w-40  border-green-dark text-green-dark hover:bg-green-hover hover:text-white ' onClick={continuarCompra} > Continue Comprando</button>
+                        <button className=' p-4 border cp:p-2 cp:mr-5 cp:text-sm cp:w-40 border-green-dark text-green-dark hover:bg-green-hover hover:text-white ' onClick={limparCart}>Limpar o carrinho</button>
 
                     </div>
 

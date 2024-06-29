@@ -6,6 +6,7 @@ import Categoria from '../../../models/Categoria';
 import { buscar, atualizar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../util/toastAlerta'
 import { RotatingLines } from 'react-loader-spinner';
+import UsuarioFotoVazio from '../../../assets/img/user.png'
 function FormularioProduto() {
   let navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -158,7 +159,7 @@ function FormularioProduto() {
 
       <form onSubmit={gerarNovoProduto} className="flex flex-col w-1/2 gap-4">
         <div className="input flex flex-col static">
-          <label htmlFor="nome" className='text-green-dark text-s font-semibold relative cp:-ml-8 top-3 ml-[7px] px-[3px] bg-white w-fit '>Nome do produto</label>
+                    <label htmlFor="nome" className='text-green-dark text-s font-semibold relative cp:-ml-8 top-3 ml-[7px] px-[3px] bg-white w-fit '>Nome do produto</label>
           <input
             value={produto.nome}
             maxLength={100}
@@ -195,6 +196,8 @@ function FormularioProduto() {
             className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover "
           />
         </div>
+        {produto.foto === '' ? (<img className=' w-32 h-32' src={UsuarioFotoVazio}></img>) : (<img className=' w-32 h-32  object-cover ' src={produto.foto}></img>)}
+
         <div className="input flex flex-col static">
           <label htmlFor="preco" className='text-green-dark cp:-ml-8 text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit '>Preço do produto</label>
           <input

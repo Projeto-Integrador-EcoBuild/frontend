@@ -78,7 +78,7 @@ function ListaProdutos() {
     ProdComponent = (
       <div className='flex flex-row my-12 mx-10 lg:mx-16 2xl:mx-40  '>
         <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-[40%] h-screen bg-green-claro rounded-md px-4  pt-8 flex flex-col '>
-          <p className='text-xl text-green-dark uppercase'>todas as categorias</p>
+          <p className='text-xl text-green-dark uppercase  '>todas as categorias</p>
           <div className='border border-green-dark w-[90%] '></div>
           {categorias.map((categoria) => (
             <>
@@ -92,10 +92,10 @@ function ListaProdutos() {
             <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
 
 
-            <div className='md:hidden lg:hidden xl:hidden 2xl:hidden   flex flex-row items-center border border-green-dark rounded-lg'>
+            <div className='md:hidden lg:hidden xl:hidden 2xl:hidden  cp:w-full flex flex-row items-center border border-green-dark rounded-lg'>
               <select
                 name="select"
-                className='rounded-xl uppercase appearance-none border-0 border-transparent focus:ring-0 focus:border-transparent text-green-dark'
+                className='rounded-xl uppercase appearance-none cp:text-sm border-0 border-transparent focus:ring-0 focus:border-transparent text-green-dark'
                 onChange={handleSelectChange}
               >
                 <option value="" className='pointer-events-none ' >Todas as categorias</option>
@@ -141,7 +141,7 @@ function ListaProdutos() {
           </div>
         </div>
 
-        <div className='container mx-auto my-4 grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 lg:grid-cols-3 gap-4 cp:w-4/5 cp:mt-3 cp:px-1 sm:px-12'>
+        <div className='container mx-auto my-4 grid grid-cols-4  cp:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 cp:w-4/5 cp:mt-3 cp:px-1 sm:px-12'>
           {produtos.map((produto) => (
             <CardProduto key={produto.id} product={produto} />
           ))}
@@ -152,7 +152,7 @@ function ListaProdutos() {
 
   return (
     <>
-      {produtos.length === 0 ?(
+      {produtos.length === 0 &&(
         <div className=' flex justify-center items-center  '>
           <Oval
             visible={true}
@@ -165,9 +165,10 @@ function ListaProdutos() {
           />
 
         </div>
-      )  : { ProdComponent }}
-    </>
-  );
+      )  }
+       { ProdComponent }
+    </>
+  );
 }
 
 export default ListaProdutos;

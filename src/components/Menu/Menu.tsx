@@ -137,7 +137,7 @@ function Menu() {
         </div>
 
 
-        <ul className=' flex gap-12 items-center text-lg cp:gap-9 sm:text-lg sm:gap-10 md:text-xl lg:gap-16 lg:text-xl xl:text-2xl 2xl:text-3xl' >
+        <ul className=' flex gap-12 items-center text-lg cp:gap-1 cp:text-base cp:grid cp:grid-cols-3 sm:text-lg sm:gap-10 md:text-xl lg:gap-16 lg:text-xl xl:text-2xl 2xl:text-3xl' >
           <li className='cp:visible sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden'><Link to='/home' className='  '>Home</Link></li>
           <li><Link to='/sobre' >Sobre</Link></li>
           <li><Link to='/categoria' >Categorias</Link></li>
