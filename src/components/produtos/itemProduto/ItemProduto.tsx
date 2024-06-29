@@ -45,6 +45,18 @@ function ItemProduto() {
     quantidadeComprada: 0
   });
 
+  const [listaOpcoes , setlistaOpcoes] = useState<Produto>();
+
+
+  async function buscarProdutoPorCategoria(id: number) {
+    await buscar(`/produtos/categoria/${id}`, setlistaOpcoes, {
+      headers: {
+        Authorization: token,
+      },
+    });
+  }
+
+
   async function buscarProdutoPorId(id: string) {
     await buscar(`/produtos/${id}`, setProduto, {
       headers: {
@@ -57,6 +69,8 @@ function ItemProduto() {
 
   useEffect(() => {
     buscarProdutoPorId(id);
+    buscarProdutoPorCategoria(produto.categoria?.id);
+    console.log(listaOpcoes)
   }, [id]);
 
   function verificarUsuario(product: Produto) {
@@ -111,7 +125,7 @@ function ItemProduto() {
   return (
     <div className='dark:text-white'>
       <p className=' text-center py-10 '> <a ><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
-      <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20 '>
+      <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20  '>
         <div className=' w-[28rem] h-96 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
 
           <Swiper
@@ -135,7 +149,7 @@ function ItemProduto() {
 
           </Swiper>
         </div>
-        <div className=" space-y-4 w-1/2 cp:w-[80%] sm:w-[80%] ">
+        <div className=" space-y-4 w-1/2 cp:w-[80%] sm:w-[80%]  ">
           <h1 className='text-4xl capitalize font-semibold cp:text-3xl cp:text-center md:text-3xl text-amber-950 dark:text-white'>{produto.nome}</h1>
           <p className='text-gray-400'>Cód: {produto.id}</p>
           <p className='text-justify text-xl '>
@@ -164,7 +178,7 @@ function ItemProduto() {
 
       </div>
 
-
+      <div className='bg-red-300'>aqui</div>
 
 
     </div>

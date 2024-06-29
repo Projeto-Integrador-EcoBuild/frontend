@@ -59,9 +59,7 @@ function Menu() {
     navigate(`/busca/${nomeBusca}`)
 
   }
-  console.log(
-    menuTelaGrande
-  )
+
 
   function logout() {
     handleLogout()
