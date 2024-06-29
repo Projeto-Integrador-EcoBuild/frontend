@@ -3,7 +3,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import ModalProduto from '../../components/produtos/modalProduto/ModalProduto'
 
-function Carrinho() {
+export default  function Carrinho() {
     const { items } = useContext(AuthContext)
     let { limparCart, removerProduto } = useContext(AuthContext)
     const navigate = useNavigate();
@@ -84,4 +84,3 @@ function Carrinho() {
     )
 }
 
-export default Carrinho
