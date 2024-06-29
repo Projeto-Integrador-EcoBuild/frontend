@@ -1,7 +1,7 @@
 
 import Menu from './components/Menu/Menu'
 import Rodape from './components/Rodape/Rodape'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes , Navigate } from 'react-router-dom'
 import Home from './paginas/home/Home'
 import Sobre from './paginas/sobre/Sobre'
 import Login from './paginas/login/Login'
@@ -14,12 +14,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import ListaProdutos from './components/produtos/listaProduto/ListaProduto'
 import DeletarProduto from './components/produtos/deletarProduto/DeletarProduto'
 import FormularioProduto from './components/produtos/formularioProduto/FormularioProduto'
-import Carrinho from './paginas/Cart/Carrinho'
+import Carrinho from './paginas/cart/Carrinho'
 import ItemProduto from './components/produtos/itemProduto/ItemProduto'
 import ListaProdutosBusca from './components/produtos/listaProduto/ListaProdutosBusca'
-import FormPerfilUsuario from './paginas/cadastro/FormPerfilUsuario'
+import FormPerfilUsuario from './paginas/usuario/FormPerfilUsuario'
 import ListaProdutosCategoria from './components/produtos/listaProduto/ListaProdutosCategoria'
-
+import { DarkThemeToggle } from 'flowbite-react'
+import NotFound from './paginas/notFound/NotFound'
 function App() {
   return (
     <AuthProvider>
@@ -46,8 +47,12 @@ function App() {
             <Route path='/busca/:nome' element={<ListaProdutosBusca />} />
             <Route path='/produtos/categoria/:id' element={<ListaProdutosCategoria/>}/>
             <Route path='/carrinho' element={<Carrinho />} />
-
+            <Route path='/404' element={<NotFound/>}/>
+            <Route path="*" element={<Navigate to="/404"/>} />
           </Routes>
+          <DarkThemeToggle  className=" bg-slate-100 dark:bg-gray-700  h-20 w-20 rounded-full cp:hidden sm:hidden md:hidden dark:border-white border-black  items-center flex text-center justify-center fixed  bottom-3 right-6"/>
+          
+          
         </div>
         <Rodape />
       </BrowserRouter>

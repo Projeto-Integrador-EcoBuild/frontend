@@ -88,7 +88,7 @@ function ListaProdutos() {
       <div className='flex flex-row py-12 mx-10 lg:mx-16 2xl:mx-40  '>
         <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-[40%] h-screen bg-green-claro dark:bg-green-dark rounded-md px-4  pt-8 flex flex-col '>
           <p className='text-xl text-green-dark dark:text-white uppercase'>todas as categorias</p>
-          <div className='border border-green-dark w-[90%] dark:border-white'></div>
+          <div className='border border-green-dark w-[90%] dark:border-white '></div>
           {categorias.map((categoria) => (
             <>
               <button className='text-start mt-8 text-lg font-light uppercase hover:text-green-hover dark:hover:text-green-400 dark:text-white' onClick={() => buscarProdutosdeCategoria(categoria.id)}>{categoria.nome}</button>
@@ -104,10 +104,10 @@ function ListaProdutos() {
             <BotaoOrdernar listaProduto={produtos} setListaProduto={setProdutos} />
 
 
-            <div className='md:hidden lg:hidden xl:hidden 2xl:hidden   flex flex-row items-center border border-green-dark rounded-lg'>
+            <div className='md:hidden lg:hidden xl:hidden 2xl:hidden   flex flex-row items-center border border-green-dark rounded-lg dark:bg-green-dark'>
               <select
                 name="select"
-                className='rounded-xl uppercase appearance-none border-0 border-transparent focus:ring-0 focus:border-transparent text-green-dark'
+                className='rounded-xl uppercase appearance-none border-0 border-transparent focus:ring-0 focus:border-transparent dark:bg-green-dark dark:text-white text-green-dark'
                 onChange={handleSelectChange}
               >
                 <option value="" className='pointer-events-none ' >Todas as categorias</option>

@@ -8,8 +8,8 @@ import { AuthContext } from '../../../contexts/AuthContext'
 
 
 function ModalProduto() {
-    const {  finalizarCompra } = useContext(AuthContext)
-    const navigate  = useNavigate();
+    const { finalizarCompra } = useContext(AuthContext)
+    const navigate = useNavigate();
     function voltarHome() {
         navigate('/home')
         finalizarCompra();
@@ -17,7 +17,8 @@ function ModalProduto() {
     return (
         <>
             <Popup
-                trigger={<button className='rounded-lg bg-green-dark hover:bg-green-hover text-white md:p-8 md:py-1 p-16 py-3 uppercase mt-4 '>Finalizar pedido</button>} modal  >
+                trigger={<button className='rounded-lg bg-green-dark hover:bg-green-hover text-white md:p-8 md:py-1 p-16 py-3 uppercase mt-4
+                 dark:bg-green-hover dark:text-white dark:hover:text-black dark:hover:bg-green-light'>Finalizar pedido</button>} modal  >
                 <button className=' relative -right-[640px] -top-6' onClick={voltarHome} >
                     <div className="w-9 h-9 bg-green-light rounded-full flex items-center justify-center hover:bg-red-500">
                         <svg className="w-6 h-6 text-green-dark hover:text-white" viewBox="0 0 20 20" fill="currentColor">

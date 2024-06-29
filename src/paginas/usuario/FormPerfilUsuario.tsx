@@ -7,20 +7,40 @@ import Usuario from '../../models/Usuario'
 import { RotatingLines } from 'react-loader-spinner';
 import { toastAlerta } from '../../util/toastAlerta'
 import { Eye, EyeSlash } from '@phosphor-icons/react'
-import backgroundImage from '../../assets/img/blob-scene-haikei.png';
 import { AuthContext } from '../../contexts/AuthContext'
+import FundoClaro from '../../assets/img/blob-scene-haikei.png';
+import FundoEscuro from '../../assets/img/fundoDark.png';
 function Cadastro() {
     let navigate = useNavigate();
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
     let [outraLogo, setOutraLogo] = useState(false);
-    const inputs = "border-green-botao input px-[10px] py-[11px] text-base bg-slate-100 border-2 rounded-[5px] focus:outline-none focus:border-green-botao  focus:ring-0 mb-4"
-    const labels = "text-green-botao text-base font-semibold  ml-1"
+    const inputs = "border-green-botao input px-[10px] py-[11px] text-base bg-slate-100 border-2 rounded-[5px] focus:outline-none focus:border-green-botao  focus:ring-0 mb-4 dark:border-transparent dark:bg-gray-fundo"
+    const labels = "text-green-botao text-base font-semibold  ml-1  dark:text-white "
     const [confirmaSenha, setConfirmaSenha] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { id } = useParams<{ id: string }>();
     //Usuario pra pegar apenas o token 
     const { usuario } = useContext(AuthContext);
     const token = usuario.token;
-
+    const backgroundImage = isDarkTheme ? FundoEscuro : FundoClaro;
+    useEffect(() => {
+      const themeChangeHandler = () => {
+        const currentTheme = document.documentElement.classList.contains('dark');
+        setIsDarkTheme(currentTheme);
+      };
+  
+      themeChangeHandler();
+  
+      const observer = new MutationObserver(themeChangeHandler);
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+  
+      return () => {
+        observer.disconnect();
+      };
+    }, []);
 
     const [usuarioT, setUsuario] = useState<Usuario>({
         id: 0,
@@ -132,11 +152,11 @@ function Cadastro() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-        }} >
+        }} className='bg-hero'>
 
 
             <form className=" flex my-12 flex-col items-center gap-5 w-1/2 p-6 rounded-lg bg-white shadow-2xl shadow-slate-700 md:px-6 md:w-[80%] sm:px-4 sm:w-[80%] cp:px-2
-      cp:w-[80%] lg:w-[70%] xl:w-[60%]" onSubmit={cadastrarNovoUsuario}>
+      cp:w-[80%] lg:w-[70%] xl:w-[60%] dark:bg-gray-inputs dark:shadow-slate-900 dark:text-white" onSubmit={cadastrarNovoUsuario}>
                 <div className='flex flex-row justify-around  w-[80%] items-center cp:w-full sm:w-full md:w-full lg:w-full' >
                     <h2 className="text-8xl font-light cp:text-5xl sm:text-7xl ">Cadastro</h2>
                     {usuarioT.foto === '' ? (<img className=' w-32 h-32 rounded-full' src={UsuarioFotoVazio}></img>) : (<img className=' w-32 h-32 rounded-full object-cover' src={usuarioT.foto}></img>)}
@@ -196,10 +216,10 @@ function Cadastro() {
                     <div className="flex flex-col-reverse mb-4 ">
                         {outraLogo ? (
                             <div className='w-full flex flex-row justify-between border-green-botao input px-[2px] py-[4px] text-base
-                             bg-slate-100 border-2 rounded-[5px] focus:outline-none '>
+                             bg-slate-100 border-2 rounded-[5px] focus:outline-none  dark:border-transparent dark:bg-gray-fundo'>
                                 <input
                                     placeholder=''
-                                    className="bg-slate-100 border-0 w-[90%] focus:ring-0 "
+                                    className="bg-slate-100 border-0 w-[90%] focus:ring-0  dark:bg-gray-fundo "
                                     type="text"
                                     minLength={8}
                                     required
@@ -208,16 +228,16 @@ function Cadastro() {
                                     value={usuarioT.senha}
                                     onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                                 />
-                                <button onClick={mostrarSenha} type='button' className='w-8 bg-slate-100'>
-                                    {outraLogo ? (<Eye size={24} color='#38A673' />) : (<EyeSlash size={24} color='#38A673' />)}
+                                <button onClick={mostrarSenha} type='button' className='w-8 bg-slate-100  dark:bg-gray-fundo'>
+                                {outraLogo ? (<Eye size={24} className='dark:text-white text-green-botao' />) : (<EyeSlash size={24} className='dark:text-white text-green-botao' />)}
                                 </button>
                             </div>
                         ) : (
                             <div className='w-full flex flex-row justify-between border-green-botao input px-[2px] py-[4px] text-base
-                             bg-slate-100 border-2 rounded-[5px] '>
+                             bg-slate-100 border-2 rounded-[5px] dark:border-transparent dark:bg-gray-fundo '>
                                 <input
                                     placeholder=''
-                                    className=" bg-slate-100 border-0 w-[90%]  focus:ring-0 "
+                                    className=" bg-slate-100 border-0 w-[90%]  focus:ring-0  dark:bg-gray-fundo "
                                     type="password"
                                     minLength={8}
                                     required
@@ -226,8 +246,8 @@ function Cadastro() {
                                     value={usuarioT.senha}
                                     onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                                 />
-                                <button onClick={mostrarSenha} type='button' className='w-8 '>
-                                    {outraLogo ? (<Eye size={24} color='#38A673' />) : (<EyeSlash size={24} color='#38A673' />)}
+                                <button onClick={mostrarSenha} type='button' className='w-8 bg-slate-100 dark:bg-gray-fundo'>
+                                {outraLogo ? (<Eye size={24} className='dark:text-white text-green-botao' />) : (<EyeSlash size={24} className='dark:text-white text-green-botao' />)}
                                 </button>
                             </div>
                         )}
@@ -253,7 +273,7 @@ function Cadastro() {
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
                     />
 
-                    {verificarSenhas(usuarioT.senha, confirmaSenha) ? (<p className='hidden'></p>) : (<p className='text-red-500 text-sm'>As senhas não coincidem</p>)}
+                    {verificarSenhas(usuarioT.senha, confirmaSenha) ? (<p className='hidden'></p>) : (<p className='text-red-500 text-sm dark:text-red-300'>As senhas não coincidem</p>)}
 
 
 
@@ -277,7 +297,7 @@ function Cadastro() {
 
                                     onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} className="peer hidden" />
                                 <span
-                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Consumidor</span>
+                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out dark:text-white">Consumidor</span>
                             </label>
                             <label
                                 className="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer" htmlFor="funcionario"
@@ -291,7 +311,7 @@ function Cadastro() {
                                     className="peer hidden"
                                 />
                                 <span
-                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out">Funcionário</span>
+                                    className="tracking-widest peer-checked:bg-gradient-to-r peer-checked:bg-green-botao peer-checked:text-white text-black p-2 rounded-lg transition duration-150 ease-in-out dark:text-white">Funcionário</span>
                             </label>
                         </div>
                     </div>
