@@ -1,4 +1,3 @@
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: inner-spin-button; /* Certifique-se de que as setas apareçam no Chrome/Safari */
