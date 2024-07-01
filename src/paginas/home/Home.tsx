@@ -51,7 +51,7 @@ function Home() {
         <div className='flex flex-row px-12 lg:px-8  '>
           <div className='w-[60%] mt-20 md:w-full sm:w-full cp:w-full cp:mt-6'>
             <div className='flex flex-col 2xl:ml-12'>
-              <h1 className='text-9xl mb-5 text-green-hover font-mono animate-fade-right dark:text-green-light cp:text-7xl sm:text-8xl'>
+              <h1 className='text-9xl mb-5 text-green-hover font-mono animate-fade-right dark:text-green-light cp:w-full  cp:text-5xl sm:text-8xl'>
                 Naturalar
               </h1>
               <p className='tracking-wide text-justify text-green-dark leading-loose text-2xl font-normal font-sans mb-8 dark:text-white cp:text-xl'>
@@ -92,7 +92,7 @@ function Home() {
                 Certificações Ambientais
               </h1>
               <hr className='border-green-hover dark:border-white' />
-              <p className=' mt-4 text-green-dark px-8 dark:text-white text-xl font-normal font-sans tracking-wide leading-loose '>
+              <p className=' mt-4 text-green-dark px-8 dark:text-white text-xl font-normal font-sans tracking-wide leading-loose cp:px-0 '>
                 O uso de materiais ecológicos pode levar à obtenção de certificações como LEED e AQUA, aumentando o valor e a reputação dos edifícios. No Brasil, o número de construções certificadas tem crescido, destacando a importância das práticas sustentáveis.
               </p>
             </div>
@@ -105,7 +105,7 @@ function Home() {
                 Políticas Públicas de Apoio
               </h1>
               <hr className='border-green-hover dark:border-white' />
-              <p className=' mt-4 text-green-dark px-8 dark:text-white text-xl font-normal font-sans tracking-wide leading-loose '>
+              <p className=' mt-4 text-green-dark px-8 dark:text-white text-xl font-normal font-sans tracking-wide leading-loose cp:px-0  '>
                 Políticas públicas, como as do Conselho Brasileiro de Construção Sustentável, incentivam práticas ecológicas, disseminando conhecimento e promovendo técnicas sustentáveis. Esse apoio facilita a adoção de práticas verdes na construção civil.
               </p>
             </div>
@@ -118,7 +118,7 @@ function Home() {
                 Impacto Ambiental Reduzido
               </h1>
               <hr className='border-green-hover dark:border-white' />
-              <p className=' mt-4 text-green-dark px-8 dark:text-white text-xl font-normal font-sans tracking-wide leading-loose '>
+              <p className=' mt-4 text-green-dark px-8 dark:text-white text-xl font-normal font-sans tracking-wide leading-loose cp:px-0  '>
                 Materiais sustentáveis reduzem o impacto ambiental da construção civil, diminuindo o desperdício de recursos naturais, a emissão de poluentes e os resíduos. Isso ajuda a preservar ecossistemas e a construir comunidades mais saudáveis e resilientes.
               </p>
             </div>
