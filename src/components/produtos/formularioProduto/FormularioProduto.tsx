@@ -10,8 +10,8 @@ import produtoSemFotoClaro from '../../../assets/img/produto_sem_foto.jpg'
 import produtoSemFotoEscuro from '../../../assets/img/produto_sem_foto_dark.png'
 function FormularioProduto() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const inputs = "border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
-  const label = "text-green-dark text-s cp:-ml-8 font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit dark:bg-gray-fundo dark:top-0 dark:text-white"
+  const inputs = "border-green-dark  px-[1px] py-[11px] pl-2 border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
+  const label = "text-green-hover  font-semibold  top-3  bg-white  dark:bg-gray-fundo dark:top-0 dark:text-white"
   let navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams<{ id: string }>();
@@ -172,10 +172,10 @@ function FormularioProduto() {
 
   return (
     <div className="container flex flex-col mx-auto items-center">
-      <h1 className="text-4xl text-center my-8 cp:text-3xl dark:text-white">{id !== undefined ? 'Editar Produto' : 'Cadastrar Produto'}</h1>
+      <h1 className="text-4xl text-center my-8 cp:text-3xl dark:text-white text-green-hover">{id !== undefined ? 'Editar Produto' : 'Cadastrar Produto'}</h1>
 
-      <form onSubmit={gerarNovoProduto} className="flex flex-col w-1/2 gap-4">
-        <div className="input flex flex-col static">
+      <form onSubmit={gerarNovoProduto} className="flex flex-col w-1/2 gap-4 cp:w-full">
+        <div className="flex flex-col ">
           <label htmlFor="nome" className={label}>Nome do produto</label>
           <input
             value={produto.nome}
@@ -188,7 +188,7 @@ function FormularioProduto() {
             className={inputs} />
         </div>
 
-        <div className="input flex flex-col static">
+        <div className="flex flex-col ">
           <label htmlFor="descricao" className={label}>Descrição</label>
           <textarea
             required={true}
@@ -201,7 +201,7 @@ function FormularioProduto() {
 
         </div>
 
-        <div className="input flex flex-col static">
+        <div className=" flex flex-col ">
           <label htmlFor="foto" className={label}>Foto do produto</label>
           <input
             value={produto.foto}
@@ -212,10 +212,10 @@ function FormularioProduto() {
             className={inputs}
           />
         </div>
-        <div className=' flex flex-row items-center justify-center'>
+        <div className=' flex  items-center justify-center'>
           {produto.foto === '' ? (<img className='  w-56 h-56 object-cover' src={backgroundImage}></img>) : (<img className=' w-56 h-56  object-cover ' src={produto.foto}></img>)}
         </div>
-        <div className="input flex flex-col static">
+        <div className=" flex flex-col ">
           <label htmlFor="preco" className={label}>Preço do produto</label>
           <input
             value={produto.preco}
@@ -226,7 +226,7 @@ function FormularioProduto() {
             className={inputs}
           />
         </div>
-        <div className="input flex flex-col static">
+        <div className=" flex flex-col ">
           <label htmlFor="quantidade" className={label}>Quantidade de produtos</label>
           <input
             value={produto.quantidade}
@@ -237,7 +237,7 @@ function FormularioProduto() {
             className={inputs}
           />
         </div>
-        <div className="input flex flex-col static mt-5 cp:w-60 cp:-ml-10">
+        <div className=" flex flex-col  mt-5  ">
           <select name="categoria" id="categoria" className="border-green-dark dark:border-white dark:bg-gray-inputs dark:text-white px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover " onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
             <option value="" selected disabled>Selecione uma Categoria</option>
             {categorias.map((categoria) => (

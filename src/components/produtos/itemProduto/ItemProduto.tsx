@@ -66,8 +66,6 @@ function ItemProduto() {
     });
   }
 
-
-
   useEffect(() => {
     buscarProdutoPorId(id);
   }, [id]);
@@ -75,8 +73,6 @@ function ItemProduto() {
   useEffect(() => {
     if (produto.categoria?.id) {
       const idCategoriaBusca = produto.categoria.id.toString()
-      console.log(idCategoriaBusca);
-       console.log(listaOpcoes)
       buscarProdutoPorCategoria(idCategoriaBusca);
     }
   }, [produto.categoria?.id]);
@@ -129,11 +125,13 @@ function ItemProduto() {
     alert("não possuimos essa quantidade de itens para venda")
   }
 
+
+
   return (
     <div className='dark:text-white'>
-      <p className=' text-center py-10 font-medium '> <a ><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
+      <p className=' text-center py-10 font-medium cp:text-xs '> <a ><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
       <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20  '>
-        <div className=' w-[28rem] h-96 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
+        <div className=' w-[28rem] h-80 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
 
           <Swiper
             slidesPerView={1}
@@ -145,13 +143,13 @@ function ItemProduto() {
             modules={[Pagination, Navigation]}
             className="mySwiper"
           >
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
 
           </Swiper>
@@ -178,9 +176,6 @@ function ItemProduto() {
             <button className="bg-green-light  font-bold text-black px-5 text-xl uppercase py-3 rounded-lg
              hover:bg-green-hover hover:text-white  dark:bg-green-hover dark:text-white dark:hover:text-black dark:hover:bg-green-light cp:px-2 cp:text-base  md:text-base" onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
           </div>
-          <hr className='border-gray-400'></hr>
-          <p>Aqui calcular</p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem velit nisi fuga itaque mi commodi laboriosam quo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem velit nisi fuga itaque mi commodi laboriosam quo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem velit nisi fuga itaque mi commodi laboriosam quo.
         </div>
 
       </div>

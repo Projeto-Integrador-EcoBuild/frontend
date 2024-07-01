@@ -7,7 +7,8 @@ import { toastAlerta } from '../../../util/toastAlerta';
 import { RotatingLines } from 'react-loader-spinner';
 function FormCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
-
+  const inputs = "border-green-dark  px-[10px] py-[11px]  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
+  const label = "text-green-dark  font-semibold relative top-3  bg-white  dark:bg-gray-fundo dark:top-0 dark:text-white"
   const [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
 
@@ -105,23 +106,20 @@ function FormCategoria() {
   }, [token]);
 
   return (
-    <div className="container flex flex-col items-center justify-center mx-auto">
-      <h1 className="text-4xl text-center my-8 cp:text-3xl cp:mb-4 dark:text-white">
-        {id === undefined ? 'Cadastre uma nova Categoria' : 'Editar Categoria'}
-      </h1>
-
-      <form className="w-1/2 flex flex-col gap-10 cp:gap-4 mb-4" onSubmit={gerarNovoCategoria}>
-        <div className=" flex flex-col static">
-          <label htmlFor="nome" className="text-green-dark text-s cp:-ml-8 font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit dark:bg-gray-fundo dark:top-0
-           dark:text-white">Nome</label>
+    <div className="container flex flex-col mx-auto items-center py-20">
+      <h1 className="text-4xl text-center pb-4  cp:text-3xl dark:text-white">{id === undefined ? 'Cadastre uma nova Categoria' : 'Editar Categoria'}</h1>
+        
+      
+      <form onSubmit={gerarNovoCategoria} className="flex flex-col w-1/2 gap-4 cp:w-full">
+        <div className="flex flex-col ">
+          <label htmlFor="nome" className={label}>Nome : </label>
           <input
             type="text"
             required
             name="nome"
             minLength={5}
             maxLength={50}
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover
-             dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
+            className={inputs}
             value={categoria.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
@@ -129,35 +127,33 @@ function FormCategoria() {
         </div>
 
 
-        <div className="input flex flex-col static">
-          <label htmlFor="nome" className='text-green-dark cp:-ml-8 text-s font-semibold relative top-3 ml-[7px] px-[3px] bg-white w-fit dark:bg-gray-fundo dark:top-0
-           dark:text-white '>Descrição</label>
+        <div className="flex flex-col ">
+        <label htmlFor="descricao" className={label}>Descrição : </label>
           <textarea
             required
             rows={4}
             name="descricao"
-            className="border-green-dark cp:w-60 cp:-ml-10 px-[10px] py-[11px] text-s  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover
-             dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
+            className={inputs}
             value={categoria.descricao}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstadoTextArea(e)} />
         </div>
 
 
 
-        <div className='flex '>
+        <div className='flex cp:justify-between justify-around  flex-row '>
           <button
-            className="rounded text-white cp:w-full cp:-ml-4 bg-red-400 hover:bg-red-700 w-1/3 py-4 mx-auto block text-xl"
+            className="rounded text-white bg-red-400 hover:bg-red-700 px-8  py-4  text-xl"
             type="submit" onClick={retornar}
           >
             Cancelar
           </button><button
             className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-600 hover:bg-green-700'} 
-              w-1/3 cp:w-3/4 cp:ml-2 py-4 mx-auto block text-xl relative`}
+               py-4 px-8  text-xl `}
             type="submit"
             disabled={!categoria.nome}
           >
             {isLoading && (
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="">
                 <RotatingLines
                   strokeColor="white"
                   strokeWidth="5"

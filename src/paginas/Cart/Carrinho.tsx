@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import ModalProduto from '../../components/produtos/modalProduto/ModalProduto'
-import { Link } from 'react-router-dom'
 export default function Carrinho() {
     const { items } = useContext(AuthContext)
     let { limparCart, removerProduto } = useContext(AuthContext)
@@ -22,7 +21,7 @@ export default function Carrinho() {
 
 
     return (
-        <div className='dark:text-white  h-full p-12 cp:p-8 '>
+        <div className='dark:text-white  h-full p-12 cp:p-4 '>
             <div className='flex   w-full  items-center'>
                 <span className="material-symbols-rounded mr-6 cursor-pointer" onClick={continuarCompra}>arrow_back </span> <h1 className=' justify-center  text-3xl cp:text-2xl ' >Carrinho de compras</h1>
             </div>
@@ -30,7 +29,7 @@ export default function Carrinho() {
 
             <div className='flex flex-row border h-full mt-4 sm:flex-col  cp:flex-col'>
                 <div className="relative overflow-x-auto w-[70%] sm:w-full cp:w-full">
-                    <table className="w-full text-sm text-left rtl:text-right   ">
+                    <table className="w-full text-sm  ">
                         <thead className="text-sm   uppercase border-b ">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
@@ -59,12 +58,12 @@ export default function Carrinho() {
                                     < >
                                         <tr className="border-b">
                                             <td className="px-6 py-4 cp:py-2 cp:px-2 ">
-                                                <img src={produto.foto} className='w-28 h-28 object-cover cp:w-[80%] cp:h-[80%] cursor-pointer' onClick={() => { paginaDoProduto(produto.id) }} /></td>
-                                            <td scope="row" className="px-6 py-4 capitalize" >{produto.nome}</td>
+                                                <img src={produto.foto} className='w-28 h-28 object-cover cp:w-[80%] cp:h-[80%] cursor-pointer ' onClick={() => { paginaDoProduto(produto.id) }} /></td>
+                                            <td scope="row" className="px-6 py-4 capitalize " >{produto.nome}</td>
 
                                             <td className="px-6 py-4 " >{produto.quantidadeComprada}</td>
-                                            <td className="px-6 py-4 cp:hidden sm:hidden md:hidden" > R${produto.preco.toFixed(2).replace(".", ",")}</td>
-                                            <td className="px-6 py-4"><strong>R${(produto.preco * produto.quantidadeComprada).toFixed(2).replace(".", ",")}</strong></td>
+                                            <td className="px-6 py-4 cp:hidden sm:hidden md:hidden text-center " > R${produto.preco.toFixed(2).replace(".", ",")}</td>
+                                            <td className="px-6 py-4 "><strong>R${(produto.preco * produto.quantidadeComprada).toFixed(2).replace(".", ",")}</strong></td>
 
                                             <button className='h-12 flex mt-16 mb-4 w-12 items-end ' onClick={() => removerProduto(produto.id)}>
                                                 <div className="w-5 h-5 bg-green-light rounded-full flex items-center justify-center hover:bg-red-500">
@@ -84,7 +83,7 @@ export default function Carrinho() {
                             }
                         </tbody>
                     </table>
-                    <div className='w-full flex flex-row justify-between mt-5 px-10 cp:px-2'>
+                    <div className='w-full flex flex-row justify-between my-5 px-4'>
                         <button className='p-4 border  border-green-dark text-green-dark hover:bg-green-hover hover:text-white  dark:bg-green-hover dark:text-white dark:hover:text-black dark:hover:bg-green-light ' onClick={continuarCompra} > Continue Comprando</button>
                         <button className=' p-4 border  border-green-dark text-green-dark hover:bg-green-hover hover:text-white  dark:bg-green-hover dark:text-white dark:hover:text-black dark:hover:bg-green-light' onClick={limparCart}>Limpar o carrinho</button>
                     </div>

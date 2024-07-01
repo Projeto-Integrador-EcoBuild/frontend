@@ -71,20 +71,7 @@ function ListaProdutos() {
 
   return (
     <>
-      {produtos.length === 0 && (
-        <div className=' flex justify-center items-center dark:bg-gray-fundo '>
-          <Oval
-            visible={true}
-            height="300"
-            width="200"
-            color="#16a34a"
-            ariaLabel="oval-loading"
-            wrapperStyle={{}}
-            wrapperClass="oval-wrapper mx-auto"
-          />
-
-        </div>
-      )}
+      
       <div className='flex flex-row py-12 mx-10 lg:mx-16 2xl:mx-40  '>
         <div className=' w-1/4 mr-8 cp:hidden sm:hidden md:w-2/4 lg:w-[40%] h-screen bg-green-claro dark:bg-green-dark rounded-md px-4  pt-8 flex flex-col '>
           <p className='text-xl text-green-dark dark:text-white uppercase'>todas as categorias</p>
@@ -126,7 +113,20 @@ function ListaProdutos() {
 
           </div>
 
+          {produtos.length === 0 && (
+        <div className=' flex justify-center items-center dark:bg-gray-fundo '>
+          <Oval
+            visible={true}
+            height="300"
+            width="200"
+            color="#16a34a"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass="oval-wrapper mx-auto"
+          />
 
+        </div>
+      )}
 
           {tipo === 'funcionario' && (
 
