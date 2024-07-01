@@ -16,7 +16,7 @@ function ModalProduto() {
     }
     return (
         <>
-            <Popup
+            <Popup 
                 trigger={<button className='rounded-lg bg-green-dark hover:bg-green-hover text-white md:p-8 md:py-1 p-16 py-3 uppercase mt-4
                  dark:bg-green-hover dark:text-white dark:hover:text-black dark:hover:bg-green-light'>Finalizar pedido</button>} modal  >
                 <div className='w-full pb-4 text-center dark:bg-gray-500  '>
