@@ -6,7 +6,7 @@ function Rodape() {
       <div className=" flex justify-around mb-3 cp:flex-col cp:text-center 2xl:text-2xl ">
      
         <ul className=''>
-        <li className="mb-3 ">02830-960</li>
+        <li className="mb-3 ">00000-000</li>
           <li className="mb-3 ">Rua marte , 123</li>
           <li className="mb-3 ">São Paulo,Brasil</li>
           
@@ -16,19 +16,19 @@ function Rodape() {
             <span className="material-symbols-rounded  mr-2">
               call
             </span>
-            +11 4043-4534</li>
+            +11 4444-4444</li>
           <li className="mb-3 items-center flex cp:justify-center   ">
             <span className="material-symbols-rounded  mr-2">
               call
             </span>
-            +11 99238-0239</li>
+            +11 99999-9999</li>
 
           <li className="mb-3 items-center flex  cursor-pointer cp:justify-center ">
             <span className="material-symbols-rounded mr-2 w-full cp:w-6  ">
               mail
             </span>
             <span className="underline">
-              naturalar@gmail.com
+              ecobuild49@gmail.com
             </span>
           </li>
 

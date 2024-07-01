@@ -20,7 +20,8 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 import ModalDetalhesParcelamento from '../modalProduto/modalDetalhesParcelamento';
-
+import CardProduto from '../cardProduto/CardProduto';
+import { House } from '@phosphor-icons/react'
 
 function ItemProduto() {
   const { id } = useParams<{ id: string }>();
@@ -45,10 +46,10 @@ function ItemProduto() {
     quantidadeComprada: 0
   });
 
-  const [listaOpcoes , setlistaOpcoes] = useState<Produto>();
+  const [listaOpcoes, setlistaOpcoes] = useState<Produto[]>([]);
 
 
-  async function buscarProdutoPorCategoria(id: number) {
+  async function buscarProdutoPorCategoria(id: string) {
     await buscar(`/produtos/categoria/${id}`, setlistaOpcoes, {
       headers: {
         Authorization: token,
@@ -65,14 +66,16 @@ function ItemProduto() {
     });
   }
 
-
-
   useEffect(() => {
     buscarProdutoPorId(id);
-    buscarProdutoPorCategoria(produto.categoria?.id);
-    console.log(listaOpcoes)
   }, [id]);
 
+  useEffect(() => {
+    if (produto.categoria?.id) {
+      const idCategoriaBusca = produto.categoria.id.toString()
+      buscarProdutoPorCategoria(idCategoriaBusca);
+    }
+  }, [produto.categoria?.id]);
   function verificarUsuario(product: Produto) {
     if (token === "") {
       toastAlerta('Você deve realizar o login! ', 'erro')
@@ -93,7 +96,7 @@ function ItemProduto() {
     navigate(-1)
   }
 
-  function visitarProdutosCategoria(){
+  function visitarProdutosCategoria() {
     navigate(`/produtos/categoria/${produto.categoria?.id}`)
   }
 
@@ -122,11 +125,13 @@ function ItemProduto() {
     alert("não possuimos essa quantidade de itens para venda")
   }
 
+
+
   return (
     <div className='dark:text-white'>
-      <p className=' text-center py-10 '> <a ><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
+      <p className=' text-center py-10 font-medium cp:text-xs '> <a ><button onClick={continuarCompra} > Página inicial </button></a> <button onClick={visitarProdutosCategoria}> &gt; {produto.categoria?.nome}</button> &gt; <span className='underline capitalize'> {produto.nome}</span></p>
       <div className='flex items-center gap-8 justify-center cp:flex-col  sm:flex-col 2xl:gap-6 2xl:mx-20  '>
-        <div className=' w-[28rem] h-96 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
+        <div className=' w-[28rem] h-80 cp:w-[80%] sm:w-[90%] 2xl:w-[35%] -mt-11 cp:mt-0 sm:mt-0 md:w-[40%] '>
 
           <Swiper
             slidesPerView={1}
@@ -138,13 +143,13 @@ function ItemProduto() {
             modules={[Pagination, Navigation]}
             className="mySwiper"
           >
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
-            <SwiperSlide>          <img src={produto.foto} alt="imagem do produto" />
+            <SwiperSlide>          <img src={produto.foto} className='object-cover' alt="imagem do produto" />
             </SwiperSlide>
 
           </Swiper>
@@ -164,21 +169,39 @@ function ItemProduto() {
             <input type="number"
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
               value={produto.quantidadeComprada}
-              className=' border-green-light px-5 text-xl uppercase py-3 rounded-lg cp:text-base cp:px-2 md:text-base'
+              className=' border-green-light px-5 text-xl uppercase py-3 rounded-lg cp:text-base cp:px-2 md:text-base dark:text-black'
               max={produto.quantidade}
               name="quantidadeComprada"
               min={1} />
             <button className="bg-green-light  font-bold text-black px-5 text-xl uppercase py-3 rounded-lg
              hover:bg-green-hover hover:text-white  dark:bg-green-hover dark:text-white dark:hover:text-black dark:hover:bg-green-light cp:px-2 cp:text-base  md:text-base" onClick={() => verificarUsuario(produto)}>Adicionar ao Carrinho</button>
           </div>
-          <hr className='border-gray-400'></hr>
-          <p>Aqui calcular</p>
-
         </div>
 
       </div>
 
-      <div className='bg-red-300'>aqui</div>
+      <div className='mt-16 pb-16 px-12 w-full '>
+        <p className='font-normal text-3xl text-amber-950 dark:text-white'>Produtos relacionados</p>
+
+
+
+        {listaOpcoes.length !== 1 ? (
+          <div className='grid grid-cols-4 cp:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 dark:border-t-white border-t-gray-400 border-t pt-12 mt-2'>
+            {listaOpcoes
+              .filter(produtoRelacionado => produtoRelacionado.id.toString() !== id)
+              .slice(0, 5)
+              .map(produtoRelacionado => (
+                <CardProduto key={produtoRelacionado.id} product={produtoRelacionado} />
+              ))}
+          </div>
+        ) : (
+          <p className='w-full text-center text-2xl bg-green-light text-green-dark flex items-center border border-green-light justify-center h-20'>
+            Nenhum produto encontrado no momento!
+          </p>
+        )}
+      </div>
+
+
 
 
     </div>

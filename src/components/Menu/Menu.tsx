@@ -167,7 +167,7 @@ function Menu() {
         </div>
         <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full" onSubmit={buscarProdutos}>
           <input
-            className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 "
+            className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 dark:text-black "
             placeholder="O que você está procurando?"
             type="text"
             value={nome}
@@ -324,7 +324,7 @@ function Menu() {
         </div>
         <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full lg:w-[40%]" onSubmit={buscarProdutos}>
           <input
-            className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 "
+            className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 dark:text-black "
             placeholder="O que você está procurando?"
             type="text"
             value={nome}
@@ -475,7 +475,7 @@ function Menu() {
         </div>
         <form className=" relative  w-[45%] cp:w-full sm:w-full md:w-full lg:w-[40%]" onSubmit={buscarProdutos}>
           <input
-            className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 "
+            className=" rounded-xl w-full font-light px-8 py-3 border-2 border-transparent  placeholder-gray-400 transition-all duration-300 dark:text-black "
             placeholder="O que você está procurando?"
             type="text"
             value={nome}
