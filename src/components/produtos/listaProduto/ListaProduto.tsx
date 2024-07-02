@@ -84,7 +84,7 @@ function ListaProdutos() {
         </div>
         <div className='flex flex-col gap-2 justify-around w-full  '>
           <div className='flex flex-row justify-between items-center  mb-12 cp:flex-col sm:flex-col sm:gap-4 cp:gap-4 md:flex-col md:gap-4'>
-            {tipo === 'funcionario' ? <Link to={`/cadastrarProduto`} ><button className=' bg-green-claro py-4 px-4 rounded-lg  lg:w-64 xl:ml-20 text-3xl   text-green-hover hover:bg-green-hover hover:text-white dark:text-white dark:bg-green-hover
+            {tipo === 'funcionario' ? <Link to={`/cadastrarProduto`} ><button className=' bg-green-light py-4 px-4 rounded-lg  lg:w-64 xl:ml-20 text-3xl   text-green-hover hover:bg-green-hover hover:text-white dark:text-white dark:bg-green-hover
              dark:hover:bg-green-light dark:hover:text-green-hover'>Cadastrar produtos</button> </Link> : <p className='text-3xl uppercase
               dark:text-white text-green-hover '>Todos os produtos</p>}
 

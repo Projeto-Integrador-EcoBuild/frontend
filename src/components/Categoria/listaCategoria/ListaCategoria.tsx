@@ -67,7 +67,7 @@ function ListaCategoria() {
           <div className="container flex flex-row py-2 justify-between cp:flex-col cp:gap-6 " >
 
             <Link to={`/cadastrarCategoria`} className=''>
-              <button className=' bg-green-claro py-4 px-4 rounded-lg   text-4xl   text-green-hover hover:bg-green-hover hover:text-white dark:text-white dark:bg-green-hover
+              <button className=' bg-green-light py-4 px-4 rounded-lg   text-4xl   text-green-hover hover:bg-green-hover hover:text-white dark:text-white dark:bg-green-hover
              dark:hover:bg-green-light dark:hover:text-green-hover '>Cadastrar categoria</button>
             </Link>
 
