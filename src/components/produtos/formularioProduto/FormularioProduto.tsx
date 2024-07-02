@@ -248,7 +248,7 @@ function FormularioProduto() {
           </select>
         </div>
         <button
-          className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-600 hover:bg-green-700'} 
+          className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-botao hover:bg-green-700'} 
               w-1/3 cp:w-full py-4 mx-auto block text-xl relative cp:text-sm`}
           type="submit"
           disabled={!categoria.nome}

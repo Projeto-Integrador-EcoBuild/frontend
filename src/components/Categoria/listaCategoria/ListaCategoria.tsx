@@ -66,9 +66,9 @@ function ListaCategoria() {
 
           <div className="container flex flex-row py-2 justify-between cp:flex-col cp:gap-6 " >
 
-            <Link to={`/cadastrarCategoria`} className='  py-4 px-4 rounded-lg  text-center text-3xl uppercase 
-            text-green-hover hover:bg-green-hover hover:text-white dark:text-white dark:bg-green-hover dark:hover:bg-green-light dark:hover:text-green-hover '>
-              <button>Cadastrar categoria</button>
+            <Link to={`/cadastrarCategoria`} className=''>
+              <button className=' bg-green-claro py-4 px-4 rounded-lg   text-4xl   text-green-hover hover:bg-green-hover hover:text-white dark:text-white dark:bg-green-hover
+             dark:hover:bg-green-light dark:hover:text-green-hover '>Cadastrar categoria</button>
             </Link>
 
 
@@ -89,14 +89,14 @@ function ListaCategoria() {
                   xmlns="http://www.w3.org/2000/svg"
                   role="img"
                   aria-labelledby="search"
-                  className="w-5 h-5 text-green-dark" 
+                  className="w-5 h-5 text-green-dark"
                 >
                   <path
                     d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
                     stroke="currentColor"
                     stroke-width="1.333"
                     stroke-linecap="round"
-                    stroke-linejoin="round" 
+                    stroke-linejoin="round"
                   ></path>
                 </svg>
               </button>
@@ -130,7 +130,7 @@ function ListaCategoria() {
           </div>
           {categoriasPesquisa.length === 0 && nomePesquisa !== "" && (
 
-            <p className='text-center text-2xl bg-green-light text-green-dark w-[100%] flex items-center border border-green-light justify-center h-20'>Nenhuma categoria encontrada no momento!</p>
+            <p className='text-center text-2xl bg-green-light text-green-dark w-[100%] flex items-center border border-green-light justify-center h-20 rounded-2xl'>Nenhuma categoria encontrada no momento!</p>
 
           )}
         </div>

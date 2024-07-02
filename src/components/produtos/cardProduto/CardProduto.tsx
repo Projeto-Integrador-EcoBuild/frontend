@@ -28,7 +28,7 @@ function CardProduto({ product }: CardProdutoProps) {
                     <span className=' text-sm'><strong>Categoria:</strong> {product.categoria?.nome}</span>
                 </div>
                 <div className="flex justify-center gap-1 px-6 pt-4 pb-2">
-                    <Link to={`/editarProduto/${product.id}`} className='w-full text-slate-100 bg-green-600 hover:bg-green-700 flex items-center justify-center py-2'>
+                    <Link to={`/editarProduto/${product.id}`} className='w-full text-slate-100 bg-green-botao hover:bg-green-700 flex items-center justify-center py-2'>
                         <button>Editar</button>
                     </Link>
                     <Link to={`/deletarProduto/${product.id}`} className='text-slate-100 bg-red-400 hover:bg-red-700 w-full flex items-center justify-center'>

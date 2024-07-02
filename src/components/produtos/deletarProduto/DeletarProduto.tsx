@@ -80,7 +80,7 @@ function DeletarProduto() {
         </div>
         <div className="flex mt-4 ">
           <button className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2 text-lg' onClick={retornar}>Não</button>
-          <button className='w-full text-slate-100 bg-green-400 hover:bg-green-600 flex items-center justify-center text-lg' onClick={deletarProduto}>
+          <button className='w-full text-slate-100 bg-green-botao hover:bg-green-600 flex items-center justify-center text-lg' onClick={deletarProduto}>
             Sim
           </button>
         </div>

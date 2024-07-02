@@ -7,8 +7,8 @@ import { toastAlerta } from '../../../util/toastAlerta';
 import { RotatingLines } from 'react-loader-spinner';
 function FormCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
-  const inputs = "border-green-dark  px-[10px] py-[11px]  border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
-  const label = "text-green-dark  font-semibold relative top-3  bg-white  dark:bg-gray-fundo dark:top-0 dark:text-white"
+  const inputs = "border-green-dark  px-[1px] py-[11px] pl-2 border-2 rounded-[5px] w-full focus:ring-0 focus:border-2 focus:border-green-hover dark:bg-gray-inputs dark:focus:border-white dark:border-white dark:text-white "
+  const label = "text-green-hover  font-semibold  top-3  bg-white  dark:bg-gray-fundo dark:top-0 dark:text-white"
   const [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
 
@@ -107,7 +107,7 @@ function FormCategoria() {
 
   return (
     <div className="container flex flex-col mx-auto items-center py-20">
-      <h1 className="text-4xl text-center pb-4  cp:text-3xl dark:text-white">{id === undefined ? 'Cadastre uma nova Categoria' : 'Editar Categoria'}</h1>
+      <h1 className="text-4xl text-center pb-4  cp:text-3xl dark:text-white text-green-hover">{id === undefined ? 'Cadastre uma nova Categoria' : 'Editar Categoria'}</h1>
         
       
       <form onSubmit={gerarNovoCategoria} className="flex flex-col w-1/2 gap-4 cp:w-full">
@@ -147,7 +147,7 @@ function FormCategoria() {
           >
             Cancelar
           </button><button
-            className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-600 hover:bg-green-700'} 
+            className={`rounded text-white ${!categoria.nome ? 'disabled:bg-slate-200 ' : 'bg-green-botao hover:bg-green-700'} 
                py-4 px-8  text-xl `}
             type="submit"
             disabled={!categoria.nome}

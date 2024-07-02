@@ -64,7 +64,7 @@ export default function ListaProdutosBusca() {
                 </div>
             )}
                 {zerou  && produtos.length === 0 && (
-                <p className='text-center text-2xl bg-green-light text-green-dark flex items-center border border-green-light justify-center h-20'>Nenhum produto encontrado no momento!</p>
+                <p className='text-center text-2xl bg-green-light text-green-dark flex items-center border border-green-light justify-center h-20 rounded-2xl'>Nenhum produto encontrado no momento!</p>
                      )}
                 <div className=' mx-auto grid grid-cols-4 gap-20 cp:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:gap-12'>
 
