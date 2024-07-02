@@ -149,7 +149,7 @@ function ItemProduto() {
         <div className=" space-y-4 w-1/2 cp:w-[80%] sm:w-[80%]">
           <h1 className='text-4xl capitalize font-semibold cp:text-3xl cp:text-center md:text-3xl text-amber-950 dark:text-white'>{produto.nome}</h1>
           <p className='text-gray-400'>Cód: {produto.id}</p>
-          <p className='text-justify text-xl'>
+          <p className='text-justify text-xl '>
             {produto.descricao}
           </p>
           <p>Por R${produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-hover text-2xl'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX</p>
