@@ -159,9 +159,12 @@ function ItemProduto() {
           <p className='text-gray-400'>Cód: {produto.id}</p>
           <p className='text-justify text-xl '>
             {produto.descricao}       </p>
-          {produto.preco < 10 ? <p></p> : <p className=''>Por R${produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-hover text-2xl'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
+          <p className=''>Por R${produto.preco.toFixed(2).replace(".", ",")} ou <span className='font-bold text-green-hover text-2xl'>R${(produto.preco - (produto.preco * 0.10)).toFixed(2).replace(".", ",")}</span> no PIX </p>
+
+          {produto.preco < 10 ? <></> : <p>
+            <span className='font-bold'>2X </span>de <span className='font-bold'>R${(produto.preco / 2).toFixed(2).replace(".", ",")} </span>sem juros
+          </p>
           }
-          <p><span className='font-bold'>2X </span>de <span className='font-bold'>R${(produto.preco / 2).toFixed(2).replace(".", ",")} </span>sem juros</p>
 
           <ModalDetalhesParcelamento preco={produto.preco} />
           <div className='flex items-center  w-full justify-around   '>
@@ -195,7 +198,7 @@ function ItemProduto() {
               ))}
           </div>
         ) : (
-          <p className='w-full text-center text-2xl bg-green-light text-green-dark flex items-center border border-green-light justify-center h-20'>
+          <p className='w-full text-center text-2xl bg-green-light text-green-dark flex items-center border border-green-light justify-center h-20 rounded-2xl'>
             Nenhum produto encontrado no momento!
           </p>
         )}
